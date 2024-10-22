@@ -83,15 +83,26 @@ public class ModeloTabla extends JFrame {
 		lblMonstruo_5.setBounds(562, 332, 70, 104);
 		getContentPane().add(lblMonstruo_5);
 		
-		JLabel lblHechizoRival = new JLabel("Campo rival");
-		lblHechizoRival.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblHechizoRival.setBounds(50, 79, 76, 100);
-		getContentPane().add(lblHechizoRival);
+		JLabel lblHechizo_1 = new JLabel("Hechizo");
+		lblHechizo_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblHechizo_1.setBounds(590, 426, 76, 100);
+		getContentPane().add(lblHechizo_1);
 		
-		JLabel lblHechizo = new JLabel("Campo");
-		lblHechizo.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblHechizo.setBounds(50, 321, 76, 100);
-		getContentPane().add(lblHechizo);
+		JLabel lblHechizo_2 = new JLabel("Hechizo");
+		lblHechizo_2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblHechizo_2.setBounds(752, 426, 76, 100);
+		getContentPane().add(lblHechizo_2);
+		
+		JLabel lblHechizo_3 = new JLabel("Hechizo");
+		lblHechizo_3.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblHechizo_3.setBounds(946, 426, 76, 100);
+		getContentPane().add(lblHechizo_3);
+		
+		JLabel lblHechizoRival_1 = new JLabel("Hechizo rival");
+		lblHechizoRival_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblHechizoRival_1.setBounds(606, 196, 76, 100);
+		getContentPane().add(lblHechizoRival_1);
+		
 		
 		JLabel lblVidaJugador = new JLabel("");
 		lblVidaJugador.setIcon(new ImageIcon("C:\\Users\\samue\\Downloads\\barra vidapng (1).png"));
@@ -121,6 +132,46 @@ public class ModeloTabla extends JFrame {
 		lblVidaJugador_1.setIcon(new ImageIcon("C:\\Users\\samue\\Downloads\\barra vidapng (1).png"));
 		lblVidaJugador_1.setBounds(644, 70, 150, 41);
 		getContentPane().add(lblVidaJugador_1);
+
+		JLabel lblBarajaRival = new JLabel("BARAJA RIVAL");
+		lblBarajaRival.setForeground(Color.BLACK);
+		lblBarajaRival.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblBarajaRival.setBounds(239, 66, 81, 113);
+		getContentPane().add(lblBarajaRival);
+		
+		JLabel lblHechizoRival_1_1 = new JLabel("Hechizo rival");
+		lblHechizoRival_1_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblHechizoRival_1_1.setBounds(750, 200, 76, 100);
+		getContentPane().add(lblHechizoRival_1_1);
+		
+		JLabel lblHechizoRival_1_2 = new JLabel("Hechizo rival");
+		lblHechizoRival_1_2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblHechizoRival_1_2.setBounds(912, 196, 76, 100);
+		getContentPane().add(lblHechizoRival_1_2);
+		
+                JButton btnSalir= new JButton("Salir Batalla");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnSalir.setBounds(1176, 363, 89, 23);
+		getContentPane().add(btnSalir);
+		
+		JLabel lblCementerio = new JLabel("Cementerio");
+		lblCementerio.setBounds(217, 420, 131, 113);
+		lblCementerio.setBorder(new LineBorder(new Color(0, 0, 0)));
+		getContentPane().add(lblCementerio);
+		
+		JLabel lblCementerioRival = new JLabel("Cementerio Rival");
+		lblCementerioRival.setBounds(239, 186, 131, 110);
+		lblCementerioRival.setBorder(new LineBorder(new Color(0, 0, 0)));
+		getContentPane().add(lblCementerioRival);
+		
+		JLabel lblCartaRival = new JLabel("Carta Rival");
+		lblCartaRival.setForeground(new Color(0, 0, 0));
+		lblCartaRival.setBounds(700, 11, 89, 41);
+		lblCartaRival.setBorder(new LineBorder(new Color(0, 0, 0)));
+		getContentPane().add(lblCartaRival);
 		
 	}
 }
