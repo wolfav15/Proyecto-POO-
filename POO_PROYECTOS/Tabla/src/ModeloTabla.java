@@ -83,12 +83,12 @@ public class ModeloTabla extends JFrame {
 		lblMonstruo_5.setBounds(562, 332, 70, 104);
 		getContentPane().add(lblMonstruo_5);
 		
-		JLabel lblHechizoRival = new JLabel("Hechizo rival");
+		JLabel lblHechizoRival = new JLabel("Campo rival");
 		lblHechizoRival.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblHechizoRival.setBounds(50, 79, 76, 100);
 		getContentPane().add(lblHechizoRival);
 		
-		JLabel lblHechizo = new JLabel("Hechizo");
+		JLabel lblHechizo = new JLabel("Campo");
 		lblHechizo.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblHechizo.setBounds(50, 321, 76, 100);
 		getContentPane().add(lblHechizo);
