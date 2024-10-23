@@ -27,6 +27,7 @@ public class ModeloTabla extends JFrame {
 
 	
 	public ModeloTabla() {
+		setTitle("Tablero"); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1380, 808);
 		getContentPane().setLayout(null);
