@@ -1,11 +1,8 @@
 public class CartaMagicaEquipo extends CartaMagica {
     private CartaMounstro mounstruo_equipado; 
 
-    public CartaMagicaEquipo(String nombre, String efecto, String rareza) {
-        this.nombre = nombre;
-        this.efecto = efecto;
-        this.activo = false;
-        this.rareza = rareza;
+    public CartaMagicaEquipo(String nombre, String rareza, String descripcion, String efecto, int cantidad_efecto) {
+        super(nombre, rareza, descripcion, cantidad_efecto);
     }
 
     @Override
@@ -25,6 +22,7 @@ public class CartaMagicaEquipo extends CartaMagica {
         //this.equipar_mounstruo();
     }
 
+    @Override
     public void destruirse() {
         this.activo = false;  //indicara que ya no estaria en el campo, para los observadores
         this.mounstruo_equipado.setAtaque(mounstruo_equipado.getAtaque() - cantidad_efecto);

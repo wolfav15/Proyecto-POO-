@@ -5,15 +5,13 @@ public class CartaMounstro extends Carta {
 
     // estado lo que indica es para verificar si esta boca arriba o colocado, para el observer del campo detecte si mostrarlo o no
 
-    public CartaMounstro(String nombre, String rareza, int ataque, int defensa, int nivel, String tipo, String atributo) {
+    public CartaMounstro(String nombre, String rareza, String descripcion, int ataque, int defensa, int nivel, String tipo, String atributo) {
+        super(nombre, rareza, descripcion);
         this.ataque = ataque;
         this.defensa = defensa;
         this.nivel = nivel;
         this.tipo = tipo;
         this.atributo = atributo;
-        this.activo = false;
-        this.nombre = nombre;
-        this.rareza = rareza;
     }
 
     @Override
@@ -31,6 +29,7 @@ public class CartaMounstro extends Carta {
         return atributo_comparar;  //es para ver si usar el ataque o la defensa del mounstruo atacado, en atacar.
     }
 
+    @Override
     public void destruirse() {
         this.activo = false;  //indicara que ya no estaria en el campo, para los observadores
     }
@@ -62,7 +61,6 @@ public class CartaMounstro extends Carta {
         //por eso daño de batalla esta en cero, y pasa el return con normalidad.
 
         return daño_batalla;   //el daño de batalla puede ser para mi o para el rival, depende quien tuvo mayor ataque
-
     }
 
     public int getAtaque() {

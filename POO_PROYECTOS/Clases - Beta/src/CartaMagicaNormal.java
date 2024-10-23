@@ -1,10 +1,11 @@
 public class CartaMagicaNormal extends CartaMagica { 
 
-    public CartaMagicaNormal(String efecto, String nombre, String rareza) {
-        this.efecto = efecto;
-        this.nombre = nombre;
-        this.rareza = rareza;
-        this.activo = false;
+    private String tipo_efecto; //nuevo atributo para evitar tener que tener textos especificos, tiene dos opciones
+                                // que el string sea "inflijir" o "curar", se usa para el activar_efecto.
+
+    public CartaMagicaNormal(String nombre, String rareza, String descripcion, int cantidad_efecto, String tipo_efecto) {
+        super(nombre, rareza, descripcion, cantidad_efecto);
+        this.tipo_efecto = tipo_efecto;
     }
 
     @Override
@@ -14,22 +15,21 @@ public class CartaMagicaNormal extends CartaMagica {
     }
 
     public void curar_jugador() {   //aqui se debe recibir a la clase jugador, para curarnos a nosotros
-
     }
 
     public void inflijir_daño_jugador() { //para inflijir daño, a los rivales
-
     }
 
     @Override
     public void activar_efecto() {
-        if (efecto == "inflijir" + cantidad_efecto + " de daño al rival") {
+        if (tipo_efecto == "inflijir") {
             this.inflijir_daño_jugador();
-        } else {
+        } else { //aca si va al else, quiere decir que seria tipo_magia == "curar"
             this.curar_jugador();
         }
     }
 
+    @Override
     public void destruirse() {
         this.activo = false;  //indicara que ya no estaria en el campo, para los observadores
     }
