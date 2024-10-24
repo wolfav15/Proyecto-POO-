@@ -1,70 +1,73 @@
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Menu extends JFrame {
-
+	
     public Menu() {
         setTitle("Juego de Cartas de Monstruos");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        getContentPane().setLayout(new BorderLayout());
+        
+        JPanel panelFondo = new JPanel() {
+			private static final long serialVersionUID = 1L;
 
-        // Crear el menú
-        JMenuBar menuBar = new JMenuBar();
+			@Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon background = new ImageIcon("C:\\Users\\samue\\Desktop\\momazos\\descargar.jpg"); // Cambia la ruta a tu imagen si quieren meter fondo
+                g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        panelFondo.setLayout(new GridBagLayout());
+        
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10); // Margen entre botones
+        JButton botonBatalla = new JButton ("Batalla");
+        JButton botonReglasBatalla = new JButton("Reglas de Batalla");
+        JButton botonSeleccionMusical = new JButton("Selección Musical");
+        JButton botonDificultad = new JButton("Dificultad");
+        JButton botonSalirJuego = new JButton("Salir");
 
-        // Menú Batalla
-        JMenu menuBatalla = new JMenu("Batalla");
-        JMenuItem mostrarMazo = new JMenuItem("Mostrar Mazo");
-        JMenuItem mostrarTabla = new JMenuItem("Mostrar Tabla");
-        JMenuItem cpuJugador = new JMenuItem("CPU o Jugador");
-        JMenuItem reglasBatalla = new JMenuItem("Reglas de Batalla");
+        // Añadir los botones al panel de menú centrado
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        panelFondo.add(botonBatalla, gbc);
+     
+        gbc.gridy++;
+        panelFondo.add(botonReglasBatalla, gbc);
+        
+        gbc.gridy++;
+        panelFondo.add(botonSeleccionMusical, gbc);
+        
+        gbc.gridy++;
+        panelFondo.add(botonDificultad, gbc);
+        
+        gbc.gridy++;
+        panelFondo.add(botonSalirJuego, gbc);
 
-        menuBatalla.add(mostrarMazo);
-        menuBatalla.add(mostrarTabla);
-        menuBatalla.add(cpuJugador);
-        menuBatalla.add(reglasBatalla);
+        getContentPane().add(panelFondo, BorderLayout.CENTER);
 
-        // Menú Opciones
-        JMenu menuOpciones = new JMenu("Opciones");
-        JMenuItem seleccionMusical = new JMenuItem("Selección Musical");
-        JMenuItem dificultad = new JMenuItem("Dificultad");
-
-        menuOpciones.add(seleccionMusical);
-        menuOpciones.add(dificultad);
-
-        // Menú Salir
-        JMenu menuSalir = new JMenu("Salir");
-        JMenuItem salirJuego = new JMenuItem("Salir");
-        salirJuego.addActionListener(e -> System.exit(0));
-
-        menuSalir.add(salirJuego);
-
-        // Añadir menús a la barra de menús
-        menuBar.add(menuBatalla);
-        menuBar.add(menuOpciones);
-        menuBar.add(menuSalir);
-
-        setJMenuBar(menuBar);
-
-        // Acción para Mostrar Mazo
-        mostrarMazo.addActionListener(e -> mostrarMensaje("Mostrando Mazo"));
-
-        // Acción para Mostrar Tabla
-        mostrarTabla.addActionListener(e -> mostrarMensaje("Mostrando Tabla"));
-
-        // Acción para CPU o Jugador
-        cpuJugador.addActionListener(e -> mostrarMensaje("CPU o Jugador"));
+       //  Acción para Mostrar batalla
+     
+		botonBatalla.addActionListener(e -> {
+			MenuBatalla menubatalla= new MenuBatalla();
+			menubatalla.setVisible(true);
+	});
 
         // Acción para Reglas de Batalla
-        reglasBatalla.addActionListener(e -> mostrarMensaje("Mostrando Reglas de Batalla"));
+        botonReglasBatalla.addActionListener(e -> mostrarMensaje("Mostrando Reglas de Batalla"));
 
         // Acción para Selección Musical
-        seleccionMusical.addActionListener(e -> mostrarMensaje("Seleccionando Música"));
+        botonSeleccionMusical.addActionListener(e -> mostrarMensaje("Seleccionando Música"));
 
         // Acción para Dificultad
-        dificultad.addActionListener(e -> mostrarMensaje("Seleccionando Dificultad"));
+        botonDificultad.addActionListener(e -> mostrarMensaje("Seleccionando Dificultad"));
+
+        // Acción para Salir
+        botonSalirJuego.addActionListener(e -> System.exit(0));
     }
 
     private void mostrarMensaje(String mensaje) {
@@ -73,7 +76,7 @@ public class Menu extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            Menu frame = new Menu();
+            Menu frame =new Menu();
             frame.setVisible(true);
         });
     }
