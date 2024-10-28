@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="Tabla/|Carta/src/|Clases/|Bases_datos/|Menu/" kind="src" path="Main/src"/>
+	<classpathentry kind="src" path="Main/src/Bases_datos"/>
+	<classpathentry kind="src" path="Main/src/Menu"/>
+	<classpathentry kind="src" path="Main/src/Tabla"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

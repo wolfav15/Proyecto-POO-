@@ -1,3 +1,5 @@
+package Carta;
+
 public class CartaMounstro extends Carta {
     
     private int ataque, defensa, nivel;

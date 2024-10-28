@@ -1,3 +1,5 @@
+package Carta;
+
 public abstract class Carta {
     protected String nombre, rareza, estado, descripcion; //descripcion seria el efecto (si es que tiene) es generico a todo
     protected boolean activo; //hara referencia ha si esta en el campo o no, para cosas como magias de equipo.

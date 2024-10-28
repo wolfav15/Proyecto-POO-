@@ -1,7 +1,7 @@
 package Jugador;
 
 import java.util.List;
-import Clases.*;
+import Carta.Carta; 
 //No tengo idea de como jugar Yu-Gi-Oh :D
 public class Jugador {
     private String nombre;

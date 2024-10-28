@@ -1,3 +1,4 @@
+package Carta;
 public class CartaMagicaNormal extends CartaMagica { 
 
     private String tipo_efecto; //nuevo atributo para evitar tener que tener textos especificos, tiene dos opciones

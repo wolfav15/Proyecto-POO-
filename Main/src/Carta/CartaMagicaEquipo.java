@@ -1,3 +1,5 @@
+package Carta;
+
 public class CartaMagicaEquipo extends CartaMagica {
     private CartaMounstro mounstruo_equipado; 
 
