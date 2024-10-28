@@ -5,9 +5,9 @@ import java.sql.SQLException;
 public class ConexionBD {
     private static ConexionBD instancia;
     private Connection conexion;
-    private String url = "jdbc:postgresql://localhost:5432/Juego"; // o "jdbc:mysql://localhost:3306/tu_base_de_datos"
-    private String usuario = "wolfav";
-    private String contraseña = "123";
+    private String url = "jdbc:postgresql://localhost:5432/´Proyecto_POO"; // o "jdbc:mysql://localhost:3306/tu_base_de_datos"
+    private String usuario = "postgres";
+    private String contraseña = "26072002";
 
     private ConexionBD() throws SQLException {
         try {
