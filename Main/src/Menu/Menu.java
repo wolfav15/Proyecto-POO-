@@ -1,6 +1,6 @@
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class Menu extends JFrame {
 	
@@ -35,7 +35,7 @@ public class Menu extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 0;
         panelFondo.add(botonBatalla, gbc);
-     
+    
         gbc.gridy++;
         panelFondo.add(botonReglasBatalla, gbc);
         
@@ -51,7 +51,7 @@ public class Menu extends JFrame {
         getContentPane().add(panelFondo, BorderLayout.CENTER);
 
        //  Acción para Mostrar batalla
-     
+    
 		botonBatalla.addActionListener(e -> {
 			MenuBatalla menubatalla= new MenuBatalla();
 			menubatalla.setVisible(true);
