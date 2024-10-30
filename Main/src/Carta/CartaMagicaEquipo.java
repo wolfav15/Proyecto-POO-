@@ -1,8 +1,10 @@
+package Carta;
+
 public class CartaMagicaEquipo extends CartaMagica {
     private CartaMounstro mounstruo_equipado; 
 
-    public CartaMagicaEquipo(String nombre, String rareza, String descripcion, String efecto, int cantidad_efecto) {
-        super(nombre, rareza, descripcion, cantidad_efecto);
+    public CartaMagicaEquipo(String nombre, String descripcion, String efecto, int cantidad_efecto) {
+        super(nombre, descripcion, cantidad_efecto);
     }
 
     @Override

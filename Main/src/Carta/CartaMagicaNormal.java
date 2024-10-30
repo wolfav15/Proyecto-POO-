@@ -1,10 +1,11 @@
+package Carta;
 public class CartaMagicaNormal extends CartaMagica { 
 
     private String tipo_efecto; //nuevo atributo para evitar tener que tener textos especificos, tiene dos opciones
                                 // que el string sea "inflijir" o "curar", se usa para el activar_efecto.
 
-    public CartaMagicaNormal(String nombre, String rareza, String descripcion, int cantidad_efecto, String tipo_efecto) {
-        super(nombre, rareza, descripcion, cantidad_efecto);
+    public CartaMagicaNormal(String nombre, String descripcion, int cantidad_efecto, String tipo_efecto) {
+        super(nombre, descripcion, cantidad_efecto);
         this.tipo_efecto = tipo_efecto;
     }
 

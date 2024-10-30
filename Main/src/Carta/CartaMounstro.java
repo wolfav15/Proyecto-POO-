@@ -1,16 +1,17 @@
+package Carta;
+
 public class CartaMounstro extends Carta {
     
     private int ataque, defensa, nivel;
-    private String tipo, atributo, posicion;
+    private String atributo, posicion;
 
     // estado lo que indica es para verificar si esta boca arriba o colocado, para el observer del campo detecte si mostrarlo o no
 
-    public CartaMounstro(String nombre, String rareza, String descripcion, int ataque, int defensa, int nivel, String tipo, String atributo) {
-        super(nombre, rareza, descripcion);
+    public CartaMounstro(String nombre, String descripcion, int ataque, int defensa, int nivel, String atributo) {
+        super(nombre, descripcion);
         this.ataque = ataque;
         this.defensa = defensa;
         this.nivel = nivel;
-        this.tipo = tipo;
         this.atributo = atributo;
     }
 
