@@ -1,14 +1,14 @@
 package Jugador;
 
 import java.util.List;
-import Clases.*;
-
+import Campo.Campos;
+import Carta.Carta;
 public class Jugador {
     private String nombre;
     private int puntosVida = 8000;
     private List <Carta> deck;
     private List <Carta> mano;
-    private Campo campoJugador;
+    private Campos campoJugador;
 
     //private List <Carta> cementerio; //No se usará por el momento
     
@@ -19,35 +19,19 @@ public class Jugador {
     }
 
     public void robarCarta() {
+        //maximo de 6 cartas en la mano 
+        if (this.mano.size() <= 5){
         this.mano.add(this.deck.remove(0));
+        }
+        else {
+            //este mensaje debería mostrarse en pantalla 
+            System.out.println("Mano llena, juegue una carta para vaciar un lugar");
+        }
     } 
 
     public void jugarCarta(Carta cartaJugada) { 
-        String jugada =    cartaJugada.getClass().toString();
-
-
-        switch (jugada) {
-            case "CartaMonstruo":
-                this.campoJugador.agregarMonstruo(cartaJugada);
-                break;
-                
-            case "CartaMagicaEquipo":
-                this.campoJugador.agregarCartaMagicaEquipo(cartaJugada);
-                break;
-                
-            case "CartaMagicaNormal":
-                    this.campoJugador.agregarCartaMagica(cartaJugada);
-                    cartaJugada.activar_efecto();
-                break;
-                
-        
-            default:
-                break;
-        }
-
-        if (jugada.equals("CartaMonstruo")) {
-            this.campoJugador.agregarMonstruo(cartaJugada);
-         }
+        //Toda la lógica de agregar cartas al campo está incluida en la clase Campos.
+        this.campoJugador.agregarCartas(cartaJugada);
     }
 
     public void robarManoInicial()  {
