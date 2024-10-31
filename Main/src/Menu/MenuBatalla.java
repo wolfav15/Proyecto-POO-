@@ -54,8 +54,9 @@ public class MenuBatalla extends JFrame {
 
         // Acciones para los botones
         botonMostrarTabla.addActionListener(e -> {
-            ModeloTabla modeloTabla = new ModeloTabla();
+            VistaTabla modeloTabla = new VistaTabla();
             modeloTabla.setVisible(true);
+            dispose();
         });
         botonCpuJugador.addActionListener(e -> mostrarMensaje("CPU o Jugador"));
         botonMostrarMazo.addActionListener(e -> mostrarMensaje("Mostrando Mazo"));

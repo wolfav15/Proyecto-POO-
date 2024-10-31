@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
-public class ModeloTabla extends JFrame {
+public class VistaTabla extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
@@ -16,7 +16,7 @@ public class ModeloTabla extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ModeloTabla frame = new ModeloTabla();
+					VistaTabla frame = new VistaTabla();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -26,7 +26,7 @@ public class ModeloTabla extends JFrame {
 	}
 
 	
-	public ModeloTabla() {
+	public VistaTabla() {
 		setTitle("Tablero"); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1380, 808);

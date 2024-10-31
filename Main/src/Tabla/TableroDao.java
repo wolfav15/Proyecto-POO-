@@ -1,4 +1,3 @@
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,22 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Jugador.Jugador;
-
-public class Tablero {
-private Jugador jugador1;
-private Jugador jugador2; 
- private int idTablero;
-  private String tipoTablero;
-  private String Descripcion;
-
-public  Tablero (int idTabla, String tipoTabla,String Descripcion) {
-	this.idTablero= idTabla;
-	this.tipoTablero =tipoTabla;
-	this.Descripcion= Descripcion;
-}
-
-//esto es para bajar las tablas que estan en la base de datos. 
+public class TableroDao {
 public static List<Tablero> obtenerTableros() throws SQLException {
     List<Tablero> tableros = new ArrayList<>();
     Connection connection = ConexionBD.getInstancia().getConexion();
@@ -41,17 +25,4 @@ public static List<Tablero> obtenerTableros() throws SQLException {
 }
 
 
-
-public static void main(String[] args) {
-	 try {
-         List<Tablero> tableros = obtenerTableros();
-         for (Tablero tablero : tableros) {
-             System.out.println("Tablero ID: " + tablero.idTablero + ", Tipo: " + tablero.tipoTablero + ", descripcion: " +  tablero.Descripcion);
-         }
-     } catch (SQLException e) {
-         e.printStackTrace();
-     }
- }
-
 }
-

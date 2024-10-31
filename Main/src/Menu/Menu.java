@@ -27,23 +27,23 @@ public class Menu extends JFrame {
         gbc.insets = new Insets(10, 10, 10, 10); // Margen entre botones
         JButton botonBatalla = new JButton ("Batalla");
         JButton botonReglasBatalla = new JButton("Reglas de Batalla");
-        JButton botonSeleccionMusical = new JButton("Selección Musical");
-        JButton botonDificultad = new JButton("Dificultad");
+        JButton botonOpciones = new JButton("Opciones");
         JButton botonSalirJuego = new JButton("Salir");
+      
 
         // Añadir los botones al panel de menú centrado
         gbc.gridx = 0;
         gbc.gridy = 0;
         panelFondo.add(botonBatalla, gbc);
+<<<<<<< Updated upstream
     
         gbc.gridy++;
         panelFondo.add(botonReglasBatalla, gbc);
+=======
+>>>>>>> Stashed changes
         
         gbc.gridy++;
-        panelFondo.add(botonSeleccionMusical, gbc);
-        
-        gbc.gridy++;
-        panelFondo.add(botonDificultad, gbc);
+        panelFondo.add(botonOpciones, gbc);
         
         gbc.gridy++;
         panelFondo.add(botonSalirJuego, gbc);
@@ -55,25 +55,27 @@ public class Menu extends JFrame {
 		botonBatalla.addActionListener(e -> {
 			MenuBatalla menubatalla= new MenuBatalla();
 			menubatalla.setVisible(true);
+            dispose();
 	});
 
         // Acción para Reglas de Batalla
         botonReglasBatalla.addActionListener(e -> mostrarMensaje("Mostrando Reglas de Batalla"));
 
-        // Acción para Selección Musical
-        botonSeleccionMusical.addActionListener(e -> mostrarMensaje("Seleccionando Música"));
-
         // Acción para Dificultad
-        botonDificultad.addActionListener(e -> mostrarMensaje("Seleccionando Dificultad"));
+        botonOpciones.addActionListener(e -> {
+        	MenuOpciones menuopciones = new MenuOpciones();
+        	menuopciones.setVisible(true);
+            dispose();
+        
+        });
 
         // Acción para Salir
-        botonSalirJuego.addActionListener(e -> System.exit(0));
+        botonSalirJuego.addActionListener(e -> {dispose();});
     }
-
     private void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
-
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             Menu frame =new Menu();
