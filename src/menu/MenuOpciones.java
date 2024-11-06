@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import musica.ReproductorMusica;
+
 import javax.swing.*;
 import java.awt.*;
 public class MenuOpciones extends JFrame {    

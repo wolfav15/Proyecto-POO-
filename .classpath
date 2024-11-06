@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-22"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="c:/Users/samue/Desktop/POO-PROYECTOS/ProyectoFinalPOO/libs/postgresql-42.7.4.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="Tabla/|Carta/src/|Clases/|Bases_datos/|Menu/" kind="src" path="Main/src"/>
-	<classpathentry kind="src" path="Main/src/Bases_datos"/>
-	<classpathentry kind="src" path="Main/src/Menu"/>
-	<classpathentry kind="src" path="Main/src/Tabla"/>
-	<classpathentry kind="src" path="Musica"/>
-	<classpathentry kind="lib" path="C:/Users/samue/Downloads/postgresql-42.7.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/samue/Downloads/jlayer1.0.1/JLayer1.0.1/jl1.0.1.jar"/>
+	<classpathentry kind="lib" path="c:/Users/samue/Desktop/POO-PROYECTOS/ProyectoFinalPOO/libs/jlayer-1.0.1.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

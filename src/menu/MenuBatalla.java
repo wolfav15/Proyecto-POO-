@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import tabla.VistaTabla;
 public class MenuBatalla extends JFrame {
     private static final long serialVersionUID = 1L;

@@ -1,4 +1,5 @@
 package tabla;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,8 +16,11 @@ public class TableroModelo {
     ArrayList<Carta> cementerio2 = new ArrayList<>();
     ArrayList<Carta> mano1= new ArrayList<>();
     ArrayList<Carta> mano2= new ArrayList<>();
-   Jugador jugador1 = new Jugador("Jugador1",mano1, Cartas1,cementerio);
-   Jugador jugador2 = new Jugador("Jugador2",mano2,Cartas2,cementerio2)
+   Jugador jugador1 = new Jugador("Jugador1",Cartas1);
+   Jugador jugador2 = new Jugador("Jugador2",Cartas2);
+   
+   // Jugador jugador1 = new Jugador("Jugador1",mano1, Cartas1,cementerio);
+   // Jugador jugador2 = new Jugador("Jugador2",mano2,Cartas2,cementerio2);
 		  
 		   
 

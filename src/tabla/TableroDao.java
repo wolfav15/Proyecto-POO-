@@ -1,10 +1,13 @@
 package tabla;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import base_datos.ConexionBD;
 public class TableroDao {
 public static List<Tablero> obtenerTableros() throws SQLException {
     List<Tablero> tableros = new ArrayList<>();
