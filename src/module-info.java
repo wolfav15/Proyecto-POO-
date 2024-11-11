@@ -5,8 +5,5 @@
  * 
  */
 /*
-module ProyectoFinalPOO {
-	requires java.sql;
-	requires java.desktop;
-}
-*/
+ * module ProyectoFinalPOO { requires java.sql; requires java.desktop; }
+ */
