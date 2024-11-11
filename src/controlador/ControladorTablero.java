@@ -1,4 +1,4 @@
-package tabla;
+package controlador;
 
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
