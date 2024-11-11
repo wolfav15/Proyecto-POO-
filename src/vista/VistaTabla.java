@@ -1,4 +1,4 @@
-package tabla;
+package vista;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
