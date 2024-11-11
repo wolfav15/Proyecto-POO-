@@ -1,7 +1,4 @@
-package jugador;
-
-import campo.Campos;
-import carta.Carta;
+package modelo;
 import java.util.List;
 public class Jugador {
     private String nombre;
@@ -42,4 +39,5 @@ public class Jugador {
     public void recibirDaño(int puntos) {
         this.puntosVida -= puntos;
     }
+   
 }
