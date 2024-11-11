@@ -9,11 +9,11 @@ public class Campos {
 	// Cada jugador tiene sus propios dos campos (De magia y de mosntruos)
 	public void agregarCartas(Carta carta) {
 		try {
-			switch (carta.getClass().toString()) {
+			switch (carta.getTipo()) {
 			case "CartaMagicaEquipo":
 				campoMagias.agregarCarta(carta);
 				break;
-			case "CartaMonstruos":
+			case "CartaMonstruo":
 				campoMonstruos.agregarCarta(carta);
 				break;
 			case "CartaMagicaNormal":

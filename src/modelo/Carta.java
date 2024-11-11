@@ -2,10 +2,13 @@ package modelo;
 
 public abstract class Carta {
 	protected String nombre, estado, descripcion; // descripcion seria el efecto (si es que tiene) es generico a todo
-	protected boolean activo; // hara referencia ha si esta en el campo o no, para cosas como magias de
-								// equipo.
+	protected boolean activo; 
+	protected String tipo;
+	protected Jugador jugador; // jugador dueño de la carta
+	//se incluye al jugador como atributo para poder encapsular el codigo de la batalla
+	//solo en la carta
 
-	public Carta(String nombre, String descripcion) {
+	public Carta(String nombre, String descripcion, Jugador jugador) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.activo = false;
@@ -14,5 +17,8 @@ public abstract class Carta {
 	public abstract void colocar();
 
 	public abstract void destruirse();
+	public String getTipo (){
+		return this.tipo;
+	}
 
 }

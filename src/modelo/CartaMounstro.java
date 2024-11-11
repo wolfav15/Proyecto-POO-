@@ -8,12 +8,14 @@ public class CartaMounstro extends Carta {
 	// estado lo que indica es para verificar si esta boca arriba o colocado, para
 	// el observer del campo detecte si mostrarlo o no
 
-	public CartaMounstro(String nombre, String descripcion, int ataque, int defensa, int nivel, String atributo) {
-		super(nombre, descripcion);
+	public CartaMounstro(String nombre, String descripcion, int ataque, int defensa, int nivel, String atributo, Jugador jugador) {
+		super(nombre, descripcion, jugador);
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.nivel = nivel;
 		this.atributo = atributo;
+		this.tipo = "CartaMounstro";
+
 	}
 
 	@Override
@@ -45,31 +47,53 @@ public class CartaMounstro extends Carta {
 		}
 	}
 
-	public int atacar(CartaMounstro carta_atacada) {
-
-		int valor_usado = devolver_estadistica(carta_atacada);
-		int daño_batalla = 0;
-
-		if (ataque > valor_usado) {
-			daño_batalla = ataque - valor_usado;
-			carta_atacada.destruirse();
-		} else {
-			if (carta_atacada.getPosicion() == "defensa") { // si esta en defensa no se destruye mi mounstruo, solo
-															// recibo daño
-				daño_batalla = valor_usado - ataque;
-			} else {
-				this.destruirse(); // como ataque a un mounstruo con mayor ataque en posicion de ataque, se
-									// destruye
-				daño_batalla = valor_usado - ataque; // y esa diferencia de daño ahora se intercambia
-			}
-		} // si el ataque o defensa del atacado es igual al ataque del que mounstruo que
-			// ataca, no pasa nada
-			// por eso daño de batalla esta en cero, y pasa el return con normalidad.
-
-		return daño_batalla; // el daño de batalla puede ser para mi o para el rival, depende quien tuvo
-								// mayor ataque
+	public void  atacar(CartaMounstro carta_atacada) {
+		//acá se almacena el daño que recibiria el atacante, puede ser 0 o mayor que 0
+		int dañoAlAtacante;
+		if (carta_atacada.getPosicion() == "defensa"){
+			dañoAlAtacante=carta_atacada.defender(this.ataque);
+		}
+		else {
+			//la carta atacada está en posición de ataque
+			dañoAlAtacante = carta_atacada.contraatacar(this.ataque, this);
+		}
+		this.danioJugador(dañoAlAtacante);
+		
 	}
-
+	//aca se incluye la lógica de defenderse de un ataque, si la carta atacada...
+	//está en posición de defensa
+	
+	public int defender(int danio){
+			if (danio > this.defensa){
+				this.destruirse();
+				return 0;
+			}
+			else if  (this.defensa == danio){
+				return 0;
+			}
+			else {
+				return this.defensa - danio;
+			}
+	}
+	//aca se incluye la lógica de contraatacar, si la carta atacada...
+	//está en posición de ataque
+	//contraatacar necesita una instancia de la carta por si esta se destruye.
+	public int contraatacar(int danio, Carta cartaAtacante){
+		if (danio < this.ataque){
+			cartaAtacante.destruirse();
+			return this.ataque - danio;
+		}
+		else if  (this.defensa == danio){
+			this.destruirse();
+			cartaAtacante.destruirse();
+			return 0;
+		}
+		else {
+			this.destruirse();
+			this.danioJugador(danio);
+			return 0;
+		}
+}
 	public int getAtaque() {
 		return ataque;
 	}
@@ -84,6 +108,9 @@ public class CartaMounstro extends Carta {
 
 	public void setAtaque(int ataque) {
 		this.ataque = ataque;
+	}
+	public void danioJugador(int danio){
+		this.jugador.recibirDaño(danio);
 	}
 
 }

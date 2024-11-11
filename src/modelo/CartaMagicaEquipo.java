@@ -5,6 +5,7 @@ public class CartaMagicaEquipo extends CartaMagica {
 
 	public CartaMagicaEquipo(String nombre, String descripcion, String efecto, int cantidad_efecto) {
 		super(nombre, descripcion, cantidad_efecto);
+		this.tipo = "CartaMagicaEquipo";
 	}
 
 	@Override
