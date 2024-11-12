@@ -9,10 +9,14 @@ import java.util.List;
 public class TableroModelo {
     private Jugador jugador;
     private Jugador computadora;
+    private Campos campoJugador;
+    private Campos campoComputadora;
 
     public TableroModelo(Jugador jugador) {
         jugador = new Jugador("Jugador1", this.bajarDeck());
         computadora = new Jugador("Computadora",this.bajarDeck());
+        this.campoComputadora = new Campos();
+        this.campoJugador = new Campos();
         }
     public ArrayList<Carta>bajarDeck (){
         //acá debería haber una bajada de tablas.
@@ -34,16 +38,16 @@ public class TableroModelo {
 
         return deck;
     } 
-    public void atacarCarta (CartaMounstro cartaAtacante, CartaMounstro CartaAtacada){
-       int danio= cartaAtacante.atacar(CartaAtacada);
-       if (danio < 0 ){
-        this.computadora.recibirDaño(-danio);
-       }
-       else if ( danio > 0){
-        this.jugador.recibirDaño(danio);
-       }
+
+    public void duelo (Jugador atacante, CartaMounstro cartaAtacante, Jugador atacado, CartaMounstro cartaAtacada){
+//simula ataque.
     }
-    public void AtaqueDirecto(CartaMounstro cartaAtacante){
-        this.computadora.recibirDaño(cartaAtacante.getAtaque());
+
+    public Campos getCampoJugador(){
+        return this.campoJugador;
     }
+    public Campos getCampoComputadora(){
+        return this.campoJugador;
+    }
+  
 }

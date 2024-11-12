@@ -5,7 +5,6 @@ public class Jugador {
     private int puntosVida = 8000;
     private List <Carta> deck;
     private List <Carta> mano;
-    private Campos campoJugador;
 
     //private List <Carta> cementerio; //No se usará por el momento
     
@@ -26,9 +25,9 @@ public class Jugador {
         }
     } 
 
-    public void jugarCarta(Carta cartaJugada) { 
+    public void jugarCarta(Carta cartaJugada, TableroModelo tablero) { 
         //Toda la lógica de agregar cartas al campo está incluida en la clase Campos.
-        this.campoJugador.agregarCartas(cartaJugada);
+        tablero.getCampoJugador().agregarCartas(cartaJugada);
     }
 
     public void robarManoInicial()  {
@@ -39,5 +38,16 @@ public class Jugador {
     public void recibirDaño(int puntos) {
         this.puntosVida -= puntos;
     }
-   
+    public void atacarCarta (CartaMounstro cartaAtacante, CartaMounstro CartaAtacada, Jugador oponente){
+        int danio= cartaAtacante.atacar(CartaAtacada);
+        if (danio < 0 ){
+            oponente.recibirDaño(-danio);
+        }
+        else if ( danio > 0){
+         this.recibirDaño(danio);
+        }
+     }
+     public void atacarCarta(CartaMounstro cartaAtacante, Jugador oponente ){
+        oponente.recibirDaño(cartaAtacante.getAtaque());
+     }
 }
