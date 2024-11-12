@@ -8,7 +8,7 @@ public abstract class Carta {
 	//se incluye al jugador como atributo para poder encapsular el codigo de la batalla
 	//solo en la carta
 
-	public Carta(String nombre, String descripcion, Jugador jugador) {
+	public Carta(String nombre, String descripcion, int cantidad_efecto) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.activo = false;

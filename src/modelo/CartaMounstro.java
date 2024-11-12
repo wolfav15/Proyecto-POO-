@@ -9,7 +9,7 @@ public class CartaMounstro extends Carta {
 	// el observer del campo detecte si mostrarlo o no
 
 	public CartaMounstro(String nombre, String descripcion, int ataque, int defensa, int nivel, String atributo, Jugador jugador) {
-		super(nombre, descripcion, jugador);
+		super(nombre, descripcion, nivel);
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.nivel = nivel;
@@ -47,7 +47,7 @@ public class CartaMounstro extends Carta {
 		}
 	}
 
-	public void  atacar(CartaMounstro carta_atacada) {
+	public int  atacar(CartaMounstro carta_atacada) {
 		//acá se almacena el daño que recibiria el atacante, puede ser 0 o mayor que 0
 		int dañoAlAtacante;
 		if (carta_atacada.getPosicion() == "defensa"){
@@ -58,6 +58,7 @@ public class CartaMounstro extends Carta {
 			dañoAlAtacante = carta_atacada.contraatacar(this.ataque, this);
 		}
 		this.danioJugador(dañoAlAtacante);
+		return dañoAlAtacante;
 		
 	}
 	//aca se incluye la lógica de defenderse de un ataque, si la carta atacada...
