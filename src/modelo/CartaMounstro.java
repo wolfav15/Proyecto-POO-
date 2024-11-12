@@ -8,7 +8,7 @@ public class CartaMounstro extends Carta {
 	// estado lo que indica es para verificar si esta boca arriba o colocado, para
 	// el observer del campo detecte si mostrarlo o no
 
-	public CartaMounstro(String nombre, String descripcion, int ataque, int defensa, int nivel, String atributo, Jugador jugador) {
+	public CartaMounstro(String nombre, String descripcion, int ataque, int defensa, int nivel, String atributo) {
 		super(nombre, descripcion, nivel);
 		this.ataque = ataque;
 		this.defensa = defensa;
@@ -57,7 +57,6 @@ public class CartaMounstro extends Carta {
 			//la carta atacada está en posición de ataque
 			dañoAlAtacante = carta_atacada.contraatacar(this.ataque, this);
 		}
-		this.danioJugador(dañoAlAtacante);
 		return dañoAlAtacante;
 		
 	}
@@ -91,8 +90,8 @@ public class CartaMounstro extends Carta {
 		}
 		else {
 			this.destruirse();
-			this.danioJugador(danio);
-			return 0;
+			
+			return (-danio);
 		}
 }
 	public int getAtaque() {
@@ -110,8 +109,6 @@ public class CartaMounstro extends Carta {
 	public void setAtaque(int ataque) {
 		this.ataque = ataque;
 	}
-	public void danioJugador(int danio){
-		this.jugador.recibirDaño(danio);
-	}
+	
 
 }

@@ -7,94 +7,43 @@ import java.util.List;
 
 
 public class TableroModelo {
-    private List<CartaMounstro> cartasJugador;
-    private List<CartaMounstro> cartasRival;
-    private boolean turnoJugador; // true si es el turno del jugador, false si es el del rival
-    private int vidaJugador;
-    private int vidaRival;
+    private Jugador jugador;
+    private Jugador computadora;
 
-    public TableroModelo() {
-        this.cartasJugador = new ArrayList<>();
-        this.cartasRival = new ArrayList<>();
-        this.turnoJugador = true; // Empieza el jugador
-        this.vidaJugador = 8000; // Valor inicial típico en muchos juegos de cartas
-        this.vidaRival = 8000;
+    public TableroModelo(Jugador jugador) {
+        jugador = new Jugador("Jugador1", this.bajarDeck());
+        computadora = new Jugador("Computadora",this.bajarDeck());
+        }
+    public ArrayList<Carta>bajarDeck (){
+        //acá debería haber una bajada de tablas.
+        Carta carta1 = new CartaMounstro("Dragon", "Es un Dragon", 400, 100, 5, "Tira fuego");
+        Carta carta2 = new CartaMounstro("Lobo", "Es un Lobo", 200, 200, 2, "Muerde, rasguña");
+        Carta carta3 = new CartaMounstro("Toro", "Es un Toro", 250, 200, 3, "Atca con los cuernos");
+        Carta carta4 = new CartaMounstro("Kratos", "Es un Semidios", 200, 100, 1, "Ataca con las esadas del caos");
+        Carta carta5 = new CartaMounstro("Cracken", "Es un Cracken", 200, 100, 3, "Tira fuego, agua");
+        Carta carta6 = new CartaMounstro("Vampiro", "Es un Vampiro", 200, 100, 2, "Ataca con colmillos");
+        Carta carta7 = new CartaMounstro("Messi", "Es el mejor del mundo", 200, 100, 5, "Tira gambeta");
+        ArrayList<Carta>  deck= new ArrayList<Carta>();
+        deck.add(carta1);
+        deck.add(carta2);
+        deck.add(carta3);
+        deck.add(carta4);
+        deck.add(carta5);
+        deck.add(carta6);
+        deck.add(carta7);
+
+        return deck;
+    } 
+    public void atacarCarta (CartaMounstro cartaAtacante, CartaMounstro CartaAtacada){
+       int danio= cartaAtacante.atacar(CartaAtacada);
+       if (danio < 0 ){
+        this.computadora.recibirDaño(-danio);
+       }
+       else if ( danio > 0){
+        this.jugador.recibirDaño(danio);
+       }
     }
-
-    // Métodos de gestión de cartas
-    public void agregarCartaJugador(CartaMounstro carta) {
-        cartasJugador.add(carta);
-
- 
-    }
-
-    public void agregarCartaRival(CartaMounstro carta) {
-        cartasRival.add(carta);
-    }
-
-    public void eliminarCartaJugador(CartaMounstro carta) {
-        cartasJugador.remove(carta);
-    }
-
-    public void eliminarCartaRival(CartaMounstro carta) {
-        cartasRival.remove(carta);
-    }
-
-    // Métodos para las acciones de las cartas
-    public void colocarCarta(CartaMounstro carta) {
-        carta.colocar();
-    }
-
-    public void cambiarPosicionCarta(CartaMounstro carta) {
-        carta.cambiar_posicion();
-
-    }
-
-    public int atacarCarta(CartaMounstro atacante, CartaMounstro defensor) {
-        int daño = atacante.atacar(defensor);
-
-        return daño;
-    }
-
-    // Métodos para el estado del juego
-    public void finalizarTurno() {
-        turnoJugador = !turnoJugador;
-    }
-
-    public boolean isTurnoJugador() {
-        return turnoJugador;
-    }
-
-    public int getVidaJugador() {
-        return vidaJugador;
-    }
-
-    public void setVidaJugador(int vidaJugador) {
-        this.vidaJugador = vidaJugador;
-    }
-
-    public int getVidaRival() {
-        return vidaRival;
-    }
-
-    public void setVidaRival(int vidaRival) {
-        this.vidaRival = vidaRival;
-
-    }
-
-    public List<CartaMounstro> getCartasJugador() {
-        return cartasJugador;
-    }
-
-    public List<CartaMounstro> getCartasRival() {
-        return cartasRival;
-    }
-
-    public List<CartaMounstro> getMonstruosJugador() {
-        return cartasJugador;
-    }
-
-    public List<CartaMounstro> getMonstruosRival() {
-        return cartasRival;
+    public void AtaqueDirecto(CartaMounstro cartaAtacante){
+        this.computadora.recibirDaño(cartaAtacante.getAtaque());
     }
 }
