@@ -29,12 +29,9 @@ public class Menu extends JFrame {
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				ImageIcon background = new ImageIcon("C:\\Users\\samue\\Desktop\\momazos\\descargar.jpg"); // Cambia la
-																											// ruta a tu
-																											// imagen si
-																											// quieren
-																											// meter
-																											// fondo
+				ImageIcon background = new ImageIcon("src\\archivos\\MenuPantalla.png"); // Para que la ruta sea realativa y los archivos
+																								  // se debe ingresar de esa forma, imagen de ejemplo 
+
 				g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
 			}
 		};
