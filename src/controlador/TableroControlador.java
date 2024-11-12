@@ -6,8 +6,8 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.*;
 
-import carta.CartaMounstro;
-import jugador.Jugador;
+import modelo.*;
+import modelo.Jugador;
 
 public class TableroControlador {
     private TableroModelo modelo;
