@@ -1,9 +1,9 @@
 package modelo;
 
 public abstract class Carta {
-	protected String nombre, estado, descripcion; // descripcion seria el efecto (si es que tiene) es generico a todo
+	protected String nombre, descripcion; // descripcion seria el efecto (si es que tiene) es generico a todo
 	protected boolean activo; 
-	protected String tipo;
+	//tipos: monstruo, armadura, buff, herida y curacion
 	
 
 	public Carta(String nombre, String descripcion, int cantidad_efecto) {

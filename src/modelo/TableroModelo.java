@@ -50,6 +50,22 @@ public class TableroModelo {
         }
     }
 
+    public void colocarCarta(Carta carta, Campos campo){
+        campo.agregarCartas(carta);
+    }
+
+    //Para hechizos
+    public void usarMagia (CartaMagica carta, Juagador jugador, Campos campo){
+        carta.activar_efecto(jugador);
+        campo.removerCarta(carta);
+    }
+
+    //Para equipamento
+    public void usarMagia (CartaMagica carta, CartaMounstro monstruo,Campos campo){
+        carta.activar_efecto(monstruo);
+        campo.removerCarta(carta);
+    }
+
     public Campos getCampoJugador(){
         return this.campoJugador;
     }

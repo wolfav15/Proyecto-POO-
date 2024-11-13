@@ -38,6 +38,11 @@ public class Jugador {
     public void recibirDaño(int puntos) {
         this.puntosVida -= puntos;
     }
+
+    public void recbirCuracion(int puntos) {
+        this.puntosVida += puntos;
+    }
+
     public void atacarCarta (CartaMounstro cartaAtacante, CartaMounstro CartaAtacada, Jugador oponente){
         int danio= cartaAtacante.atacar(CartaAtacada);
         if (danio < 0 ){
