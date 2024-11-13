@@ -1,35 +1,28 @@
 package modelo;
 
 public class Campos {
-	private CampoMonstruos campoMonstruos = new CampoMonstruos();
-	private CampoMagias campoMagias = new CampoMagias();
+
+	private List campoMonstruos = new Campo();
+	private List campoMagias = new Campo();
 
 	// Acá se incluye toda la logica necesaria para agregar cartas al campo de
 	// batalla de cada jugador
 	// Cada jugador tiene sus propios dos campos (De magia y de mosntruos)
-	public void agregarCartas(Carta carta) {
-		try {
-			switch (carta.getTipo()) {
-			case "CartaMagicaEquipo":
-				campoMagias.agregarCarta(carta);
-				break;
-			case "CartaMonstruo":
-				campoMonstruos.agregarCarta(carta);
-				break;
-			case "CartaMagicaNormal":
-				// Acá habria que hacer que se arroje la magia, ya que no queda fija en el
-				// campo.
-				// Ej: Lanzar hechizo
-				campoMonstruos.agregarCarta(carta);
-				break;
-			default:
-				System.out.println("Este tipo de carta no puede ser agregada al campo");
-				break;
-			}
-		} catch (Exception e) {
-			System.out.println("El campo se encuentra lleno");
-		}
 
+	//Cartas monstruo
+	public void agregarCartas(CartaMonstruo carta){
+		campoMonstruos.agregarCarta(carta);
 	}
 
-}
+	public void removerCarta(CartaMonstruo carta){
+		campoMonstruos.removerCarta(carta);
+	}
+
+	//Cartas magia
+	public void agregarCartas(CartaMagica carta){
+		campoMagias.agregarCarta(carta);
+	}
+
+	public void removerCarta(CartaMagica carta){
+		campoMagias.removerCarta(carta);
+	}

@@ -19,4 +19,7 @@ public abstract class Carta {
 		return this.tipo;
 	}
 
+	public boolean getActivo (){
+		return this.activo;
+	}
 }

@@ -35,19 +35,26 @@ public class TableroModelo {
         deck.add(carta5);
         deck.add(carta6);
         deck.add(carta7);
-
+        // Hay que hacer al menos un shuffle, estaría bueno que las cartas puedan ser distintas
+        //No sé si esto era una preuba no más
         return deck;
     } 
 
     public void duelo (Jugador atacante, CartaMounstro cartaAtacante, Jugador atacado, CartaMounstro cartaAtacada){
-//simula ataque.
+        atacante.atacarCarta(CartaMounstro cartaAtacante, CartaMounstro cartaAtacada, Jugador atacado);
+        if (!cartaAtacante.getActivo){
+            campoJugador.removerCarta(cartaAtacante);
+        }
+        if (!cartaAtacada.getActivo){
+            campoComputadora.removerCarta(cartaAtacada);
+        }
     }
 
     public Campos getCampoJugador(){
         return this.campoJugador;
     }
     public Campos getCampoComputadora(){
-        return this.campoJugador;
+        return this.campoComputadora;
     }
   
 }
