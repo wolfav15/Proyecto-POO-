@@ -11,6 +11,5 @@ public abstract class CartaMagica extends Carta {
 // agregar a los jugadores aqui, dependiendo de lo que haga el efecto
 // se dara los parametros, no siempre se usaran ambos
 
-	public abstract void activar_efecto(CartaMounstro carta); 
-	public abstract void activar_efecto(Juagador jugador); 
+
 }															

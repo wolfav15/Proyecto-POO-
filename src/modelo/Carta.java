@@ -15,9 +15,7 @@ public abstract class Carta {
 	public abstract void colocar();
 
 	public abstract void destruirse();
-	public String getTipo (){
-		return this.tipo;
-	}
+	
 
 	public boolean getActivo (){
 		return this.activo;

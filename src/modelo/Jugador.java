@@ -5,7 +5,6 @@ public class Jugador {
     private int puntosVida = 8000;
     private List <Carta> deck;
     private List <Carta> mano;
-
     //private List <Carta> cementerio; //No se usará por el momento
     
     public Jugador(String nombre, List <Carta> deck) {
@@ -25,9 +24,13 @@ public class Jugador {
         }
     } 
 
-    public void jugarCarta(Carta cartaJugada, TableroModelo tablero) { 
+    public void jugarCarta(CartaMounstro cartaJugada, TableroModelo tablero, Campos campo) throws Exception{ 
         //Toda la lógica de agregar cartas al campo está incluida en la clase Campos.
-        tablero.getCampoJugador().agregarCartas(cartaJugada);
+        tablero.colocarCarta(cartaJugada, campo);
+    }
+    public void jugarCarta(CartaMagica cartaJugada, TableroModelo tablero, Campos campo) throws Exception{ 
+        //Toda la lógica de agregar cartas al campo está incluida en la clase Campos.
+        tablero.colocarCarta(cartaJugada, campo);
     }
 
     public void robarManoInicial()  {

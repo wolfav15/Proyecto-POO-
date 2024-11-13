@@ -40,28 +40,31 @@ public class TableroModelo {
         return deck;
     } 
 
-    public void duelo (Jugador atacante, CartaMounstro cartaAtacante, Jugador atacado, CartaMounstro cartaAtacada){
-        atacante.atacarCarta(CartaMounstro cartaAtacante, CartaMounstro cartaAtacada, Jugador atacado);
-        if (!cartaAtacante.getActivo){
+    public void duelo (Jugador atacante, CartaMounstro cartaAtacante, Jugador atacado, CartaMounstro cartaAtacada)throws Exception{
+       atacante.atacarCarta( cartaAtacante,  cartaAtacada,  atacado);
+        if (!cartaAtacante.getActivo()){
             campoJugador.removerCarta(cartaAtacante);
         }
-        if (!cartaAtacada.getActivo){
+        if (!cartaAtacada.getActivo()){
             campoComputadora.removerCarta(cartaAtacada);
         }
     }
 
-    public void colocarCarta(Carta carta, Campos campo){
+    public void colocarCarta(CartaMagica carta, Campos campo)throws Exception{
+        campo.agregarCartas(carta);
+    }
+    public void colocarCarta(CartaMounstro carta, Campos campo)throws Exception{
         campo.agregarCartas(carta);
     }
 
     //Para hechizos
-    public void usarMagia (CartaMagica carta, Juagador jugador, Campos campo){
+    public void usarMagia (CartaMagicaArrojadiza carta, Jugador jugador, Campos campo) throws Exception{
         carta.activar_efecto(jugador);
         campo.removerCarta(carta);
-    }
+    } 
 
     //Para equipamento
-    public void usarMagia (CartaMagica carta, CartaMounstro monstruo,Campos campo){
+    public void usarMagia (CartaMagicaEquipada carta, CartaMounstro monstruo,Campos campo)throws Exception{
         carta.activar_efecto(monstruo);
         campo.removerCarta(carta);
     }

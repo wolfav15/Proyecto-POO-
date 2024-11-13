@@ -1,24 +1,17 @@
  package modelo;
 
-public class CartaMagicaHerida extends CartaMagica {
+ public class CartaMagicaHerida extends CartaMagicaArrojadiza {
 
-	public CartaMagicaHerida(String nombre, String descripcion, int cantidad_efecto, String tipo_efecto) {
-		super(nombre, descripcion, cantidad_efecto);
+	public CartaMagicaHerida(String nombre, String descripcion, int cantidad_efecto, String efecto) {
+		super(nombre, descripcion, cantidad_efecto, efecto);
 	}
 
+	
 	@Override
-	public void colocar() {
-		this.activo = true;
-	}
 
-	@Override
-	public void activar_efecto(Juagador jugador) {
+	public void activar_efecto(Jugador jugador) {
 		jugador.recibirDaño(this.cantidad_efecto);
 	}
 
-	@Override
-	public void destruirse() {
-		this.activo = false; // indicara que ya no estaria en el campo, para los observadores
-	}
-
+	
 }
