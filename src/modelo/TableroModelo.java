@@ -52,9 +52,11 @@ public class TableroModelo {
 
     public void colocarCarta(CartaMagica carta, Campos campo)throws Exception{
         campo.agregarCartas(carta);
+        carta.colocar;
     }
     public void colocarCarta(CartaMounstro carta, Campos campo)throws Exception{
         campo.agregarCartas(carta);
+        carta.colocar;
     }
 
     //Para hechizos
