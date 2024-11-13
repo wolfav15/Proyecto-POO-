@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class Campo {
+public class Campo {
 	private List<Carta> campo;
 
-	public Campo() {
+	 public Campo() {
 		this.campo = new ArrayList<Carta>();
 	}
 

@@ -14,15 +14,11 @@ public class CartaMounstro extends Carta {
 		this.defensa = defensa;
 		this.nivel = nivel;
 		this.atributo = atributo;
-		this.tipo = "CartaMounstro";
-
 	}
 
 	@Override
 	public void colocar() {
-		this.activo = true;
-		this.estado = "colocado"; // se usara para que se verifique como se mostrara en pantalla, si oculto o boca
-									// arriba
+		this.activo = true;                                                                                
 		this.posicion = "defensa";
 	}
 
@@ -110,5 +106,7 @@ public class CartaMounstro extends Carta {
 		this.ataque = ataque;
 	}
 	
-
+	public void setDefensa(int defensa) {
+		this.defensa = defensa;
+	}
 }

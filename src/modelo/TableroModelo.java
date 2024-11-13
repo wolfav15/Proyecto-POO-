@@ -9,10 +9,14 @@ import java.util.List;
 public class TableroModelo {
     private Jugador jugador;
     private Jugador computadora;
+    private Campos campoJugador;
+    private Campos campoComputadora;
 
     public TableroModelo(Jugador jugador) {
         jugador = new Jugador("Jugador1", this.bajarDeck());
         computadora = new Jugador("Computadora",this.bajarDeck());
+        this.campoComputadora = new Campos();
+        this.campoJugador = new Campos();
         }
     public ArrayList<Carta>bajarDeck (){
         //acá debería haber una bajada de tablas.
@@ -31,19 +35,47 @@ public class TableroModelo {
         deck.add(carta5);
         deck.add(carta6);
         deck.add(carta7);
-
+        // Hay que hacer al menos un shuffle, estaría bueno que las cartas puedan ser distintas
+        //No sé si esto era una preuba no más
         return deck;
     } 
-    public void atacarCarta (CartaMounstro cartaAtacante, CartaMounstro CartaAtacada){
-       int danio= cartaAtacante.atacar(CartaAtacada);
-       if (danio < 0 ){
-        this.computadora.recibirDaño(-danio);
-       }
-       else if ( danio > 0){
-        this.jugador.recibirDaño(danio);
-       }
+
+    public void duelo (Jugador atacante, CartaMounstro cartaAtacante, Jugador atacado, CartaMounstro cartaAtacada)throws Exception{
+       atacante.atacarCarta( cartaAtacante,  cartaAtacada,  atacado);
+        if (!cartaAtacante.getActivo()){
+            campoJugador.removerCarta(cartaAtacante);
+        }
+        if (!cartaAtacada.getActivo()){
+            campoComputadora.removerCarta(cartaAtacada);
+        }
     }
-    public void AtaqueDirecto(CartaMounstro cartaAtacante){
-        this.computadora.recibirDaño(cartaAtacante.getAtaque());
+
+    public void colocarCarta(CartaMagica carta, Campos campo)throws Exception{
+        campo.agregarCartas(carta);
+        carta.colocar;
     }
+    public void colocarCarta(CartaMounstro carta, Campos campo)throws Exception{
+        campo.agregarCartas(carta);
+        carta.colocar;
+    }
+
+    //Para hechizos
+    public void usarMagia (CartaMagicaArrojadiza carta, Jugador jugador, Campos campo) throws Exception{
+        carta.activar_efecto(jugador);
+        campo.removerCarta(carta);
+    } 
+
+    //Para equipamento
+    public void usarMagia (CartaMagicaEquipada carta, CartaMounstro monstruo,Campos campo)throws Exception{
+        carta.activar_efecto(monstruo);
+        campo.removerCarta(carta);
+    }
+
+    public Campos getCampoJugador(){
+        return this.campoJugador;
+    }
+    public Campos getCampoComputadora(){
+        return this.campoComputadora;
+    }
+  
 }
