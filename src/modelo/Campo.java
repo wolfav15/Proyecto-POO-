@@ -27,4 +27,8 @@ public class Campo {
 		}
 	}
 
+	public List<Carta> getListaMounstruos() {
+		
+	}
+
 }

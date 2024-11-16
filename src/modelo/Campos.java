@@ -1,6 +1,4 @@
 package modelo;
-import modelo.Campo;
-import java.util.List;
 
 public class Campos {
 
@@ -32,5 +30,13 @@ public class Campos {
 
 	public void removerCarta(CartaMagica carta)throws Exception{
 		campoMagias.removerCarta(carta);
+	}
+
+	public Campo getCampoMounstruos() {
+		return campoMonstruos;
+	}
+
+	public Campo getCampoMagias() {
+		return campoMagias;
 	}
 }
