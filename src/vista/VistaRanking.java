@@ -1,8 +1,11 @@
 package vista;
 
 import java.awt.EventQueue;
+import java.util.List;
+import modelo.Jugador;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.BoxLayout;
@@ -10,6 +13,7 @@ import javax.swing.JScrollPane;
 
 public class VistaRanking extends JFrame {
 
+	private JPanel panel;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
@@ -44,7 +48,7 @@ public class VistaRanking extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane);
 		
-		JPanel panel = new JPanel();
+		this.panel = new JPanel();
 		scrollPane.setViewportView(panel);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 	}
@@ -67,6 +71,18 @@ public class VistaRanking extends JFrame {
 	    panel.revalidate(); 
 	    panel.repaint();    
 	}
+
+
+	// Ejemplo para agregar contenido de prueba al ranking
+public void agregarJugadoresDePrueba() {
+    for (int i = 1; i <= 10; i++) {
+        JLabel jugadorLabel = new JLabel("Jugador " + i + " - Puntos: " + (i * 10));
+        panel.add(jugadorLabel);
+    }
+    panel.revalidate(); // Actualiza el layout del panel
+    panel.repaint();    // Redibuja la vista
+}
+
 
 
 }
