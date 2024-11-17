@@ -1,55 +1,43 @@
-package vista;   //esta vista es la que tenia Samuel en su zip
+package ViejoSamuel;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.JTextArea;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
-import java.awt.BorderLayout;
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.border.LineBorder;
-
-import modelo.CartaMounstro;
-import vista.MenuBatalla;
-
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Insets;
+import javax.swing.border.EmptyBorder;
 
-public class VistaTabla extends JFrame {
-
-	private JPanel panelesMonstruosRival;
-	private JPanel panelesMonstruosJugador;
+public class VistaTablaVieja extends JFrame {
+	private JPanel[] panelesMonstruosRival;
+	private JPanel[] panelesMonstruosJugador;
 	private JPanel panelesHechizosRival;
 	private JPanel panelesHechizosJugador;
 	private JButton btnFinalizarTurno;
 	private JLabel[] lblMonstruosRival;
 	private JLabel[] lblMonstruosJugador;
 	private JLabel[] lblHechizosRival;
-	private JLabel[] lblCartasJugador;
-	private JLabel[] lblCartasRival;
 	private JProgressBar barraVidaJugador;
 	private JProgressBar barraVidaRival;
-	private JTextArea areaEstadistica;
-	private JLabel lblBaraja;
-
-
 	private static final long serialVersionUID = 1L;
 
-	public VistaTabla() {
+	public VistaTablaVieja() {
 		setTitle("Tablero");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setLayout(new GridBagLayout());
-		
+
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.weightx = 1;
 		gbc.weighty = 1;
@@ -58,20 +46,21 @@ public class VistaTabla extends JFrame {
 		JPanel panelMonstruosRival = new JPanel(new GridLayout(1, 5, 10, 0));
 		lblMonstruosRival = new JLabel[5];
 		for (int i = 0; i < lblMonstruosRival.length; i++) {
-			lblMonstruosRival[i] = crearLabel("Monstruo " + (i + 1), new Dimension(70, 105));
+			lblMonstruosRival[i] = crearLabel("Monstruo " + (i + 1), new Dimension(70, 101));
 			panelMonstruosRival.add(lblMonstruosRival[i]);
 		}
 
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 0;
+		gbc.insets = new Insets(10, 10, 10, 10);
 		add(panelMonstruosRival, gbc);
 
 		// Paneles de monstruos del jugador
 		JPanel panelMonstruosJugador = new JPanel(new GridLayout(1, 5, 10, 0));
 		lblMonstruosJugador = new JLabel[5];
 		for (int i = 0; i < lblMonstruosJugador.length; i++) {
-			lblMonstruosJugador[i] = crearLabel("Monstruo " + (i + 1), new Dimension(70, 105));
+			lblMonstruosJugador[i] = crearLabel("Monstruo " + (i + 1), new Dimension(200, 400));
 			panelMonstruosJugador.add(lblMonstruosJugador[i]);
 		}
 		gbc.gridx = 0;
@@ -82,7 +71,7 @@ public class VistaTabla extends JFrame {
 		JPanel panelHechizosRival = new JPanel(new GridLayout(1, 3, 10, 0));
 		lblHechizosRival = new JLabel[3];
 		for (int i = 0; i < lblHechizosRival.length; i++) {
-			lblHechizosRival[i] = crearLabel("Monstruo " + (i + 1), new Dimension(70, 105));
+			lblHechizosRival[i] = crearLabel("Monstruo " + (i + 1), new Dimension(70, 101));
 			panelHechizosRival.add(lblHechizosRival[i]);
 		}
 		gbc.gridx = 0;
@@ -94,7 +83,7 @@ public class VistaTabla extends JFrame {
 		JPanel panelHechizosJugador = new JPanel(new GridLayout(1, 3, 10, 0));
 		JLabel[] lblHechizosJugador = new JLabel[3];
 		for (int i = 0; i < lblHechizosJugador.length; i++) {
-			lblHechizosJugador[i] = crearLabel("Hechizo " + (i + 1), new Dimension(70, 105));
+			lblHechizosJugador[i] = crearLabel("Hechizo " + (i + 1), new Dimension(70, 101));
 			panelHechizosJugador.add(lblHechizosJugador[i]);
 		}
 		gbc.gridx = 0;
@@ -102,7 +91,7 @@ public class VistaTabla extends JFrame {
 		gbc.gridwidth = 0;
 		add(panelHechizosJugador, gbc);
 
-		barraVidaJugador = new JProgressBar(0, 8000);
+		JProgressBar barraVidaJugador = new JProgressBar(0, 8000);
 		barraVidaJugador.setValue(8000);
 		barraVidaJugador.setStringPainted(true);
 		gbc.gridx = 0;
@@ -117,63 +106,40 @@ public class VistaTabla extends JFrame {
 		gbc.gridy = 0;
 		add(barraVidaRival, gbc);
 
-	   btnFinalizarTurno = new JButton("Finalizar turno");
+		JButton btnFinalizarTurno = new JButton("Finalizar turno");
 		gbc.gridx = 3;
 		gbc.gridy = 1;
 		gbc.gridwidth = 3;
 		add(btnFinalizarTurno, gbc);
 
-		lblBaraja = new JLabel("BARAJA");
+		JLabel lblBaraja = new JLabel("BARAJA");
 		lblBaraja.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblBaraja.setPreferredSize(new Dimension(100, 150));
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		add(lblBaraja, gbc);
 
-		JPanel panelCartasJugador = new JPanel(new GridLayout(1, 5, 10, 0));
-		lblCartasJugador = new JLabel[5];
-		for (int i = 0; i < lblCartasJugador.length; i++) {
-			lblCartasJugador[i] = crearLabel("Carta " + (i + 1), new Dimension(70, 105));
-			panelCartasJugador.add(lblCartasJugador[i]);
-		}
+		JLabel lblCartasJugador = new JLabel("Cartas del Jugador");
+		lblCartasJugador.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblCartasJugador.setPreferredSize(new Dimension(100, 150));
 		gbc.gridx = 0;
 		gbc.gridy = 4;
 		gbc.gridwidth = 0;
-		add(panelCartasJugador, gbc);
-
-
-		//No tengo que ver las cartas del Rival
-		JPanel panelCartasRival = new JPanel(new GridLayout(1, 5, 10, 0));
-		lblCartasRival = new JLabel[5];
-		for (int i = 0; i < lblCartasRival.length; i++) {
-			lblCartasRival[i] = crearLabel("Carta " + (i + 1), new Dimension(70, 105));
-			panelCartasRival.add(lblCartasRival[i]);
-		}
+		add(lblCartasJugador, gbc);
 
 		JButton btnSalir = new JButton("Salir Batalla");
 		gbc.gridx = 3;
 		gbc.gridy = 2;
 		add(btnSalir, gbc);
 
-		areaEstadistica = new JTextArea(5, 20);
-		areaEstadistica.setEditable(false);
-		areaEstadistica.setBorder(new LineBorder(new Color(0, 0, 0)));
-		areaEstadistica.setVisible(false);
-		gbc.gridx = 1;
-		gbc.gridy = 4;
-
-		add(areaEstadistica, gbc);
-    btnSalir.addActionListener((ActionListener) new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			dispose();
-			MenuBatalla menuBatalla = new MenuBatalla();	
-			menuBatalla.setVisible(true);
-		}
-	});
+		JLabel lblCementerio = new JLabel("Cementerio");
+		lblCementerio.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblCementerio.setPreferredSize(new Dimension(100, 100));
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		add(lblCementerio, gbc);
 	}
 
-	
 	private JLabel crearLabel(String nombre, Dimension dimension) {
 		JLabel label = new JLabel(nombre);
 		label.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -184,21 +150,11 @@ public class VistaTabla extends JFrame {
 		return label;
 	}
 
-	public void mostrarEstadisticasMonstruo(CartaMounstro carta) {
-		areaEstadistica.setText("Nombre: " + carta.getNombre() + "\nAtaque: " + carta.getAtaque() + "\nDefensa: "
-				+ carta.getDefensa() + "\nNivel: " + carta.getNivel() + "\nAtributo: " + carta.getAtributo());
-		areaEstadistica.setVisible(true);
-	}
-
-	public void ocultarEstadisticas() {
-		areaEstadistica.setVisible(false);
-	}
-
-	public JButton getBtnFinalizarTurno() {
+	public Object getBtnFinalizarTurno() {
 		return btnFinalizarTurno;
 	}
 
-	public Object getPanelMonstruosJugador() {
+	public Object[] getPanelMonstruosJugador() {
 		return panelesMonstruosJugador;
 	}
 
@@ -218,28 +174,12 @@ public class VistaTabla extends JFrame {
 		return barraVidaRival;
 	}
 
-	public Component getLblBaraja() {
-		return lblBaraja;
-	}
-
-	public JLabel[] getLblCartasJugador() {
-		return lblCartasJugador;
-	}
-
-	public JPanel getPanelesMonstruosRival() {
-		return panelesMonstruosRival;
-	}
-
-	public void setPanelesMonstruosRival(JPanel panelesMonstruosRival) {
-		this.panelesMonstruosRival = panelesMonstruosRival;
-	}
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
 				try {
-					VistaTabla frame = new VistaTabla();
+					VistaTablaVieja frame = new VistaTablaVieja();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -248,9 +188,5 @@ public class VistaTabla extends JFrame {
 		});
 	}
 
-
-	public JLabel[] getLblCartasRival() {
-		return lblCartasRival;
-	}
-
 }
+

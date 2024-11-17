@@ -30,4 +30,8 @@ public abstract class Carta {
 	public String getImagen() {
 		return imagen;
 	}
+
+	public boolean isActivo() {
+		return activo;
+	}
 }

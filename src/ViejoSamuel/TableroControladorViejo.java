@@ -11,11 +11,11 @@ import modelo.Jugador;
 
 public class TableroControladorViejo {
     private TableroModeloSamuel modelo;
-    private VistaTabla vista;
+    private VistaTablaVieja vista;
     private Jugador jugador;
     private Jugador rival;
 
-    public TableroControladorViejo(TableroModeloSamuel modelo, VistaTabla vista, Jugador jugador, Jugador rival) {
+    public TableroControladorViejo(TableroModeloSamuel modelo, VistaTablaVieja vista, Jugador jugador, Jugador rival) {
         this.modelo = modelo;
         this.vista = vista;
         this.jugador = jugador;
@@ -142,7 +142,7 @@ public class TableroControladorViejo {
 
     public static void main(String[] args) {
         TableroModeloSamuel modelo = new TableroModeloSamuel();
-        VistaTabla vista = new VistaTabla();
+        VistaTablaVieja vista = new VistaTablaVieja();
         Jugador jugador = new Jugador("Jugador 1", null);
         Jugador rival = new Jugador("Rival", null);
         new TableroControladorViejo(modelo, vista, jugador, rival);

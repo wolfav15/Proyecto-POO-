@@ -60,4 +60,17 @@ public class Jugador {
      public void atacarCarta(CartaMounstro cartaAtacante, Jugador oponente ){
         oponente.recibirDaño(cartaAtacante.getAtaque());
      }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getPuntosVida() {
+        return puntosVida;
+    }
+
+    public List<Carta> getMano() {
+        return mano;
+    }
+
 }

@@ -16,7 +16,7 @@ import modelo.Jugador;
 @SuppressWarnings("deprecation")
 public class TableroCntroldrSamuel implements Observer {
     private TableroModeloSamuel modelo;
-    private VistaTabla vista;
+    private VistaTablaVieja vista;
     private Jugador jugador;
     private Jugador rival;
     private CartaMounstro cartaSeleccionada;
@@ -25,7 +25,7 @@ public class TableroCntroldrSamuel implements Observer {
     private boolean turnoRival = false;
     private boolean turnoJugador = true;
 
-    public TableroCntroldrSamuel(TableroModeloSamuel modelo, VistaTabla vista, Jugador jugador, Jugador rival) {
+    public TableroCntroldrSamuel(TableroModeloSamuel modelo, VistaTablaVieja vista, Jugador jugador, Jugador rival) {
         this.modelo = modelo;
         this.vista = vista;
         this.jugador = jugador;
@@ -401,7 +401,7 @@ public class TableroCntroldrSamuel implements Observer {
 
         // Crear modelo y vista
         TableroModeloSamuel modelo = new TableroModeloSamuel();
-        VistaTabla vista = new VistaTabla();
+        VistaTablaVieja vista = new VistaTablaVieja();
 
         CartaMounstro monstruo = new CartaMounstro("Ángel de la Muerte", "Un ángel que trae la muerte", 2000, 1500, 9,
                 "Oscuridad", "C://Users//samue//Desktop//angel_muerte.jpg");

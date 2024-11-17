@@ -127,4 +127,12 @@ public class CartaMounstro extends Carta {
 	public void yaAtacoEnTurno() {
 		ataque_realizado = true;
 	}
+
+	public int getNivel() {
+		return nivel;
+	}
+
+	public String getAtributo() {
+		return atributo;
+	}
 }
