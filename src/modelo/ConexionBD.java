@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConexionBD {
 	private static ConexionBD instancia;
 	private Connection conexion;
-	private String url = "jdbc:sqlite:monsterCardsAttacks.db"; 
+	private String url = "jdbc:sqlite:src\\modelo\\monsterCardsAttacks.db"; 
 
 	private ConexionBD() throws SQLException {
 		try {
