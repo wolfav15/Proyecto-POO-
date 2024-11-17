@@ -114,8 +114,8 @@ public class TableroControlador implements Observer {
         }
     }
 
-    private Carta encontrarCartaEnCampo(JLabel lblMonstruo, List<Carta> cartas) {
-        for (Carta carta : cartas) {
+    private CartaMounstro encontrarCartaEnCampo(JLabel lblMonstruo, List<CartaMounstruo> cartas) {
+        for (CartaMounstro carta : cartas) {
             if (lblMonstruo.getIcon() != null && lblMonstruo.getIcon() instanceof ImageIcon) {
                 // Comparar el icono del JLabel con el icono de la carta
                 ImageIcon icon = new ImageIcon(carta.getImagen());
@@ -128,6 +128,23 @@ public class TableroControlador implements Observer {
         }
         return null;
     }
+      
+
+    private CartaMagica encontrarCartaEnCampo(JLabel lblMonstruo, List<CartaMagica> cartas) {
+        for (CartaMagica carta : cartas) {
+            if (lblMonstruo.getIcon() != null && lblMonstruo.getIcon() instanceof ImageIcon) {
+                // Comparar el icono del JLabel con el icono de la carta
+                ImageIcon icon = new ImageIcon(carta.getImagen());
+                if (icon.getImage().equals(((ImageIcon) lblMonstruo.getIcon()).getImage())) {
+                    return carta;
+                }
+            } else if (lblMonstruo.getText().equals(carta.getNombre())) {
+                return carta;
+            }
+        }
+        return null;
+    }
+
 
     private Carta encontrarCartaEnCampoEnMano(JLabel lblCarta, List<Carta> cartas) {
         for (Carta carta : cartas) {
