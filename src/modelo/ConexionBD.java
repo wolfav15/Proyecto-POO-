@@ -7,15 +7,12 @@ import java.sql.SQLException;
 public class ConexionBD {
 	private static ConexionBD instancia;
 	private Connection conexion;
-	private String url = "jdbc:postgresql://localhost:5432/Proyecto_POO"; // o
-																			// "jdbc:mysql://localhost:3306/tu_base_de_datos"
-	private String usuario = "postgres";
-	private String contraseña = "26072002";
+	private String url = "jdbc:sqlite:monsterCardsAttacks.db"; 
 
 	private ConexionBD() throws SQLException {
 		try {
-			Class.forName("org.postgresql.Driver"); // o "com.mysql.cj.jdbc.Driver" para MySQL
-			this.conexion = DriverManager.getConnection(url, usuario, contraseña);
+			Class.forName("org.sqlite.JDBC"); // o "com.mysql.cj.jdbc.Driver" para MySQL
+			this.conexion = DriverManager.getConnection(url);
 		} catch (ClassNotFoundException ex) {
 			System.out.println("Error al registrar el driver de la base de datos: " + ex.getMessage());
 		}
