@@ -2,18 +2,18 @@ package modelo;
 
 public class CartaMounstro extends Carta {
 
-	private int ataque, defensa, nivel;
-	private String atributo, posicion;
+	protected int ataque, defensa;
+	protected String elemento, posicion;
 
 	// estado lo que indica es para verificar si esta boca arriba o colocado, para
 	// el observer del campo detecte si mostrarlo o no
 
-	public CartaMounstro(String nombre, String descripcion, int ataque, int defensa, int nivel, String atributo) {
-		super(nombre, descripcion, nivel);
+	public CartaMounstro(String nombre, String descripcion,int nivel, String tipo, String imagen,  int ataque, int defensa, String elemento) {
+		super(nombre, descripcion, nivel, tipo, imagen);
 		this.ataque = ataque;
 		this.defensa = defensa;
-		this.nivel = nivel;
-		this.atributo = atributo;
+		this.elemento = elemento;
+
 	}
 
 	@Override
@@ -97,6 +97,9 @@ public class CartaMounstro extends Carta {
 	public int getDefensa() {
 		return defensa;
 	}
+	public String getElemento() {
+		return elemento;
+	}
 
 	public String getPosicion() {
 		return posicion;
@@ -109,4 +112,6 @@ public class CartaMounstro extends Carta {
 	public void setDefensa(int defensa) {
 		this.defensa = defensa;
 	}
+
+
 }
