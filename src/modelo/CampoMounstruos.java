@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CampoMounstruos {
-    private List<CartaMounstro> CampoDeMounstruos;
+    private List<Carta> CampoDeMounstruos;
 
     public CampoMounstruos() {
-        this.CampoDeMounstruos = new ArrayList<CartaMounstro>(); 
+        this.CampoDeMounstruos = new ArrayList<Carta>(); 
     }
 
-    public void agregarCarta(CartaMounstro e) throws Exception {
+    public void agregarCarta(Carta e) throws Exception {
 		if (CampoDeMounstruos.size() <= 4) {
 			CampoDeMounstruos.add(e);
 		} else {
@@ -18,7 +18,7 @@ public class CampoMounstruos {
 		}
 	}
 
-	public void removerCarta(CartaMounstro e) throws Exception {
+	public void removerCarta(Carta e) throws Exception {
 		if (CampoDeMounstruos.size() <= 0) { //me confunde esto, ver bien despues, crei que seria un remove
 			CampoDeMounstruos.add(e);
 		} else {
@@ -26,7 +26,7 @@ public class CampoMounstruos {
 		}
 	}
 
-    public List<CartaMounstro> getCartasMounstruoEnCampo() {
+    public List<Carta> getCartasMounstruoEnCampo() {
         return CampoDeMounstruos;
     }
 

@@ -5,13 +5,13 @@ import java.util.List;
 
 public class CampoMagias {
     
-    private List<CartaMagica> CampoDeMagias;
+    private List<Carta> CampoDeMagias;
 
     public CampoMagias() {
-        this.CampoDeMagias = new ArrayList<CartaMagica>();
+        this.CampoDeMagias = new ArrayList<Carta>();
     }
 
-    public void agregarCarta(CartaMagica e) throws Exception {
+    public void agregarCarta(Carta e) throws Exception {
 		if (CampoDeMagias.size() <= 4) {
 			CampoDeMagias.add(e);
 		} else {
@@ -19,7 +19,7 @@ public class CampoMagias {
 		}
 	}
 
-	public void removerCarta(CartaMagica e) throws Exception {
+	public void removerCarta(Carta e) throws Exception {
 		if (CampoDeMagias.size() <= 0) { //como dije, ver bien esta wea
 			CampoDeMagias.add(e);
 		} else {
@@ -27,7 +27,7 @@ public class CampoMagias {
 		}
 	}
 
-    public List<CartaMagica> getCartasMagicasEnCampo() {
+    public List<Carta> getCartasMagicasEnCampo() {
         return CampoDeMagias;
     }
 
