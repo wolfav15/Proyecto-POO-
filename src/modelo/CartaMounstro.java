@@ -4,12 +4,13 @@ public class CartaMounstro extends Carta {
 
 	private int ataque, defensa, nivel;
 	private String atributo, posicion;
+	private boolean ataque_realizado = false;
 
 	// estado lo que indica es para verificar si esta boca arriba o colocado, para
 	// el observer del campo detecte si mostrarlo o no
 
-	public CartaMounstro(String nombre, String descripcion, int ataque, int defensa, int nivel, String atributo) {
-		super(nombre, descripcion, nivel);
+	public CartaMounstro(String nombre, String descripcion, int ataque, int defensa, int nivel, String atributo, String imagen) {
+		super(nombre, descripcion, imagen);
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.nivel = nivel;
@@ -20,6 +21,11 @@ public class CartaMounstro extends Carta {
 	public void colocar() {
 		this.activo = true;                                                                                
 		this.posicion = "defensa";
+	}
+
+	public void invocarEnAtaque() {
+		activo = true;
+		posicion = "ataque";
 	}
 
 	private int devolver_estadistica(CartaMounstro carta) {
@@ -108,5 +114,17 @@ public class CartaMounstro extends Carta {
 	
 	public void setDefensa(int defensa) {
 		this.defensa = defensa;
+	}
+
+	public boolean realizoAtaque() {
+		return ataque_realizado;
+	}
+
+	public void resetearAtaqueEnTurno() {
+		ataque_realizado = false;
+	}
+
+	public void yaAtacoEnTurno() {
+		ataque_realizado = true;
 	}
 }

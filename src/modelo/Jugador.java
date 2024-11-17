@@ -1,5 +1,7 @@
 package modelo;
+import java.util.ArrayList;
 import java.util.List;
+
 public class Jugador {
     private String nombre;
     private int puntosVida = 8000;
@@ -10,7 +12,7 @@ public class Jugador {
     public Jugador(String nombre, List <Carta> deck) {
         this.nombre = nombre;
         this.deck = deck;
-        //this.cementerio = cementerio;
+        mano = new ArrayList<>();
     }
 
     public void robarCarta() {

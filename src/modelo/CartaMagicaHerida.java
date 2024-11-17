@@ -2,8 +2,8 @@
 
  public class CartaMagicaHerida extends CartaMagicaArrojadiza {
 
-	public CartaMagicaHerida(String nombre, String descripcion, int cantidad_efecto, String efecto) {
-		super(nombre, descripcion, cantidad_efecto, efecto);
+	public CartaMagicaHerida(String nombre, String descripcion, int cantidad_efecto, String efecto, String imagen) {
+		super(nombre, descripcion, cantidad_efecto, efecto, imagen);
 	}
 
 	

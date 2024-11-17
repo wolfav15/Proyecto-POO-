@@ -2,12 +2,12 @@ package modelo;
 
 public class Campos {
 
-	private Campo campoMonstruos ;
-	private Campo campoMagias ;
+	private CampoMounstruos campoMonstruos ;
+	private CampoMagias campoMagias ;
 
 	public Campos (){
-		this.campoMonstruos = new Campo();
-		this.campoMagias = new Campo();
+		this.campoMonstruos = new CampoMounstruos();
+		this.campoMagias = new CampoMagias();
 
 	}
 	// Acá se incluye toda la logica necesaria para agregar cartas al campo de
@@ -32,11 +32,11 @@ public class Campos {
 		campoMagias.removerCarta(carta);
 	}
 
-	public Campo getCampoMounstruos() {
+	public CampoMounstruos getCampoMounstruos() {
 		return campoMonstruos;
 	}
 
-	public Campo getCampoMagias() {
+	public CampoMagias getCampoMagias() {
 		return campoMagias;
 	}
 }

@@ -1,10 +1,12 @@
-package modelo;
+package ViejoSamuel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import modelo.Carta;
 
-public class Campo {
+
+public class Campo { //ver si quitar
 	private List<Carta> campo;
 
 	 public Campo() {
@@ -28,7 +30,7 @@ public class Campo {
 	}
 
 	public List<Carta> getListaMounstruos() {
-		
+		return campo;
 	}
 
 }

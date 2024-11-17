@@ -1,4 +1,4 @@
-package modelo;
+package ViejoSamuel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

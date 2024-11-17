@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Observable;
 
 @SuppressWarnings("deprecation")
-public class TableroModelo extends Observable {
+public class TableroModeloSamuel extends Observable {
     private List<CartaMounstro> cartasJugador;
     private List<CartaMounstro> cartasRival;
     private boolean turnoJugador; // true si es el turno del jugador, false si es el del rival
@@ -17,7 +17,7 @@ public class TableroModelo extends Observable {
     private List<CartaMounstro> baraja;
     private List<Carta> manoJugador;
 
-    public TableroModelo() {
+    public TableroModeloSamuel() {
         this.cartasJugador = new ArrayList<>();
         this.cartasRival = new ArrayList<>();
         this.baraja = new ArrayList<>();

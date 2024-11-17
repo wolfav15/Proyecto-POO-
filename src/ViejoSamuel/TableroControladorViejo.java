@@ -9,13 +9,13 @@ import javax.swing.*;
 import modelo.*;
 import modelo.Jugador;
 
-public class TableroControlador {
-    private TableroModelo modelo;
+public class TableroControladorViejo {
+    private TableroModeloSamuel modelo;
     private VistaTabla vista;
     private Jugador jugador;
     private Jugador rival;
 
-    public TableroControlador(TableroModelo modelo, VistaTabla vista, Jugador jugador, Jugador rival) {
+    public TableroControladorViejo(TableroModeloSamuel modelo, VistaTabla vista, Jugador jugador, Jugador rival) {
         this.modelo = modelo;
         this.vista = vista;
         this.jugador = jugador;
@@ -141,11 +141,11 @@ public class TableroControlador {
     }
 
     public static void main(String[] args) {
-        TableroModelo modelo = new TableroModelo();
+        TableroModeloSamuel modelo = new TableroModeloSamuel();
         VistaTabla vista = new VistaTabla();
         Jugador jugador = new Jugador("Jugador 1", null);
         Jugador rival = new Jugador("Rival", null);
-        new TableroControlador(modelo, vista, jugador, rival);
+        new TableroControladorViejo(modelo, vista, jugador, rival);
 
         // Crear una carta y simular un ataque para probar
         CartaMounstro cartaAtacante = new CartaMounstro("Dragón", "Un poderoso dragón", 3000, 2500, 8, "Fuego");

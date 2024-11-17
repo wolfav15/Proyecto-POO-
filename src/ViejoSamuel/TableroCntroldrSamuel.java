@@ -14,8 +14,8 @@ import javax.swing.*;
 import modelo.Jugador;
 
 @SuppressWarnings("deprecation")
-public class TableroControlador implements Observer {
-    private TableroModelo modelo;
+public class TableroCntroldrSamuel implements Observer {
+    private TableroModeloSamuel modelo;
     private VistaTabla vista;
     private Jugador jugador;
     private Jugador rival;
@@ -25,7 +25,7 @@ public class TableroControlador implements Observer {
     private boolean turnoRival = false;
     private boolean turnoJugador = true;
 
-    public TableroControlador(TableroModelo modelo, VistaTabla vista, Jugador jugador, Jugador rival) {
+    public TableroCntroldrSamuel(TableroModeloSamuel modelo, VistaTabla vista, Jugador jugador, Jugador rival) {
         this.modelo = modelo;
         this.vista = vista;
         this.jugador = jugador;
@@ -400,7 +400,7 @@ public class TableroControlador implements Observer {
         Jugador rival = new Jugador("Rival", null);
 
         // Crear modelo y vista
-        TableroModelo modelo = new TableroModelo();
+        TableroModeloSamuel modelo = new TableroModeloSamuel();
         VistaTabla vista = new VistaTabla();
 
         CartaMounstro monstruo = new CartaMounstro("Ángel de la Muerte", "Un ángel que trae la muerte", 2000, 1500, 9,
@@ -409,7 +409,7 @@ public class TableroControlador implements Observer {
         modelo.colocarCarta(monstruo);
 
         // Crear controlador
-        TableroControlador controlador = new TableroControlador(modelo, vista, jugador, rival);
+        TableroCntroldrSamuel controlador = new TableroCntroldrSamuel(modelo, vista, jugador, rival);
         if (controlador.turnoJugador) {
             System.out.println("Turno del jugador.");
         } else {
