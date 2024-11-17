@@ -39,7 +39,8 @@ public class VistaTabla extends JFrame {
 	private JProgressBar barraVidaJugador;
 	private JProgressBar barraVidaRival;
 	private JTextArea areaEstadistica;
-	private JLabel lblBaraja;
+	private JLabel lblBarajaJugador;
+	private JLabel lblBarajaRival;
 
 
 	private static final long serialVersionUID = 1L;
@@ -122,14 +123,21 @@ public class VistaTabla extends JFrame {
 		gbc.gridy = 1;
 		gbc.gridwidth = 3;
 		add(btnFinalizarTurno, gbc);
-
-		lblBaraja = new JLabel("BARAJA");
-		lblBaraja.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblBaraja.setPreferredSize(new Dimension(100, 150));
+		
+		lblBarajaJugador = new JLabel("BARAJA");
+		lblBarajaJugador.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblBarajaJugador.setPreferredSize(new Dimension(100, 150));
 		gbc.gridx = 0;
 		gbc.gridy = 3;
-		add(lblBaraja, gbc);
+		add(lblBarajaJugador, gbc);
 
+                lblBarajaRival = new JLabel("BARAJA RIVAL");
+		lblBarajaRival.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblBarajaRival.setPreferredSize(new Dimension(100, 150));
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		add(lblBarajaRival, gbc);
+		
 		JPanel panelCartasJugador = new JPanel(new GridLayout(1, 5, 10, 0));
 		lblCartasJugador = new JLabel[5];
 		for (int i = 0; i < lblCartasJugador.length; i++) {
@@ -218,9 +226,13 @@ public class VistaTabla extends JFrame {
 		return barraVidaRival;
 	}
 
-	public Component getLblBaraja() {
-		return lblBaraja;
+	public Component getLblBarajaJugador() {
+		return lblBarajaJugador;
 	}
+
+	public Component getLblBarajaRival(){
+		return lblBarajaRival
+        }
 
 	public JLabel[] getLblCartasJugador() {
 		return lblCartasJugador;
