@@ -12,7 +12,7 @@ public class CampoMagias {
     }
 
     public void agregarCarta(CartaMagica e) throws Exception {
-		if (CampoDeMagias.size() <= 4) {
+		if (CampoDeMagias.size() <= 2) { //Lo cambie a 2 porque es menor el campo mágico
 			CampoDeMagias.add(e);
 		} else {
 			throw new Exception("Campo lleno");
