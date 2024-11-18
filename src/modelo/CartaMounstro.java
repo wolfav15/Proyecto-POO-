@@ -3,8 +3,9 @@ package modelo;
 public class CartaMounstro extends Carta {
 
 	private int ataque, defensa, nivel;
-	private String atributo, posicion;
+	private String atributo;
 	private boolean ataque_realizado = false;
+	private String posicion = "en mano";
 
 	// estado lo que indica es para verificar si esta boca arriba o colocado, para
 	// el observer del campo detecte si mostrarlo o no
