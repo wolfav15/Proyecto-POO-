@@ -26,6 +26,13 @@ public class ControladorOpciones {
 				vista.mostrarMensaje("Deteniendo...");
 			}
 		});
+		
+		this.vista.getBotonABMJugadores().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ControladorABMJugadores();
+			}
+		});
+		
 		this.vista.getBotonSalir().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vista.mostrarMensaje("Saliendo...");

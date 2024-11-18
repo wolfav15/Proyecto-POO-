@@ -28,6 +28,8 @@ public class ControladorMenu {
 					opciones.getVista().setVisible(true);
 				}
 			});
+			
+
 		}
 		public Menu getVista() {
 			return this.vista;
