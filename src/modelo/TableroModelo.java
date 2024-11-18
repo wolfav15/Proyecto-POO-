@@ -53,28 +53,19 @@ public class TableroModelo extends Observable {
         setChanged();
     }
 
-    public void jugarCartaEnTablero(CartaMounstro carta_jugada) throws Exception {
-        jugador.jugarCarta(carta_jugada, this, campoJugador);
-        notifyObservers();
-        setChanged();
-    }
 
-    public void jugarCartaEnTablero(CartaMagica carta_jugada) throws Exception {
-        computadora.jugarCarta(carta_jugada, this, campoComputadora);
-        notifyObservers();
-        setChanged();
-    }
-
-    public void colocarCarta(CartaMagica carta, Campos campo)throws Exception{
+    public void jugarCartaEnTablero(CartaMagica carta, Campos campo, Jugador jugador)throws Exception{
         campo.agregarCartas(carta);
         carta.colocar();
+        jugador.jugarCarta(carta);
         notifyObservers();
         setChanged();
     }
 
-    public void colocarCarta(CartaMounstro carta, Campos campo)throws Exception{
+    public void jugarCartaEnTablero(CartaMounstro carta, Campos campo)throws Exception{
         campo.agregarCartas(carta);
         carta.colocar();
+        jugador.jugarCarta(carta);
         notifyObservers();
         setChanged();
     }

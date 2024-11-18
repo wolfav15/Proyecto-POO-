@@ -16,7 +16,7 @@ public class Jugador {
     }
 
     public void robarCarta() {
-        //maximo de 6 cartas en la mano 
+        //maximo de 5 cartas en la mano 
         if (this.mano.size() <= 5){
         this.mano.add(this.deck.remove(0));
         }
@@ -26,13 +26,11 @@ public class Jugador {
         }
     } 
 
-    public void jugarCarta(CartaMounstro cartaJugada, TableroModelo tablero, Campos campo) throws Exception{ 
-        //Toda la lógica de agregar cartas al campo está incluida en la clase Campos.
-        tablero.colocarCarta(cartaJugada, campo);
+    public void jugarCarta(CartaMounstro cartaJugada) throws Exception{ //Se utiliza para remover la carta, también se puede cambiar el nombre
+        mano.remove(cartaJugada);
     }
-    public void jugarCarta(CartaMagica cartaJugada, TableroModelo tablero, Campos campo) throws Exception{ 
-        //Toda la lógica de agregar cartas al campo está incluida en la clase Campos.
-        tablero.colocarCarta(cartaJugada, campo);
+    public void jugarCarta(CartaMagica cartaJugada) throws Exception{
+        mano.remove(cartaJugada);
     }
 
     public void robarManoInicial()  {
