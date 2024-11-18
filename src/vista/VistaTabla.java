@@ -1,4 +1,4 @@
-package vista;   //esta vista es la que tenia Samuel en su zip
+package vista; //esta vista es la que tenia Samuel en su zip
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -15,6 +15,10 @@ import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.border.LineBorder;
 
+import modelo.CartaMagica;
+import modelo.CartaMagicaArmadura;
+import modelo.CartaMagicaBuff;
+import modelo.CartaMagicaEquipada;
 import modelo.CartaMounstro;
 import vista.MenuBatalla;
 
@@ -34,13 +38,14 @@ public class VistaTabla extends JFrame {
 	private JLabel[] lblMonstruosRival;
 	private JLabel[] lblMonstruosJugador;
 	private JLabel[] lblHechizosRival;
+	private JLabel[] lblHechizosJugador;
 	private JLabel[] lblCartasJugador;
 	private JLabel[] lblCartasRival;
 	private JProgressBar barraVidaJugador;
 	private JProgressBar barraVidaRival;
 	private JTextArea areaEstadistica;
-	private JLabel lblBaraja;
-
+	private JLabel lblBarajaJugador;
+	private JLabel lblBarajaRival;
 
 	private static final long serialVersionUID = 1L;
 
@@ -49,7 +54,7 @@ public class VistaTabla extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setLayout(new GridBagLayout());
-		
+
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.weightx = 1;
 		gbc.weighty = 1;
@@ -92,7 +97,7 @@ public class VistaTabla extends JFrame {
 
 		// Paneles de hechizos del jugador
 		JPanel panelHechizosJugador = new JPanel(new GridLayout(1, 3, 10, 0));
-		JLabel[] lblHechizosJugador = new JLabel[3];
+		lblHechizosJugador = new JLabel[3];
 		for (int i = 0; i < lblHechizosJugador.length; i++) {
 			lblHechizosJugador[i] = crearLabel("Hechizo " + (i + 1), new Dimension(70, 105));
 			panelHechizosJugador.add(lblHechizosJugador[i]);
@@ -117,18 +122,25 @@ public class VistaTabla extends JFrame {
 		gbc.gridy = 0;
 		add(barraVidaRival, gbc);
 
-	   btnFinalizarTurno = new JButton("Finalizar turno");
+		btnFinalizarTurno = new JButton("Finalizar turno");
 		gbc.gridx = 3;
 		gbc.gridy = 1;
 		gbc.gridwidth = 3;
 		add(btnFinalizarTurno, gbc);
 
-		lblBaraja = new JLabel("BARAJA");
-		lblBaraja.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblBaraja.setPreferredSize(new Dimension(100, 150));
+		lblBarajaJugador = new JLabel("BARAJA");
+		lblBarajaJugador.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblBarajaJugador.setPreferredSize(new Dimension(100, 150));
 		gbc.gridx = 0;
 		gbc.gridy = 3;
-		add(lblBaraja, gbc);
+		add(lblBarajaJugador, gbc);
+
+		lblBarajaRival = new JLabel("BARAJA RIVAL");
+		lblBarajaRival.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblBarajaRival.setPreferredSize(new Dimension(100, 150));
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		add(lblBarajaRival, gbc);
 
 		JPanel panelCartasJugador = new JPanel(new GridLayout(1, 5, 10, 0));
 		lblCartasJugador = new JLabel[5];
@@ -141,8 +153,7 @@ public class VistaTabla extends JFrame {
 		gbc.gridwidth = 0;
 		add(panelCartasJugador, gbc);
 
-
-		//No tengo que ver las cartas del Rival
+		// No tengo que ver las cartas del Rival
 		JPanel panelCartasRival = new JPanel(new GridLayout(1, 5, 10, 0));
 		lblCartasRival = new JLabel[5];
 		for (int i = 0; i < lblCartasRival.length; i++) {
@@ -163,17 +174,16 @@ public class VistaTabla extends JFrame {
 		gbc.gridy = 4;
 
 		add(areaEstadistica, gbc);
-    btnSalir.addActionListener((ActionListener) new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			dispose();
-			MenuBatalla menuBatalla = new MenuBatalla();	
-			menuBatalla.setVisible(true);
-		}
-	});
+		btnSalir.addActionListener((ActionListener) new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				MenuBatalla menuBatalla = new MenuBatalla();
+				menuBatalla.setVisible(true);
+			}
+		});
 	}
 
-	
 	private JLabel crearLabel(String nombre, Dimension dimension) {
 		JLabel label = new JLabel(nombre);
 		label.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -186,9 +196,40 @@ public class VistaTabla extends JFrame {
 
 	public void mostrarEstadisticasMonstruo(CartaMounstro carta) {
 		areaEstadistica.setText("Nombre: " + carta.getNombre() + "\nAtaque: " + carta.getAtaque() + "\nDefensa: "
-				+ carta.getDefensa() + "\nNivel: " + carta.getNivel() + "\nAtributo: " + carta.getAtributo());
+				+ carta.getDefensa() + "\nNivel: " + carta.getNivel() + "\nAtributo: " + carta.getAtributo()
+				+ "\nPosicion: " + carta.getPosicion());
 		areaEstadistica.setVisible(true);
 	}
+
+	public void mostrarEstadisticasHechizo(CartaMagica carta) {
+		areaEstadistica.setText("Nombre: " + carta.getNombre() + "\nEfecto: " + carta.getCantidad_efecto() +
+				"\nTipo " + carta.getClass().getSimpleName() +
+				"\nDescripcion: " + carta.getDescripcion());
+		areaEstadistica.setVisible(true);
+	}
+
+	public void mostrarEstadisticaMonstruoBuffeado(CartaMounstro carta, CartaMagicaEquipada cartaMagica) {
+		int ataqueBuff = 0;
+		int defensaBuff = 0;
+	
+		if (cartaMagica instanceof CartaMagicaBuff) {
+			ataqueBuff = cartaMagica.getCantidad_efecto();
+		} else if (cartaMagica instanceof CartaMagicaArmadura) {
+			defensaBuff = cartaMagica.getCantidad_efecto();
+		}
+	
+		String ataqueMostrar = ataqueBuff > 0 ? carta.getAtaque() + " (" + carta.getAtaque() + " + " + ataqueBuff + ")" : String.valueOf(carta.getAtaque());
+		String defensaMostrar = defensaBuff > 0 ? carta.getDefensa() + " (" + carta.getDefensa() + " + " + defensaBuff + ")" : String.valueOf(carta.getDefensa());
+	
+		areaEstadistica.setText("Nombre: " + carta.getNombre() +
+				"\nAtaque: " + ataqueMostrar +
+				"\nDefensa: " + defensaMostrar +
+				"\nNivel: " + carta.getNivel() +
+				"\nAtributo: " + carta.getAtributo() +
+				"\nPosición: " + carta.getPosicion());
+		areaEstadistica.setVisible(true);
+	}
+	
 
 	public void ocultarEstadisticas() {
 		areaEstadistica.setVisible(false);
@@ -218,8 +259,12 @@ public class VistaTabla extends JFrame {
 		return barraVidaRival;
 	}
 
-	public Component getLblBaraja() {
-		return lblBaraja;
+	public Component getLblBarajaJugador() {
+		return lblBarajaJugador;
+	}
+
+	public Component getLblBarajaRival() {
+		return lblBarajaRival;
 	}
 
 	public JLabel[] getLblCartasJugador() {
@@ -232,6 +277,17 @@ public class VistaTabla extends JFrame {
 
 	public void setPanelesMonstruosRival(JPanel panelesMonstruosRival) {
 		this.panelesMonstruosRival = panelesMonstruosRival;
+	}
+
+	
+	public JTextArea getAreaEstadistica() {
+		return areaEstadistica;
+	}
+
+
+	
+	public void setAreaEstadistica(JTextArea areaEstadistica) {
+		this.areaEstadistica = areaEstadistica;
 	}
 
 	public static void main(String[] args) {
@@ -248,9 +304,16 @@ public class VistaTabla extends JFrame {
 		});
 	}
 
-
 	public JLabel[] getLblCartasRival() {
 		return lblCartasRival;
+	}
+
+	public JLabel[] getLblHechizosRival() {
+		return lblHechizosRival;
+	}
+
+	public JLabel[] getLblHechizosJugador() {
+		return lblHechizosJugador;
 	}
 
 }

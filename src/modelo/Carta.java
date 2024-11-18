@@ -34,4 +34,8 @@ public abstract class Carta {
 	public boolean isActivo() {
 		return activo;
 	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
 }

@@ -135,4 +135,6 @@ public class CartaMounstro extends Carta {
 	public String getAtributo() {
 		return atributo;
 	}
+
+
 }

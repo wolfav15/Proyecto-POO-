@@ -15,5 +15,9 @@ public abstract class CartaMagica extends Carta {
 // agregar a los jugadores aqui, dependiendo de lo que haga el efecto
 // se dara los parametros, no siempre se usaran ambos
 
+	public int getCantidad_efecto() {
+		return cantidad_efecto;
+	}
+
 
 }															

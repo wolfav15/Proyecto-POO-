@@ -13,22 +13,49 @@ public class TableroModelo extends Observable {
     private Campos campoJugador;
     private Campos campoComputadora;
 
-    public TableroModelo(Jugador jugador) {
+    public TableroModelo() {
         jugador = new Jugador("Jugador1", this.bajarDeck());
-        computadora = new Jugador("Computadora",this.bajarDeck());
+        computadora = new Jugador("Computadora", this.bajarDeck());
         this.campoComputadora = new Campos();
         this.campoJugador = new Campos();
-        }
-    public ArrayList<Carta>bajarDeck (){
-        //acá debería haber una bajada de tablas.
+    }
+
+    public ArrayList<Carta> bajarDeck() {
+        // acá debería haber una bajada de tablas.
         Carta carta1 = new CartaMounstro("Dragon", "Es un Dragon", 400, 100, 5, "Tira fuego", "urlImagen");
         Carta carta2 = new CartaMounstro("Lobo", "Es un Lobo", 200, 200, 2, "Muerde, rasguña", "urlImagen");
         Carta carta3 = new CartaMounstro("Toro", "Es un Toro", 250, 200, 3, "Atca con los cuernos", "urlImagen");
-        Carta carta4 = new CartaMounstro("Kratos", "Es un Semidios", 200, 100, 1, "Ataca con las esadas del caos", "urlImagen");
+        Carta carta4 = new CartaMounstro("Kratos", "Es un Semidios", 200, 100, 1, "Ataca con las esadas del caos",
+                "urlImagen");
         Carta carta5 = new CartaMounstro("Cracken", "Es un Cracken", 200, 100, 3, "Tira fuego, agua", "urlImagen");
         Carta carta6 = new CartaMounstro("Vampiro", "Es un Vampiro", 200, 100, 2, "Ataca con colmillos", "urlImagen");
         Carta carta7 = new CartaMounstro("Messi", "Es el mejor del mundo", 200, 100, 5, "Tira gambeta", "urlImagen");
-        ArrayList<Carta>  deck= new ArrayList<Carta>();
+        CartaMagicaCuracion cartaCuracion = new CartaMagicaCuracion(
+                "Curación Divina",
+                "Recupera 500 puntos de vida.",
+                500,
+                "Recupera vida",
+                "urlImagenCuracion");
+        CartaMagicaHerida cartaHerida = new CartaMagicaHerida(
+                "Herida Mortal",
+                "Inflige 400 puntos de daño al oponente.",
+                400,
+                "Inflige daño",
+                "urlImagenHerida");
+        CartaMagicaBuff cartaBuffAtaque = new CartaMagicaBuff(
+                "Espada Sagrada",
+                "Aumenta el ataque de un monstruo en 300 puntos.",
+                300,
+                "Aumenta ataque",
+                "urlImagenBuffAtaque");
+        CartaMagicaArmadura cartaArmadura = new CartaMagicaArmadura(
+                "Armadura de Dragón",
+                "Aumenta la defensa de un monstruo en 200 puntos.",
+                200,
+                "Aumenta defensa",
+                "urlImagenArmadura");
+
+        ArrayList<Carta> deck = new ArrayList<Carta>();
         deck.add(carta1);
         deck.add(carta2);
         deck.add(carta3);
@@ -36,18 +63,27 @@ public class TableroModelo extends Observable {
         deck.add(carta5);
         deck.add(carta6);
         deck.add(carta7);
-        // Hay que hacer al menos un shuffle, estaría bueno que las cartas puedan ser distintas
-        //No sé si esto era una preuba no más
-        return deck;
-    } 
+        deck.add(cartaCuracion);
+        deck.add(cartaHerida);
+        deck.add(cartaBuffAtaque);
+        deck.add(cartaArmadura);
 
-    public void atacarEnTablero (Jugador atacante, CartaMounstro cartaAtacante, Jugador atacado, CartaMounstro cartaAtacada)throws Exception{
-        atacante.atacarCarta( cartaAtacante,  cartaAtacada,  atacado);
-        if (!cartaAtacante.getActivo()){
+        // Hay que hacer al menos un shuffle, estaría bueno que las cartas puedan ser
+        // distintas
+        // No sé si esto era una preuba no más
+        return deck;
+    }
+
+    public void atacarEnTablero(Jugador atacante, CartaMounstro cartaAtacante, Jugador atacado,
+            CartaMounstro cartaAtacada) throws Exception {
+        atacante.atacarCarta(cartaAtacante, cartaAtacada, atacado);
+        if (!cartaAtacante.getActivo()) {
             campoJugador.removerCarta(cartaAtacante);
+            campoComputadora.removerCarta(cartaAtacante);
         }
-        if (!cartaAtacada.getActivo()){
+        if (!cartaAtacada.getActivo()) {
             campoComputadora.removerCarta(cartaAtacada);
+            campoJugador.removerCarta(cartaAtacada);
         }
         notifyObservers();
         setChanged();
@@ -65,14 +101,14 @@ public class TableroModelo extends Observable {
         setChanged();
     }
 
-    public void colocarCarta(CartaMagica carta, Campos campo)throws Exception{
+    public void colocarCarta(CartaMagica carta, Campos campo) throws Exception {
         campo.agregarCartas(carta);
         carta.colocar();
         notifyObservers();
         setChanged();
     }
 
-    public void colocarCarta(CartaMounstro carta, Campos campo)throws Exception{
+    public void colocarCarta(CartaMounstro carta, Campos campo) throws Exception {
         campo.agregarCartas(carta);
         carta.colocar();
         notifyObservers();
@@ -85,26 +121,27 @@ public class TableroModelo extends Observable {
         setChanged();
     }
 
-    //Para hechizos
-    public void usarMagia (CartaMagicaArrojadiza carta, Jugador jugador, Campos campo) throws Exception{
+    // Para hechizos
+    public void usarMagia(CartaMagicaArrojadiza carta, Jugador jugador, Campos campo) throws Exception {
         carta.activar_efecto(jugador);
         campo.removerCarta(carta);
         notifyObservers();
         setChanged();
-    } 
+    }
 
-    //Para equipamento
-    public void usarMagia (CartaMagicaEquipada carta, CartaMounstro monstruo,Campos campo)throws Exception{
+    // Para equipamento
+    public void usarMagia(CartaMagicaEquipada carta, CartaMounstro monstruo, Campos campo) throws Exception {
         carta.activar_efecto(monstruo);
         campo.removerCarta(carta);
         notifyObservers();
         setChanged();
     }
 
-    public Campos getCampoJugador(){
+    public Campos getCampoJugador() {
         return this.campoJugador;
     }
-    public Campos getCampoComputadora(){
+
+    public Campos getCampoComputadora() {
         return this.campoComputadora;
     }
 
