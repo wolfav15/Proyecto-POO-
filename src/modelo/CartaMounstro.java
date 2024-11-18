@@ -20,7 +20,7 @@ public class CartaMounstro extends Carta {
 	@Override
 	public void colocar() {
 		this.activo = true;                                                                                
-		this.posicion = "defensa";
+		this.posicion = "ataque";
 	}
 
 	public void invocarEnAtaque() {
