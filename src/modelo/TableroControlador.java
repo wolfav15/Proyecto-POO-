@@ -10,6 +10,7 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 import vista.VistaTabla;
 
@@ -21,7 +22,7 @@ public class TableroControlador implements Observer {
     private VistaTabla vista;
     // private CartaMounstro cartaMounstruoSeleccionada; //esto se pensaba para los
     // encontrarCarta, la clase Carta no posee todos los metodos para
-    // private CartaMagica cartaMagicaSeleccionada; //las distintas situaciones que
+    private CartaMagica cartaMagicaSeleccionada; // las distintas situaciones que
     // se manejan, dejo la idea aqui
     private Carta cartaSeleccionada; // originalmente solo habia esto para mounstruos en el de Samuel
 
@@ -280,30 +281,29 @@ public class TableroControlador implements Observer {
         finalizarTurno(); // Pasar el turno al jugador
     }
 
-
-    
-
-
     private void seleccionarCartaMagicaParaBuff(CartaMagicaEquipada cartaMagica) {
-        // Añadir un listener temporal a las cartas de monstruos del jugador para la selección del buff
+        // Añadir un listener temporal a las cartas de monstruos del jugador para la
+        // selección del buff
         JLabel[] lblMonstruosJugador = vista.getLblMonstruosJugador();
-    
+
         for (JLabel lblMonstruo : lblMonstruosJugador) {
             lblMonstruo.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    CartaMounstro cartaMounstro = encontrarCartaMounstro(lblMonstruo, modelo.getCampoJugador().getCampoMounstruos().getCartaMounstrosEnCampo());
+                    CartaMounstro cartaMounstro = encontrarCartaMounstro(lblMonstruo,
+                            modelo.getCampoJugador().getCampoMounstruos().getCartaMounstrosEnCampo());
                     if (cartaMounstro != null && cartaMagica != null) {
                         try {
-                            // Aplicar el efecto de la carta mágica al monstruo seleccionado utilizando usarMagia
+                            // Aplicar el efecto de la carta mágica al monstruo seleccionado utilizando
+                            // usarMagia
                             modelo.usarMagia(cartaMagica, cartaMounstro, modelo.getCampoJugador());
-    
+
                             // Actualizar la vista y limpiar la selección
                             actualizarVista();
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }
-    
+
                         // Remover el listener temporal después de la selección
                         lblMonstruo.removeMouseListener(this);
                     }
@@ -311,11 +311,6 @@ public class TableroControlador implements Observer {
             });
         }
     }
-    
-    
-
-    
-    
 
     @SuppressWarnings("unused")
     private void agregarManejadoresDeEventos() {
@@ -324,8 +319,26 @@ public class TableroControlador implements Observer {
             lblMonstruo.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    seleccionarCarta(lblMonstruo,
-                            modelo.getCampoJugador().getCampoMounstruos().getCartaMounstrosEnCampo());
+                    if (SwingUtilities.isRightMouseButton(e) && cartaMagicaSeleccionada != null) {
+                        // Aplicar el buff con clic derecho
+                        CartaMounstro cartaMounstro = encontrarCartaMounstro(lblMonstruo,
+                                modelo.getCampoJugador().getCampoMounstruos().getCartaMounstrosEnCampo());
+                        if (cartaMounstro != null) {
+                            try {
+                                modelo.usarMagia((CartaMagicaEquipada) cartaMagicaSeleccionada, cartaMounstro,
+                                        modelo.getCampoJugador());
+                                cartaMagicaSeleccionada = null; // Limpiar la carta mágica seleccionada después de
+                                                                // aplicar el buff
+                                actualizarVista();
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                    } else {
+                        // Manejar selección de carta con clic izquierdo
+                        seleccionarCarta(lblMonstruo,
+                                modelo.getCampoJugador().getCampoMounstruos().getCartaMounstrosEnCampo());
+                    }
                 }
 
                 @Override
@@ -452,30 +465,31 @@ public class TableroControlador implements Observer {
                 }
             });
         }
-       
-          // Manejadores de eventos para activar cartas mágicas desde el campo
-JLabel[] lblCartasMagicasJugador = vista.getLblHechizosJugador();
-for (JLabel lblCarta : lblCartasMagicasJugador) {
-    lblCarta.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            CartaMagica cartaMagica = encontrarCartaEnCampoMagica(lblCarta, modelo.getCampoJugador().getCampoMagias().getCartaMagicasEnCampo());
-            if (cartaMagica != null) {
-                if (cartaMagica instanceof CartaMagicaEquipada) {
-                    // Permitir seleccionar un monstruo para buffear
-                    seleccionarCartaMagicaParaBuff(cartaMagica);
-                } else if (cartaMagica instanceof CartaMagicaArrojadiza) {
-                    try {
-                        modelo.usarMagia((CartaMagicaArrojadiza) cartaMagica, modelo.getComputadora(), modelo.getCampoJugador());
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
+
+        // Manejadores de eventos para activar cartas mágicas desde el campo
+        JLabel[] lblCartasMagicasJugador = vista.getLblHechizosJugador();
+        for (JLabel lblCarta : lblCartasMagicasJugador) {
+            lblCarta.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    CartaMagica cartaMagica = encontrarCartaEnCampoMagica(lblCarta,
+                            modelo.getCampoJugador().getCampoMagias().getCartaMagicasEnCampo());
+                    if (cartaMagica != null) {
+                        if (cartaMagica instanceof CartaMagicaEquipada) {
+                            // Permitir seleccionar un monstruo para buffear
+                            seleccionarCartaMagicaParaBuff((CartaMagicaEquipada) cartaMagica);
+                        } else if (cartaMagica instanceof CartaMagicaArrojadiza) {
+                            try {
+                                modelo.usarMagia((CartaMagicaArrojadiza) cartaMagica, modelo.getComputadora(),
+                                        modelo.getCampoJugador());
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                        actualizarVista();
                     }
                 }
-                actualizarVista();
-            }
-        }
-    
-        
+
                 @Override
                 public void mouseEntered(MouseEvent e) {
                     CartaMagica carta = encontrarCartaEnCampoMagica(lblCarta,
