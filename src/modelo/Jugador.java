@@ -81,7 +81,7 @@ public class Jugador {
         }
     }
 
-    public void atacarCarta(CartaMounstro cartaAtacante, Jugador oponente) {
+    public void atacarJugador(CartaMounstro cartaAtacante, Jugador oponente) {
         oponente.recibirDaño(cartaAtacante.getAtaque());
     }
 

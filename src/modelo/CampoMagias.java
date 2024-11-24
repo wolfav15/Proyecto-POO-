@@ -20,7 +20,7 @@ public class CampoMagias {
 	}
 
 	public void removerCarta(CartaMagica e) throws Exception {
-		if (CampoDeMagias.size() < 0) { 
+		if (CampoDeMagias.size() >= 0) { 
 			CampoDeMagias.remove(e);
 		} else {
 			throw new Exception("Campo Vacío");

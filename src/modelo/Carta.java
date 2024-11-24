@@ -16,7 +16,9 @@ public abstract class Carta {
 
 	public abstract void colocar();
 
-	public abstract void destruirse();
+	public void destruirse() {
+		this.activo = false;
+	}
 	
 
 	public boolean getActivo (){

@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 @SuppressWarnings("deprecation")
@@ -13,11 +14,14 @@ public class TableroModelo extends Observable {
     private Campos campoJugador;
     private Campos campoComputadora;
 
+    private List<CartaMounstro> mounstruosQueAtacaron;
+
     public TableroModelo() {
         jugador = new Jugador("Jugador1", this.bajarDeck());
         computadora = new Jugador("Computadora", this.bajarDeck());
         this.campoComputadora = new Campos();
         this.campoJugador = new Campos();
+        this.mounstruosQueAtacaron = new ArrayList<>();
     }
 
     public ArrayList<Carta> bajarDeck() {
@@ -38,8 +42,8 @@ public class TableroModelo extends Observable {
                 "urlImagenCuracion");
         CartaMagicaHerida cartaHerida = new CartaMagicaHerida(
                 "Herida Mortal",
-                "Inflige 400 puntos de daño al oponente.",
-                400,
+                "Inflige 4000 puntos de daño al oponente.",
+                4000,
                 "Inflige daño",
                 "urlImagenHerida");
         CartaMagicaBuff cartaBuffAtaque = new CartaMagicaBuff(
@@ -76,7 +80,11 @@ public class TableroModelo extends Observable {
 
     public void atacarEnTablero(Jugador atacante, CartaMounstro cartaAtacante, Jugador atacado,
             CartaMounstro cartaAtacada) throws Exception {
-        atacante.atacarCarta(cartaAtacante, cartaAtacada, atacado);
+        if (!cartaAtacante.realizoAtaque()) {
+            atacante.atacarCarta(cartaAtacante, cartaAtacada, atacado);
+            cartaAtacante.yaAtacoEnTurno();
+            mounstruosQueAtacaron.add(cartaAtacante);
+        }
         if (!cartaAtacante.getActivo()) {
             campoJugador.removerCarta(cartaAtacante);
             campoComputadora.removerCarta(cartaAtacante);
@@ -87,6 +95,24 @@ public class TableroModelo extends Observable {
         }
         notifyObservers();
         setChanged();
+    }
+
+    public void atacarJugador(CartaMounstro cartaAtacante, Jugador jugador_atacante, Jugador jugador_atacado) {
+        if (!cartaAtacante.realizoAtaque()) {
+            jugador_atacante.atacarJugador(cartaAtacante, jugador_atacado);
+            cartaAtacante.yaAtacoEnTurno();
+            mounstruosQueAtacaron.add(cartaAtacante);
+        }
+
+        notifyObservers();
+        setChanged();
+    }
+
+    public void reiniciarAtaqueMounstruos() {
+        for (CartaMounstro carta: mounstruosQueAtacaron) {
+            carta.resetearAtaqueEnTurno();
+            mounstruosQueAtacaron.remove(carta);
+        }
     }
 
     public void jugarCartaEnTablero(CartaMounstro carta_jugada) throws Exception {
