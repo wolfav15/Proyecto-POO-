@@ -39,6 +39,25 @@ public class JugadorDAO {
                 return 0;
             }
         }
+    
+	public boolean esAdmin(String usuarioAdmin, String passAdmin) throws SQLException {
+		
+        String query = "SELECT * FROM Jugadores WHERE nombre = ? AND contrasenia = ?";
+        PreparedStatement statement = conexion.prepareStatement(query);
+            statement.setString(1, usuarioAdmin);
+            statement.setString(2, passAdmin);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                System.out.println("ID IDENTIFICADO: " + resultSet.getInt("id_jugador"));
+                if  (resultSet.getInt("es_admin") == 1) {
+                	return true;
+                } else {
+                	return false;
+                }
+            }catch (SQLException e) {
+                System.out.println("Usuario no existe");
+                return false;
+            }
+	}
 
     // Crear usuario
     public void  crearUsuario(String nombre, String pass) throws SQLException{
@@ -137,7 +156,7 @@ public class JugadorDAO {
         if (rowsAffected == 0) {
         	System.out.println("Error: Usuario no encontrado.");
         } else {
-        	System.out.println("Dewrrotas aumentadas correctamente para el usuario con id: " + id);
+        	System.out.println("Derrotas aumentadas correctamente para el usuario con id: " + id);
         }
      }
     
@@ -156,8 +175,10 @@ public class JugadorDAO {
                     Integer derrotas = resultSet.getInt("contador_derrotas");
                     usuarios.add(new Usuario(id, nombre, victorias, derrotas));
                 }
-                
-            }
+        } catch (SQLException e){
+            System.out.println("Error al obtener usuarios");
+            throw e;
+        }
         return usuarios;
     }
     
@@ -169,6 +190,8 @@ public class JugadorDAO {
     	
 //        dao.borrarUsuario("pedro");
     }
+
+
 }
 
 

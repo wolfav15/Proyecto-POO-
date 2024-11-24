@@ -8,8 +8,8 @@ public class CartaMounstro extends Carta {
 	// estado lo que indica es para verificar si esta boca arriba o colocado, para
 	// el observer del campo detecte si mostrarlo o no
 
-	public CartaMounstro(String nombre, String descripcion,int nivel, String tipo, String imagen,  int ataque, int defensa, String elemento) {
-		super(nombre, descripcion, nivel, tipo, imagen);
+	public CartaMounstro(Integer id, String nombre, String descripcion,int nivel, String tipo, String imagen,  int ataque, int defensa, String elemento) {
+		super(id, nombre, descripcion, nivel, tipo, imagen);
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.elemento = elemento;
@@ -112,6 +112,21 @@ public class CartaMounstro extends Carta {
 	public void setDefensa(int defensa) {
 		this.defensa = defensa;
 	}
+	@Override
+	public String toString(){
+		String msg = 
+                "\nNombre: " + this.getNombre()+ 
+                "\nDescripcion: " + this.getDescripcion()+
+                "\nNivel: " + this.getNivel()+
+                "\nTipo: " + this.getTipo()+
+                "\nImagen: " + this.getImagen()+
+                "\nAtaque: " + this.getAtaque()+
+                "\nDefensa: " + this.getDefensa()+
+                "\nElemento: " + this.getElemento();
+				return msg;
+	}
 
-
+	public Integer getId() {
+		return id;
+	}
 }

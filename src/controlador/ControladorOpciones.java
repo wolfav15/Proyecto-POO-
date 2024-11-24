@@ -33,6 +33,12 @@ public class ControladorOpciones {
 			}
 		});
 		
+		this.vista.getBotonABMCartas().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ControladorABMCartas();
+			}
+		});
+		
 		this.vista.getBotonSalir().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vista.mostrarMensaje("Saliendo...");

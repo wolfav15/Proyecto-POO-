@@ -3,7 +3,6 @@ package controlador;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-import java.util.Arrays;
 
 import modelo.JugadorDAO;
 import vista.BorrarJugador;

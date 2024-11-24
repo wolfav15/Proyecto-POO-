@@ -2,14 +2,15 @@ package modelo;
 
 public abstract class Carta {
 	protected String nombre, descripcion, tipo, imagen; // descripcion seria el efecto (si es que tiene) es generico a todo
-	protected Integer nivel;
+	protected Integer id, nivel;
 
 
 	protected boolean activo; 
 	//tipos: monstruo, armadura, buff, herida y curacion
 	
 
-	public Carta(String nombre, String descripcion, Integer nivel, String tipo, String imagen) {
+	public Carta(Integer id, String nombre, String descripcion, Integer nivel, String tipo, String imagen) {
+		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.nivel = nivel;

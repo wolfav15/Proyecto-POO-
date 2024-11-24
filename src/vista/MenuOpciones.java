@@ -20,7 +20,7 @@ public class MenuOpciones extends JFrame {
 	private JButton botonPararMusica = new JButton("Parar Música");
 	
 	private JButton botonABMJugadores = new JButton("Jugadores");
-	
+	private JButton botonABMCartas = new JButton("Cartas");
 	
 	public MenuOpciones() {
 		setTitle("Opciones");
@@ -47,6 +47,9 @@ public class MenuOpciones extends JFrame {
 		
 		gbc.gridy++;
 		contentPane.add(botonABMJugadores, gbc);
+		
+		gbc.gridy++;
+		contentPane.add(botonABMCartas, gbc);
 
 		gbc.gridy++;
 		contentPane.add(botonSalir, gbc);
@@ -76,4 +79,9 @@ public class MenuOpciones extends JFrame {
 	public JButton getBotonABMJugadores() {
 		return botonABMJugadores;
 	}
+
+	public JButton getBotonABMCartas() {
+		return botonABMCartas;
+	}
+
 }

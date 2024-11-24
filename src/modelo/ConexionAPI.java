@@ -31,7 +31,7 @@ public class ConexionAPI {
         
         public ConexionAPI() throws Exception {
             try {
-                URL url = new URL("https://db.ygoprodeck.com/api/v7/cardinfo.php?type=Normal%20Monster&level=3");
+                URL url = new URL("https://db.ygoprodeck.com/api/v7/cardinfo.php?type=Normal%20Monster");
                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
                 conn.setRequestMethod("GET");
     
@@ -99,22 +99,27 @@ public class ConexionAPI {
 
 
 
-    //ESTA ES UNA PRUEBA DE COMO PEDIR LAS CARTAS EN CUALQUIER OTRO ARCHIVO QUE LAS NECESITE. 
+    //ESTE MAIN GENERA Y AGREGA CARTAS A LA DB ( USAR SOLO UNA VEZ PARA EVITAR CARTAS DUPLICADAS ). 
     public static void main(String[] args) throws Exception {
         try {
             ConexionAPI conexion = ConexionAPI.getInstancia(); //Obtengo la instancia con la conexion establecida.
             List<CartaMounstro> cartasObtenidas = conexion.getCartas(); //Obtengo las cartas de esa conexion.
 
             for (CartaMounstro cartaMounstro : cartasObtenidas) {
-                System.out.println("\nNombre: " + cartaMounstro.getNombre());
-                System.out.println("Descripcion: " + cartaMounstro.getDescripcion());
-                System.out.println("Nivel: " + cartaMounstro.getNivel());
-                System.out.println("Tipo: " + cartaMounstro.getTipo());
-                System.out.println("Imagen: " + cartaMounstro.getImagen());
-                System.out.println("Ataque: " + cartaMounstro.getAtaque());
-                System.out.println("Defensa: " + cartaMounstro.getDefensa());
-                System.out.println("Elemento: " + cartaMounstro.getElemento());
 
+                CartaMounstro carta =  new CartaMounstro(
+                    cartaMounstro.getNombre(),
+                     cartaMounstro.getDescripcion(),
+                      cartaMounstro.getNivel(),
+                       cartaMounstro.getTipo(),
+                        cartaMounstro.getImagen(),
+                         cartaMounstro.getAtaque(),
+                         cartaMounstro.getDefensa(),
+                          cartaMounstro.getElemento());
+
+                CartaDAO dao = new CartaDAO();
+
+                dao.crearCarta(carta);
             }
         } catch (Exception e) {
             System.out.println(e);
