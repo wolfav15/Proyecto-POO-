@@ -1,7 +1,7 @@
 package modelo;
 
 public abstract class CartaMagicaArrojadiza extends CartaMagica {
-    public CartaMagicaArrojadiza (String nombre, String descripcion, int cantidad_efecto, String efecto, String imagen){
+    public CartaMagicaArrojadiza (String nombre, String descripcion, int cantidad_efecto, String imagen){
 		super(nombre, descripcion, cantidad_efecto, imagen);
 	}
 	@Override

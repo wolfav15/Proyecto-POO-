@@ -9,6 +9,7 @@ public abstract class CartaMagica extends Carta {
 		this.cantidad_efecto = cantidad_efecto;
 	}
 
+        @Override
 	public void colocar() {
 		activo = true;
 	}

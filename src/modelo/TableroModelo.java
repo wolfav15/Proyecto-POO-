@@ -34,29 +34,27 @@ public class TableroModelo extends Observable {
         Carta carta5 = new CartaMounstro("Cracken", "Es un Cracken", 200, 100, 3, "Tira fuego, agua", "urlImagen");
         Carta carta6 = new CartaMounstro("Vampiro", "Es un Vampiro", 200, 100, 2, "Ataca con colmillos", "urlImagen");
         Carta carta7 = new CartaMounstro("Messi", "Es el mejor del mundo", 200, 100, 5, "Tira gambeta", "urlImagen");
+        Carta Carta8 = new CartaMagicaCuracion("ChiguayDeLasParadas", "un csm", 2000, "xd");
+
         CartaMagicaCuracion cartaCuracion = new CartaMagicaCuracion(
                 "Curación Divina",
                 "Recupera 500 puntos de vida.",
                 500,
-                "Recupera vida",
                 "urlImagenCuracion");
         CartaMagicaHerida cartaHerida = new CartaMagicaHerida(
                 "Herida Mortal",
                 "Inflige 4000 puntos de daño al oponente.",
                 4000,
-                "Inflige daño",
                 "urlImagenHerida");
         CartaMagicaBuff cartaBuffAtaque = new CartaMagicaBuff(
                 "Espada Sagrada",
                 "Aumenta el ataque de un monstruo en 300 puntos.",
                 300,
-                "Aumenta ataque",
                 "urlImagenBuffAtaque");
         CartaMagicaArmadura cartaArmadura = new CartaMagicaArmadura(
                 "Armadura de Dragón",
                 "Aumenta la defensa de un monstruo en 200 puntos.",
                 200,
-                "Aumenta defensa",
                 "urlImagenArmadura");
 
         ArrayList<Carta> deck = new ArrayList<Carta>();
