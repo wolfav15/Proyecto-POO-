@@ -221,9 +221,11 @@ public class TableroControlador implements Observer {
         if (turnoJugador) {
             turnoJugador = !turnoJugador;
             turnoRival = !turnoRival;
+            vista.agregarAccionTablero("Turno del Rival");
         } else {
             turnoRival = !turnoRival;
             turnoJugador = !turnoJugador;
+            vista.agregarAccionTablero("Turno del Jugador");
             bot();
         }
 
@@ -248,6 +250,7 @@ public class TableroControlador implements Observer {
 
         for (int i = 0; i < cartasEnMano.size(); i++) {
             Carta carta = cartasEnMano.get(i);
+            vista.agregarAccionRival("El bot saco una carta ");
             if (cartasMounstruosEnCampoBot.size() < 5) {
                 // Carta carta = cartasEnMano.get(i);
                 if (carta instanceof CartaMounstro) {
@@ -298,14 +301,18 @@ public class TableroControlador implements Observer {
 
                                 try {
                                     Thread.sleep(2000);
+                                    vista.agregarAccionTablero("no se olviden suscribirse a wolfav15");
                                     if (carta instanceof CartaMagicaHerida) {
 
                                         modelo.usarMagia((CartaMagicaHerida) carta, modelo.getJugador(),
                                                 modelo.getCampoComputadora());
+                                        vista.agregarAccionRival("Utilizo la carta " + carta.getNombre());
                                     } else if (carta instanceof CartaMagicaCuracion) {
 
                                         modelo.usarMagia((CartaMagicaCuracion) carta, modelo.getComputadora(),
                                                 modelo.getCampoComputadora());
+                                        vista.agregarAccionRival("Utilizo la carta " + carta.getNombre());
+
                                     } else if (carta instanceof CartaMagicaEquipada) {
 
                                         List<CartaMounstro> cartasMounstruoBot = modelo.getCampoComputadora()
@@ -315,6 +322,9 @@ public class TableroControlador implements Observer {
                                                 .get(random.nextInt(cartasMounstruoBot.size()));
                                         modelo.usarMagia((CartaMagicaEquipada) carta, cartaBuffada,
                                                 modelo.getCampoComputadora());
+                                        vista.agregarAccionRival("Utilizo la carta " + carta.getNombre() + " sobre "
+                                                + cartaBuffada.getNombre());
+
                                     }
                                     actualizarVista();
                                 } catch (InterruptedException ex) {
@@ -341,6 +351,7 @@ public class TableroControlador implements Observer {
                 CartaMounstro cartaAtacada = cartasMounstruoJugador.get(random.nextInt(cartasMounstruoJugador.size()));
                 try {
                     modelo.atacarEnTablero(rival, carta, modelo.getJugador(), cartaAtacada);
+                    vista.agregarAccionRival("Ataco a " + cartaAtacada.getNombre());
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -350,6 +361,7 @@ public class TableroControlador implements Observer {
             for (CartaMounstro carta : modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo()) {
                 try {
                     modelo.atacarJugador(carta, modelo.getComputadora(), modelo.getJugador());
+                    vista.agregarAccionRival("Ataco al jugador");
                     if (modelo.getJugador().getPuntosVida() <= 0) {
                         vista.mostrarMensajeDerrota("MALDITO PERDEDOR", "C://Users//samue//Desktop//derrota.jpg");
                     }
@@ -411,6 +423,8 @@ public class TableroControlador implements Observer {
                             try {
                                 modelo.usarMagia((CartaMagicaEquipada) cartaMagicaSeleccionada, cartaMounstro,
                                         modelo.getCampoJugador());
+                                vista.agregarAccionJugador("Buff aplicado" + cartaMagicaSeleccionada.getNombre() + " a "
+                                        + cartaMounstro.getNombre());
                                 cartaMagicaSeleccionada = null; // Limpiar la carta mágica seleccionada después de
                                                                 // aplicar el buff
                                 actualizarVista();
@@ -422,6 +436,7 @@ public class TableroControlador implements Observer {
                         // Manejar selección de carta con clic izquierdo
                         seleccionarCarta(lblMonstruo,
                                 modelo.getCampoJugador().getCampoMounstruos().getCartaMounstrosEnCampo());
+                        vista.agregarAccionJugador("Carta seleccionada: " + cartaSeleccionada.getNombre());
                     }
                 }
 
@@ -452,6 +467,7 @@ public class TableroControlador implements Observer {
                         try {
                             modelo.atacarEnTablero(modelo.getJugador(), (CartaMounstro) cartaSeleccionada,
                                     modelo.getComputadora(), cartaAtacada);
+                            vista.agregarAccionJugador("Carta atacada: " + cartaAtacada.getNombre());
                         } catch (Exception e1) {
                             e1.printStackTrace();
                         }
@@ -485,6 +501,7 @@ public class TableroControlador implements Observer {
                     modelo.atacarJugador((CartaMounstro) cartaSeleccionada, modelo.getJugador(),
                             modelo.getComputadora());
                     cartaSeleccionada = null;
+                    vista.agregarAccionJugador("Rival atacado: " + cartaSeleccionada.getNombre());
                     if (modelo.getComputadora().getPuntosVida() <= 0) {
                         vista.monstrarMensajeGanador("FELICIDADES SHINJI", "C://Users//samue//Desktop//ganador.jpg");
 
@@ -522,6 +539,7 @@ public class TableroControlador implements Observer {
                             try {
                                 modelo.colocarCarta((CartaMounstro) cartaSeleccionada, modelo.getCampoJugador());
                                 modelo.getJugador().getMano().remove(cartaSeleccionada);
+                                vista.agregarAccionJugador("Carta colocada: " + cartaSeleccionada.getNombre());
                                 if (cartaSeleccionada.getImagen() != null && !cartaSeleccionada.getImagen().isEmpty()) {
                                     lblCarta.setIcon(new ImageIcon(cartaSeleccionada.getImagen()));
                                     lblCarta.setText("");
@@ -536,6 +554,7 @@ public class TableroControlador implements Observer {
                             try {
                                 modelo.colocarCarta((CartaMagica) cartaSeleccionada, modelo.getCampoJugador());
                                 modelo.getJugador().getMano().remove(cartaSeleccionada);
+                                vista.agregarAccionJugador("Carta colocada: " + cartaSeleccionada.getNombre());
 
                                 if (cartaSeleccionada.getImagen() != null && !cartaSeleccionada.getImagen().isEmpty()) {
                                     lblCarta.setIcon(new ImageIcon(cartaSeleccionada.getImagen()));
@@ -566,10 +585,14 @@ public class TableroControlador implements Observer {
                         if (cartaMagica instanceof CartaMagicaEquipada) {
                             // Permitir seleccionar un monstruo para buffear
                             seleccionarCartaMagicaParaBuff((CartaMagicaEquipada) cartaMagica);
+                            vista.agregarAccionJugador("Hechizo utilizado " + cartaMagica.getNombre()
+                                    + " para buffear a" + cartaSeleccionada.getNombre());
                         } else if (cartaMagica instanceof CartaMagicaCuracion) {
                             try {
                                 modelo.usarMagia((CartaMagicaArrojadiza) cartaMagica, modelo.getJugador(),
                                         modelo.getCampoJugador());
+                                vista.agregarAccionJugador("Hechizo utilizado " + cartaMagica.getNombre());
+
                             } catch (Exception ex) {
                                 ex.printStackTrace();
                             }
@@ -577,6 +600,7 @@ public class TableroControlador implements Observer {
                             try {
                                 modelo.usarMagia((CartaMagicaArrojadiza) cartaMagica, modelo.getComputadora(),
                                         modelo.getCampoJugador());
+                                vista.agregarAccionJugador("Hechizo utilizado " + cartaMagica.getNombre());
                             } catch (Exception ex) {
                                 ex.printStackTrace();
                             }
@@ -625,6 +649,7 @@ public class TableroControlador implements Observer {
             @Override
             public void mouseClicked(MouseEvent e) {
                 modelo.getJugador().robarCarta();
+                vista.agregarAccionJugador("Carta robada: " + modelo.getJugador().getMano().get(modelo.getJugador().getMano().size() - 1).getNombre());
                 actualizarVista();
             }
         });

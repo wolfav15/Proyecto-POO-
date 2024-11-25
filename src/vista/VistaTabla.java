@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -47,6 +48,12 @@ public class VistaTabla extends JFrame {
 	private JTextArea areaEstadistica;
 	private JLabel lblBarajaJugador;
 	private JLabel lblBarajaRival;
+	private JTextArea infoJugador;
+
+	private JTextArea infoRival;
+	
+	private JTextArea infoTablero;
+
 
 	private static final long serialVersionUID = 1L;
 
@@ -183,6 +190,31 @@ public class VistaTabla extends JFrame {
 				menuBatalla.setVisible(true);
 			}
 		});
+
+		infoJugador = new JTextArea(5, 20);
+		infoJugador.setEditable(false);
+	
+		gbc.gridx = 1;
+		gbc.gridy = 3;
+
+	add(infoJugador, gbc);
+
+		infoRival = new JTextArea(5, 20);
+		infoRival.setEditable(false);
+	
+		gbc.gridx = 2;
+		gbc.gridy = 0;
+
+		add(infoRival, gbc);
+
+		infoTablero = new JTextArea(5, 20);
+		infoTablero.setEditable(false);
+	
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		gbc.gridwidth = 3;
+
+		add(infoTablero, gbc);
 	}
 
 	private JLabel crearLabel(String nombre, Dimension dimension) {
@@ -243,6 +275,45 @@ public class VistaTabla extends JFrame {
 		ImageIcon icon = new ImageIcon(rutaImagen);
 		JOptionPane.showMessageDialog(this, mensaje, "Fin del juego", JOptionPane.INFORMATION_MESSAGE, icon);
 	}
+
+	public void agregarAccionJugador(String accion) {
+		String[] lineas = infoJugador.getText().split("\n");
+
+		if (lineas.length >= 5) {
+			infoJugador.setText("");
+			for (int i = 1; i < lineas.length; i++) {
+				infoJugador.append(lineas[i] + "\n");
+			}
+		}
+		infoJugador.append(accion + "\n");
+	}
+
+
+	public void agregarAccionRival(String accion) {
+		String[] lineas = infoRival.getText().split("\n");
+
+		if (lineas.length >= 5) {
+			infoRival.setText("");
+			for (int i = 1; i < lineas.length; i++) {
+				infoRival.append(lineas[i] + "\n");
+			}
+		}
+		infoRival.append(accion + "\n");
+	}
+	public void agregarAccionTablero(String accion) {
+		String[] lineas = infoTablero.getText().split("\n");
+
+		if (lineas.length >= 5) {
+			infoTablero.setText("");
+			for (int i = 1; i < lineas.length; i++) {
+				infoTablero.append(lineas[i] + "\n");
+			}
+		}
+		infoTablero.append(accion + "\n");
+	}
+
+	
+
 
 	public void ocultarEstadisticas() {
 		areaEstadistica.setVisible(false);
