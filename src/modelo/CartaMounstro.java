@@ -2,14 +2,26 @@ package modelo;
 
 public class CartaMounstro extends Carta {
 
+<<<<<<< HEAD
 	protected int ataque, defensa;
 	protected String elemento, posicion;
+=======
+	private int ataque, defensa, nivel;
+	private String atributo;
+	private boolean ataque_realizado = false;
+	private String posicion = "en mano";
+>>>>>>> NuevoSubABP
 
 	// estado lo que indica es para verificar si esta boca arriba o colocado, para
 	// el observer del campo detecte si mostrarlo o no
 
+<<<<<<< HEAD
 	public CartaMounstro(Integer id, String nombre, String descripcion,int nivel, String tipo, String imagen,  int ataque, int defensa, String elemento) {
 		super(id, nombre, descripcion, nivel, tipo, imagen);
+=======
+	public CartaMounstro(String nombre, String descripcion, int ataque, int defensa, int nivel, String atributo, String imagen) {
+		super(nombre, descripcion, imagen);
+>>>>>>> NuevoSubABP
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.elemento = elemento;
@@ -19,7 +31,12 @@ public class CartaMounstro extends Carta {
 	@Override
 	public void colocar() {
 		this.activo = true;                                                                                
-		this.posicion = "defensa";
+		this.posicion = "ataque";
+	}
+
+	public void invocarEnAtaque() {
+		activo = true;
+		posicion = "ataque";
 	}
 
 	private int devolver_estadistica(CartaMounstro carta) {
@@ -112,6 +129,7 @@ public class CartaMounstro extends Carta {
 	public void setDefensa(int defensa) {
 		this.defensa = defensa;
 	}
+<<<<<<< HEAD
 	@Override
 	public String toString(){
 		String msg = 
@@ -129,4 +147,28 @@ public class CartaMounstro extends Carta {
 	public Integer getId() {
 		return id;
 	}
+=======
+
+	public boolean realizoAtaque() {
+		return ataque_realizado;
+	}
+
+	public void resetearAtaqueEnTurno() {
+		ataque_realizado = false;
+	}
+
+	public void yaAtacoEnTurno() {
+		ataque_realizado = true;
+	}
+
+	public int getNivel() {
+		return nivel;
+	}
+
+	public String getAtributo() {
+		return atributo;
+	}
+
+
+>>>>>>> NuevoSubABP
 }

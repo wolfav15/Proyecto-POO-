@@ -6,22 +6,31 @@ public abstract class Carta {
 
 
 	protected boolean activo; 
+	protected String imagen;
 	//tipos: monstruo, armadura, buff, herida y curacion
 	
 
+<<<<<<< HEAD
 	public Carta(Integer id, String nombre, String descripcion, Integer nivel, String tipo, String imagen) {
 		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.nivel = nivel;
 		this.tipo = tipo;
+=======
+	public Carta(String nombre, String descripcion, String imagen) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+>>>>>>> NuevoSubABP
 		this.imagen = imagen;
 		this.activo = false;
 	}
 
 	public abstract void colocar();
 
-	public abstract void destruirse();
+	public void destruirse() {
+		this.activo = false;
+	}
 	
 
 	public Integer getNivel() {
@@ -39,10 +48,24 @@ public abstract class Carta {
 		return nombre;
 	}
 
+<<<<<<< HEAD
 	public String getDescripcion() {
 		return descripcion;
 	}
 	public String getImagen() {
 		return imagen;
 	}
+=======
+	public String getImagen() {
+		return imagen;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+>>>>>>> NuevoSubABP
 }

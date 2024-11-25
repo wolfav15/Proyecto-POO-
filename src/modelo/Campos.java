@@ -1,15 +1,15 @@
 package modelo;
-import modelo.Campo;
-import java.util.List;
+
+import java.util.concurrent.TimeUnit;
 
 public class Campos {
 
-	private Campo campoMonstruos ;
-	private Campo campoMagias ;
+	private CampoMounstruos campoMonstruos ;
+	private CampoMagias campoMagias ;
 
 	public Campos (){
-		this.campoMonstruos = new Campo();
-		this.campoMagias = new Campo();
+		this.campoMonstruos = new CampoMounstruos();
+		this.campoMagias = new CampoMagias();
 
 	}
 	// Acá se incluye toda la logica necesaria para agregar cartas al campo de
@@ -32,5 +32,13 @@ public class Campos {
 
 	public void removerCarta(CartaMagica carta)throws Exception{
 		campoMagias.removerCarta(carta);
+	}
+
+	public CampoMounstruos getCampoMounstruos() {
+		return campoMonstruos;
+	}
+
+	public CampoMagias getCampoMagias() {
+		return campoMagias;
 	}
 }
