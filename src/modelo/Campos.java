@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.concurrent.TimeUnit;
-
 public class Campos {
 
 	private CampoMounstruos campoMonstruos ;

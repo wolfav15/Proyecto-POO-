@@ -2,30 +2,19 @@ package modelo;
 
 public class CartaMounstro extends Carta {
 
-<<<<<<< HEAD
-	protected int ataque, defensa;
-	protected String elemento, posicion;
-=======
 	private int ataque, defensa, nivel;
-	private String atributo;
 	private boolean ataque_realizado = false;
 	private String posicion = "en mano";
->>>>>>> NuevoSubABP
+	private String elemento;
 
 	// estado lo que indica es para verificar si esta boca arriba o colocado, para
 	// el observer del campo detecte si mostrarlo o no
 
-<<<<<<< HEAD
-	public CartaMounstro(Integer id, String nombre, String descripcion,int nivel, String tipo, String imagen,  int ataque, int defensa, String elemento) {
-		super(id, nombre, descripcion, nivel, tipo, imagen);
-=======
-	public CartaMounstro(String nombre, String descripcion, int ataque, int defensa, int nivel, String atributo, String imagen) {
+	public CartaMounstro(String nombre, String descripcion, int ataque, int defensa, int nivel, String imagen, String elemento) {
 		super(nombre, descripcion, imagen);
->>>>>>> NuevoSubABP
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.elemento = elemento;
-
 	}
 
 	@Override
@@ -114,9 +103,6 @@ public class CartaMounstro extends Carta {
 	public int getDefensa() {
 		return defensa;
 	}
-	public String getElemento() {
-		return elemento;
-	}
 
 	public String getPosicion() {
 		return posicion;
@@ -129,25 +115,6 @@ public class CartaMounstro extends Carta {
 	public void setDefensa(int defensa) {
 		this.defensa = defensa;
 	}
-<<<<<<< HEAD
-	@Override
-	public String toString(){
-		String msg = 
-                "\nNombre: " + this.getNombre()+ 
-                "\nDescripcion: " + this.getDescripcion()+
-                "\nNivel: " + this.getNivel()+
-                "\nTipo: " + this.getTipo()+
-                "\nImagen: " + this.getImagen()+
-                "\nAtaque: " + this.getAtaque()+
-                "\nDefensa: " + this.getDefensa()+
-                "\nElemento: " + this.getElemento();
-				return msg;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-=======
 
 	public boolean realizoAtaque() {
 		return ataque_realizado;
@@ -161,14 +128,14 @@ public class CartaMounstro extends Carta {
 		ataque_realizado = true;
 	}
 
+	public int getId() {
+		return id;
+	}
+
 	public int getNivel() {
 		return nivel;
 	}
-
-	public String getAtributo() {
-		return atributo;
+	public String getElemento() {
+		return elemento;
 	}
-
-
->>>>>>> NuevoSubABP
 }
