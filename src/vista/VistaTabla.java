@@ -87,7 +87,7 @@ public class VistaTabla extends JFrame {
 		JPanel panelHechizosRival = new JPanel(new GridLayout(1, 3, 10, 0));
 		lblHechizosRival = new JLabel[3];
 		for (int i = 0; i < lblHechizosRival.length; i++) {
-			lblHechizosRival[i] = crearLabel("Monstruo " + (i + 1), new Dimension(70, 105));
+			lblHechizosRival[i] = crearLabel("Hechizo " + (i + 1), new Dimension(70, 105));
 			panelHechizosRival.add(lblHechizosRival[i]);
 		}
 		gbc.gridx = 0;

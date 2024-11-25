@@ -194,19 +194,20 @@ public class TableroControlador implements Observer {
         modelo.reiniciarAtaqueMounstruos();
 
         if (turnoJugador) {
-            turnoJugador = false;
-            turnoRival = true;
-        } else if (turnoRival) {
-            turnoRival = false;
-            turnoJugador = true;
+            turnoJugador = !turnoJugador;
+            turnoRival = !turnoRival;
+            bot();
+        } else  {
+            turnoRival = !turnoRival;
+            turnoJugador = !turnoJugador;
         }
 
         actualizarVista();
         // Si es el turno del rival, llamar al método bot
-        if (turnoRival) {
-            bot(); // Asegúrate de que el método bot acepte el jugador como parámetro
-            actualizarVista();
-        }
+  //      if (turnoRival) {
+             // Asegúrate de que el método bot acepte el jugador como parámetro
+    //        actualizarVista();
+      //  }
 
         
     }
@@ -221,20 +222,21 @@ public class TableroControlador implements Observer {
 
         // Colocar todas las cartas de la mano del rival en el campo si hay espacio
         List<Carta> cartasEnMano = rival.getMano();
-        List<CartaMounstro> cartasEnCampo = modelo.getCampoComputadora().getCampoMounstruos()
-                .getCartaMounstrosEnCampo();
+        List<CartaMounstro> cartasMounstruosEnCampoBot = modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo();
         JLabel[] lblMonstruosRival = vista.getLblMonstruosRival();
+        JLabel[] lblHechizosRival = vista.getLblHechizosRival();
 
         for (int i = 0; i < cartasEnMano.size(); i++) {
-            if (cartasEnCampo.size() < 5) {
-                Carta carta = cartasEnMano.get(i);
+            Carta carta = cartasEnMano.get(i);
+            if (cartasMounstruosEnCampoBot.size() < 5) {
+                //Carta carta = cartasEnMano.get(i);
                 if (carta instanceof CartaMounstro) {
                     try {
                         modelo.colocarCarta((CartaMounstro) carta, modelo.getCampoComputadora());
-                        cartasEnCampo = modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo();
+                        //cartasMounstruosEnCampoBot = modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo();
                         cartasEnMano.remove(carta);
                         i--; // Ajustar el índice después de la eliminación
-                        JLabel lblMonstruo = lblMonstruosRival[cartasEnCampo.size() - 1];
+                        JLabel lblMonstruo = lblMonstruosRival[cartasMounstruosEnCampoBot.size() - 1];
                         if (carta.getImagen() != null && !carta.getImagen().isEmpty()) {
                             lblMonstruo.setIcon(new ImageIcon(carta.getImagen()));
                             lblMonstruo.setText("");
@@ -249,19 +251,52 @@ public class TableroControlador implements Observer {
             } else {
                 break; // El campo está lleno
             }
+
+            List<CartaMagica> cartasMagicasEnCampoBot = modelo.getCampoComputadora().getCampoMagias().getCartaMagicasEnCampo();
+
+            if (cartasMagicasEnCampoBot.size() < 3) {
+                //Carta carta = cartasEnMano.get(i);
+                if (carta instanceof CartaMagica) {
+                    try {
+                        modelo.colocarCarta((CartaMagica) carta, modelo.getCampoComputadora());
+                        cartasEnMano.remove(carta);
+                        i--; // Ajustar el índice después de la eliminación
+                        JLabel lblHechizo = lblHechizosRival[cartasMagicasEnCampoBot.size() - 1];
+                        if (carta.getImagen() != null && !carta.getImagen().isEmpty()) {
+                            lblHechizo.setIcon(new ImageIcon(carta.getImagen()));
+                            lblHechizo.setText("");
+                        } else {
+                            lblHechizo.setIcon(null);
+                            lblHechizo.setText(carta.getNombre());
+                        }
+                        if (carta instanceof CartaMagicaHerida) {
+                            modelo.usarMagia((CartaMagicaHerida) carta, modelo.getJugador(), modelo.getCampoComputadora());
+                        } else if (carta instanceof CartaMagicaCuracion) {
+                            modelo.usarMagia((CartaMagicaCuracion)carta, modelo.getComputadora(), modelo.getCampoComputadora());
+                        } else if (carta instanceof CartaMagicaEquipada) {
+                            List<CartaMounstro> cartasMounstruoBot = modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo();
+                            CartaMounstro cartaBuffada = cartasMounstruoBot.get(random.nextInt(cartasMounstruoBot.size()));
+                            modelo.usarMagia((CartaMagicaEquipada) carta, cartaBuffada, modelo.getCampoComputadora());
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                    actualizarVista();
+                }
+            } else {
+                break; // El campo está lleno
+            }
+
+            
+
         }
 
-        // Atacar una carta del jugador si el rival tiene cartas en el campo con una
-        // probabilidad del 80%
-      // 80% de probabilidad
-        List<CartaMounstro> cartasJugador = modelo.getCampoJugador().getCampoMounstruos().getCartaMounstrosEnCampo();
+        List<CartaMounstro> cartasMounstruoJugador = modelo.getCampoJugador().getCampoMounstruos().getCartaMounstrosEnCampo();
 
-        if (cartasJugador.size() > 0) {
-
-            CartaMounstro cartaAtacante = cartasEnCampo.get(random.nextInt(cartasEnCampo.size()));
+        if (cartasMounstruoJugador.size() > 0) {
 
             for (CartaMounstro carta: modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo()) {
-                CartaMounstro cartaAtacada = cartasJugador.get(random.nextInt(cartasJugador.size()));
+                CartaMounstro cartaAtacada = cartasMounstruoJugador.get(random.nextInt(cartasMounstruoJugador.size()));
             try {
                 modelo.atacarEnTablero(rival, carta, modelo.getJugador(), cartaAtacada);
             } catch (Exception ex) {
@@ -271,9 +306,8 @@ public class TableroControlador implements Observer {
     }
 
 
-        if (cartasJugador.size() == 0) {
+        if (cartasMounstruoJugador.size() == 0) {
             
-            CartaMounstro cartaAtacante = cartasEnCampo.get(random.nextInt(cartasEnCampo.size()));
                     for (CartaMounstro carta: modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo()) {
                         try {
                             modelo.atacarJugador(carta, modelo.getComputadora(), modelo.getJugador());
@@ -485,22 +519,13 @@ public class TableroControlador implements Observer {
                             seleccionarCartaMagicaParaBuff((CartaMagicaEquipada) cartaMagica);
                         } else if (cartaMagica instanceof CartaMagicaCuracion) {
                             try {
-                                if (!turnoJugador) {
-                                    modelo.usarMagia((CartaMagicaArrojadiza) cartaMagica, modelo.getComputadora(),
-                                        modelo.getCampoComputadora());
-                                } else {
                                     modelo.usarMagia((CartaMagicaArrojadiza) cartaMagica, modelo.getJugador(), modelo.getCampoJugador());
-                                }
                             } catch (Exception ex) {
                                 ex.printStackTrace();
                             }
                         } else if (cartaMagica instanceof CartaMagicaHerida) {
                                 try {
-                                    if (!turnoJugador) {
-                                        modelo.usarMagia((CartaMagicaArrojadiza) cartaMagica, modelo.getJugador(), modelo.getCampoComputadora());
-                                    } else {
                                         modelo.usarMagia((CartaMagicaArrojadiza) cartaMagica, modelo.getComputadora(), modelo.getCampoJugador());
-                                    }
                                 } catch (Exception ex) {
                                     ex.printStackTrace();
                                 }

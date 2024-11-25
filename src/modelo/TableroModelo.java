@@ -58,7 +58,8 @@ public class TableroModelo extends Observable {
                 "urlImagenArmadura");
 
         ArrayList<Carta> deck = new ArrayList<Carta>();
-        deck.add(carta1);
+        deck.add(cartaHerida);
+        deck.add(cartaCuracion);
         deck.add(carta2);
         deck.add(carta3);
         deck.add(carta4);
@@ -67,7 +68,7 @@ public class TableroModelo extends Observable {
         deck.add(carta7);
         deck.add(carta8);
         deck.add(cartaCuracion);
-        deck.add(cartaHerida);
+        deck.add(carta1);
         deck.add(cartaBuffAtaque);
         deck.add(cartaArmadura);
 
@@ -112,6 +113,9 @@ public class TableroModelo extends Observable {
             carta.resetearAtaqueEnTurno();
             mounstruosQueAtacaron.remove(carta);
         }
+
+        notifyObservers();
+        setChanged();
     }
 
     public void jugarCartaEnTablero(CartaMounstro carta_jugada) throws Exception {
