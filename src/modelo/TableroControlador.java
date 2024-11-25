@@ -27,8 +27,8 @@ public class TableroControlador implements Observer {
     // se manejan, dejo la idea aqui
     private Carta cartaSeleccionada; // originalmente solo habia esto para mounstruos en el de Samuel
 
-    private boolean turnoRival = false;
-    private boolean turnoJugador = true;
+    private boolean turnoRival = true;
+    private boolean turnoJugador =false;
 
     public TableroControlador(TableroModelo modelo, VistaTabla vista) {
         this.modelo = modelo;
@@ -218,14 +218,13 @@ public class TableroControlador implements Observer {
 
         cartaSeleccionada = null;
         modelo.reiniciarAtaqueMounstruos();
-
         if (turnoJugador) {
             turnoJugador = !turnoJugador;
             turnoRival = !turnoRival;
-            bot();
         } else {
             turnoRival = !turnoRival;
-            turnoJugador = !turnoJugador;
+            turnoJugador= !turnoJugador;
+             bot();
         }
 
         actualizarVista();
