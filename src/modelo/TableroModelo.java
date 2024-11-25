@@ -3,6 +3,7 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("deprecation")
 
@@ -109,7 +110,7 @@ public class TableroModelo extends Observable {
     }
 
     public void reiniciarAtaqueMounstruos() {
-        for (CartaMounstro carta: mounstruosQueAtacaron) {
+        for (CartaMounstro carta : mounstruosQueAtacaron) {
             carta.resetearAtaqueEnTurno();
             mounstruosQueAtacaron.remove(carta);
         }
@@ -164,6 +165,15 @@ public class TableroModelo extends Observable {
         campo.removerCarta(carta);
         notifyObservers();
         setChanged();
+    }
+
+    public Boolean TerminarBatalla(Jugador jugaLag) {
+        if (jugaLag.getPuntosVida() <= 0) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public Campos getCampoJugador() {

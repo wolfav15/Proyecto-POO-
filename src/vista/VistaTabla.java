@@ -3,6 +3,7 @@ package vista; //esta vista es la que tenia Samuel en su zip
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
@@ -211,16 +212,19 @@ public class VistaTabla extends JFrame {
 	public void mostrarEstadisticaMonstruoBuffeado(CartaMounstro carta, CartaMagicaEquipada cartaMagica) {
 		int ataqueBuff = 0;
 		int defensaBuff = 0;
-	
+
 		if (cartaMagica instanceof CartaMagicaBuff) {
 			ataqueBuff = cartaMagica.getCantidad_efecto();
 		} else if (cartaMagica instanceof CartaMagicaArmadura) {
 			defensaBuff = cartaMagica.getCantidad_efecto();
 		}
-	
-		String ataqueMostrar = ataqueBuff > 0 ? carta.getAtaque() + " (" + carta.getAtaque() + " + " + ataqueBuff + ")" : String.valueOf(carta.getAtaque());
-		String defensaMostrar = defensaBuff > 0 ? carta.getDefensa() + " (" + carta.getDefensa() + " + " + defensaBuff + ")" : String.valueOf(carta.getDefensa());
-	
+
+		String ataqueMostrar = ataqueBuff > 0 ? carta.getAtaque() + " (" + carta.getAtaque() + " + " + ataqueBuff + ")"
+				: String.valueOf(carta.getAtaque());
+		String defensaMostrar = defensaBuff > 0
+				? carta.getDefensa() + " (" + carta.getDefensa() + " + " + defensaBuff + ")"
+				: String.valueOf(carta.getDefensa());
+
 		areaEstadistica.setText("Nombre: " + carta.getNombre() +
 				"\nAtaque: " + ataqueMostrar +
 				"\nDefensa: " + defensaMostrar +
@@ -229,7 +233,16 @@ public class VistaTabla extends JFrame {
 				"\nPosición: " + carta.getPosicion());
 		areaEstadistica.setVisible(true);
 	}
-	
+
+	public void mostrarMensajeDerrota(String mensaje, String rutaImagen) {
+		ImageIcon icon = new ImageIcon(rutaImagen);
+		JOptionPane.showMessageDialog(this, mensaje, "Fin del juego", JOptionPane.INFORMATION_MESSAGE, icon);
+	}
+
+	public void monstrarMensajeGanador(String mensaje, String rutaImagen) {
+		ImageIcon icon = new ImageIcon(rutaImagen);
+		JOptionPane.showMessageDialog(this, mensaje, "Fin del juego", JOptionPane.INFORMATION_MESSAGE, icon);
+	}
 
 	public void ocultarEstadisticas() {
 		areaEstadistica.setVisible(false);
@@ -279,13 +292,10 @@ public class VistaTabla extends JFrame {
 		this.panelesMonstruosRival = panelesMonstruosRival;
 	}
 
-	
 	public JTextArea getAreaEstadistica() {
 		return areaEstadistica;
 	}
 
-
-	
 	public void setAreaEstadistica(JTextArea areaEstadistica) {
 		this.areaEstadistica = areaEstadistica;
 	}
