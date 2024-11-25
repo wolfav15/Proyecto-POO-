@@ -34,7 +34,7 @@ public class TableroModelo extends Observable {
         Carta carta5 = new CartaMounstro("Cracken", "Es un Cracken", 200, 100, 3, "Tira fuego, agua", "urlImagen");
         Carta carta6 = new CartaMounstro("Vampiro", "Es un Vampiro", 200, 100, 2, "Ataca con colmillos", "urlImagen");
         Carta carta7 = new CartaMounstro("Messi", "Es el mejor del mundo", 200, 100, 5, "Tira gambeta", "urlImagen");
-        Carta Carta8 = new CartaMagicaCuracion("ChiguayDeLasParadas", "un csm", 2000, "xd");
+        Carta carta8 = new CartaMagicaCuracion("ChiguayDeLasParadas", "un csm", 2000, "xd");
 
         CartaMagicaCuracion cartaCuracion = new CartaMagicaCuracion(
                 "Curación Divina",
@@ -65,6 +65,7 @@ public class TableroModelo extends Observable {
         deck.add(carta5);
         deck.add(carta6);
         deck.add(carta7);
+        deck.add(carta8);
         deck.add(cartaCuracion);
         deck.add(cartaHerida);
         deck.add(cartaBuffAtaque);

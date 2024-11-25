@@ -24,7 +24,6 @@ public class TableroControlador implements Observer {
     // se manejan, dejo la idea aqui
     private Carta cartaSeleccionada; // originalmente solo habia esto para mounstruos en el de Samuel
 
-    private Boolean AtaqueRealizado = false;
     private boolean turnoRival = false;
     private boolean turnoJugador = true;
 
@@ -191,7 +190,6 @@ public class TableroControlador implements Observer {
 
     public void finalizarTurno() {
 
-        AtaqueRealizado = false;
         cartaSeleccionada = null;
         modelo.reiniciarAtaqueMounstruos();
 
@@ -202,11 +200,15 @@ public class TableroControlador implements Observer {
             turnoRival = false;
             turnoJugador = true;
         }
+
         actualizarVista();
         // Si es el turno del rival, llamar al método bot
         if (turnoRival) {
             bot(); // Asegúrate de que el método bot acepte el jugador como parámetro
+            actualizarVista();
         }
+
+        
     }
 
     private void bot() {
@@ -254,7 +256,7 @@ public class TableroControlador implements Observer {
       // 80% de probabilidad
         List<CartaMounstro> cartasJugador = modelo.getCampoJugador().getCampoMounstruos().getCartaMounstrosEnCampo();
 
-        if (modelo.getCampoJugador().getCampoMounstruos().getCartaMounstrosEnCampo().size() > 0) {
+        if (cartasJugador.size() > 0) {
 
             CartaMounstro cartaAtacante = cartasEnCampo.get(random.nextInt(cartasEnCampo.size()));
 
@@ -266,9 +268,10 @@ public class TableroControlador implements Observer {
                 ex.printStackTrace();
             }
         }
-        }
+    }
 
-        if (modelo.getCampoJugador().getCampoMounstruos().getCartaMounstrosEnCampo().size() == 0) {
+
+        if (cartasJugador.size() == 0) {
             
             CartaMounstro cartaAtacante = cartasEnCampo.get(random.nextInt(cartasEnCampo.size()));
                     for (CartaMounstro carta: modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo()) {
