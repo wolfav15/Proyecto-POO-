@@ -10,11 +10,12 @@ public class CartaMounstro extends Carta {
 	// estado lo que indica es para verificar si esta boca arriba o colocado, para
 	// el observer del campo detecte si mostrarlo o no
 
-	public CartaMounstro(String nombre, String descripcion, int ataque, int defensa, int nivel, String imagen, String elemento) {
-		super(nombre, descripcion, imagen);
+	public CartaMounstro(int id, String nombre, String descripcion, int ataque, int defensa, int nivel, String imagen, String elemento) {
+		super(id, nombre, descripcion, imagen);
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.elemento = elemento;
+		this.nivel = nivel;
 	}
 
 	@Override

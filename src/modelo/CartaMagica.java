@@ -4,8 +4,8 @@ public abstract class CartaMagica extends Carta {
 
 	protected int cantidad_efecto; // se usara o para curar, o para inflijir daño, o buffar, depende del texto
 
-	public CartaMagica(String nombre, String descripcion, int cantidad_efecto, String imagen) {
-		super(nombre, descripcion, imagen) ;
+	public CartaMagica(int id, String nombre, String descripcion, int cantidad_efecto, String imagen) {
+		super(id, nombre, descripcion, imagen) ;
 		this.cantidad_efecto = cantidad_efecto;
 	}
 

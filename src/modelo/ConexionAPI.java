@@ -111,7 +111,7 @@ public class ConexionAPI {
                     cartaMounstro.getNombre(),
                      cartaMounstro.getDescripcion(),
                       cartaMounstro.getNivel(),
-                       cartaMounstro.getTipo(),
+                     //  cartaMounstro.getTipo(),
                         cartaMounstro.getImagen(),
                          cartaMounstro.getAtaque(),
                          cartaMounstro.getDefensa(),

@@ -3,7 +3,6 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
-import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("deprecation")
 
@@ -27,32 +26,36 @@ public class TableroModelo extends Observable {
 
     public ArrayList<Carta> bajarDeck() {
         // acá debería haber una bajada de tablas.
-        Carta carta1 = new CartaMounstro("Dragon", "Es un Dragon", 400, 100, 5, "Tira fuego", "urlImagen");
-        Carta carta2 = new CartaMounstro("Lobo", "Es un Lobo", 200, 200, 2, "Muerde, rasguña", "urlImagen");
-        Carta carta3 = new CartaMounstro("Toro", "Es un Toro", 250, 200, 3, "Atca con los cuernos", "urlImagen");
-        Carta carta4 = new CartaMounstro("Kratos", "Es un Semidios", 200, 100, 1, "Ataca con las esadas del caos",
+        Carta carta1 = new CartaMounstro(1, "Dragon", "Es un Dragon", 400, 100, 5, "Tira fuego", "urlImagen");
+        Carta carta2 = new CartaMounstro(1, "Lobo", "Es un Lobo", 200, 200, 2, "Muerde, rasguña", "urlImagen");
+        Carta carta3 = new CartaMounstro(1, "Toro", "Es un Toro", 250, 200, 3, "Atca con los cuernos", "urlImagen");
+        Carta carta4 = new CartaMounstro(1, "Kratos", "Es un Semidios", 200, 100, 1, "Ataca con las esadas del caos",
                 "urlImagen");
-        Carta carta5 = new CartaMounstro("Cracken", "Es un Cracken", 200, 100, 3, "Tira fuego, agua", "urlImagen");
-        Carta carta6 = new CartaMounstro("Vampiro", "Es un Vampiro", 200, 100, 2, "Ataca con colmillos", "urlImagen");
-        Carta carta7 = new CartaMounstro("Messi", "Es el mejor del mundo", 200, 100, 5, "Tira gambeta", "urlImagen");
-        Carta carta8 = new CartaMagicaCuracion("ChiguayDeLasParadas", "un csm", 2000, "xd");
+        Carta carta5 = new CartaMounstro(1, "Cracken", "Es un Cracken", 200, 100, 3, "Tira fuego, agua", "urlImagen");
+        Carta carta6 = new CartaMounstro(1, "Vampiro", "Es un Vampiro", 200, 100, 2, "Ataca con colmillos", "urlImagen");
+        Carta carta7 = new CartaMounstro(1, "Messi", "Es el mejor del mundo", 200, 100, 5, "Tira gambeta", "urlImagen");
+        Carta carta8 = new CartaMagicaCuracion(2, "ChiguayDeLasParadas", "un csm", 2000, "xd");
 
         CartaMagicaCuracion cartaCuracion = new CartaMagicaCuracion(
+                2,
                 "Curación Divina",
                 "Recupera 500 puntos de vida.",
                 500,
                 "urlImagenCuracion");
         CartaMagicaHerida cartaHerida = new CartaMagicaHerida(
+                3,
                 "Herida Mortal",
                 "Inflige 4000 puntos de daño al oponente.",
                 4000,
                 "urlImagenHerida");
         CartaMagicaBuff cartaBuffAtaque = new CartaMagicaBuff(
+                5,
                 "Espada Sagrada",
                 "Aumenta el ataque de un monstruo en 300 puntos.",
                 300,
                 "urlImagenBuffAtaque");
         CartaMagicaArmadura cartaArmadura = new CartaMagicaArmadura(
+                5,
                 "Armadura de Dragón",
                 "Aumenta la defensa de un monstruo en 200 puntos.",
                 200,
@@ -61,6 +64,8 @@ public class TableroModelo extends Observable {
         ArrayList<Carta> deck = new ArrayList<Carta>();
         deck.add(cartaHerida);
         deck.add(cartaCuracion);
+        deck.add(carta2);
+        carta2 = cartaHerida;
         deck.add(carta2);
         deck.add(carta3);
         deck.add(carta4);
