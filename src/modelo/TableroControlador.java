@@ -28,7 +28,7 @@ public class TableroControlador implements Observer {
     private Carta cartaSeleccionada; // originalmente solo habia esto para mounstruos en el de Samuel
 
     private boolean turnoRival = true;
-    private boolean turnoJugador =false;
+    private boolean turnoJugador = false;
 
     public TableroControlador(TableroModelo modelo, VistaTabla vista) {
         this.modelo = modelo;
@@ -223,12 +223,12 @@ public class TableroControlador implements Observer {
             turnoRival = !turnoRival;
         } else {
             turnoRival = !turnoRival;
-            turnoJugador= !turnoJugador;
-             bot();
+            turnoJugador = !turnoJugador;
+            bot();
         }
 
         actualizarVista();
-      
+
     }
 
     private void bot() {
