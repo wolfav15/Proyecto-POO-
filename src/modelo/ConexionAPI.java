@@ -19,6 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -58,22 +59,24 @@ public class ConexionAPI {
                     JSONArray data = respuesta.getJSONArray("data");
                     
     
-    
+                    Random random = new Random();
                     //Con la conexion establecida y las miles de cartas obtenidas. Filtro para que solo guardemos 60.
                     for (int contador = 0; contador < 60; contador++) {
     
                         JSONObject objeto = data.getJSONObject(contador); //Contiene la carta, de la cual solo nos interesan los siguientes atributos:
-  
-                        dao.crearCarta(
+                        CartaMounstro carta = new CartaMounstro(
+                            random.nextInt(1, 100),
                             objeto.getString("name"),
                             objeto.getString("desc"),
                             objeto.getInt("atk"),
                             objeto.getInt("def"),
                             objeto.getInt("level"),
                             objeto.getString("attribute"), //Atributo significa elemento
-                            objeto.getJSONArray("card_images").getJSONObject(0).getString("image_url"));
+                            objeto.getJSONArray("card_images").getJSONObject(0).getString("image_url_cropped"));
 
                         //Cartas agregadas
+
+                        listaCartaMounstros.add(carta);
                     }
                 }
             } catch (MalformedURLException e) {
