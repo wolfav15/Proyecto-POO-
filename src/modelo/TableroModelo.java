@@ -2,6 +2,7 @@ package modelo;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
@@ -39,6 +40,7 @@ public class TableroModelo extends Observable {
         CartaDAO dao = new CartaDAO();
         try {
             deck = dao.obtenerCartas();
+            Collections.shuffle(deck);
         } catch (SQLException e) {
             e.printStackTrace();
         }

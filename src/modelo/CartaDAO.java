@@ -144,13 +144,13 @@ public class CartaDAO {
             return cartas;
         }
 
-        public ArrayList<CartaMagica> obtenerCartasMagicasCuracion() throws SQLException{
-            ArrayList<CartaMagica> cartas = new ArrayList<>();
+        public ArrayList<CartaMagicaCuracion> obtenerCartasMagicasCuracion() throws SQLException{
+            ArrayList<CartaMagicaCuracion> cartas = new ArrayList<>();
             String query = "SELECT * FROM Cartas where id_tipo_carta = 2";
             PreparedStatement statement = conexion.prepareStatement(query);
             try(ResultSet res = statement.executeQuery()){   
                 while (res.next()) {
-                    CartaMagica cartaHecha = new CartaMagica(
+                    CartaMagicaCuracion cartaHecha = new CartaMagicaCuracion(
                         res.getInt("id_carta"),
                         res.getString("nombre"),
                         res.getString("descripcion"),
@@ -165,13 +165,13 @@ public class CartaDAO {
                 return cartas;
             }
 
-            public ArrayList<CartaMagica> obtenerCartasMagicasDaño() throws SQLException{
-                ArrayList<CartaMagica> cartas = new ArrayList<>();
+            public ArrayList<CartaMagicaHerida> obtenerCartasMagicasDaño() throws SQLException{
+                ArrayList<CartaMagicaHerida> cartas = new ArrayList<>();
                 String query = "SELECT * FROM Cartas where id_tipo_carta = 3";
                 PreparedStatement statement = conexion.prepareStatement(query);
                 try(ResultSet res = statement.executeQuery()){   
                     while (res.next()) {
-                        CartaMagica cartaHecha = new CartaMagica(
+                        CartaMagicaHerida cartaHecha = new CartaMagicaHerida(
                             res.getInt("id_carta"),
                             res.getString("nombre"),
                             res.getString("descripcion"),
@@ -186,13 +186,13 @@ public class CartaDAO {
                     return cartas;
                 }
 
-                public ArrayList<CartaMagica> obtenerCartasMagicasBuffeo() throws SQLException{
-                    ArrayList<CartaMagica> cartas = new ArrayList<>();
+                public ArrayList<CartaMagicaBuff> obtenerCartasMagicasBuffeo() throws SQLException{
+                    ArrayList<CartaMagicaBuff> cartas = new ArrayList<>();
                     String query = "SELECT * FROM Cartas where id_tipo_carta = 4";
                     PreparedStatement statement = conexion.prepareStatement(query);
                     try(ResultSet res = statement.executeQuery()){   
                         while (res.next()) {
-                            CartaMagica cartaHecha = new CartaMagica(
+                            CartaMagicaBuff cartaHecha = new CartaMagicaBuff(
                                 res.getInt("id_carta"),
                                 res.getString("nombre"),
                                 res.getString("descripcion"),
@@ -207,13 +207,13 @@ public class CartaDAO {
                         return cartas;
                     }
 
-                    public ArrayList<CartaMagica> obtenerCartasMagicasDefensa() throws SQLException{
-                        ArrayList<CartaMagica> cartas = new ArrayList<>();
+                    public ArrayList<CartaMagicaArmadura> obtenerCartasMagicasDefensa() throws SQLException{
+                        ArrayList<CartaMagicaArmadura> cartas = new ArrayList<>();
                         String query = "SELECT * FROM Cartas where id_tipo_carta = 5";
                         PreparedStatement statement = conexion.prepareStatement(query);
                         try(ResultSet res = statement.executeQuery()){   
                             while (res.next()) {
-                                CartaMagica cartaHecha = new CartaMagica(
+                                CartaMagicaArmadura cartaHecha = new CartaMagicaArmadura(
                                     res.getInt("id_carta"),
                                     res.getString("nombre"),
                                     res.getString("descripcion"),
@@ -247,10 +247,10 @@ public class CartaDAO {
         public ArrayList<Carta> obtenerCartas() throws SQLException {
             ArrayList<Carta> deck = new ArrayList<Carta>();
             ArrayList<CartaMounstro> cartas1 = obtenerCartasMonstruos();
-            ArrayList<CartaMagica> cartas2 = obtenerCartasMagicasCuracion();
-            ArrayList<CartaMagica> cartas3 = obtenerCartasMagicasDaño();
-            ArrayList<CartaMagica> cartas4 = obtenerCartasMagicasBuffeo();
-            ArrayList<CartaMagica> cartas5 = obtenerCartasMagicasDefensa();
+            ArrayList<CartaMagicaCuracion> cartas2 = obtenerCartasMagicasCuracion();
+            ArrayList<CartaMagicaHerida> cartas3 = obtenerCartasMagicasDaño();
+            ArrayList<CartaMagicaBuff> cartas4 = obtenerCartasMagicasBuffeo();
+            ArrayList<CartaMagicaArmadura> cartas5 = obtenerCartasMagicasDefensa();
 
             for (CartaMounstro cartaMounstro : cartas1) {
                 deck.add(cartaMounstro);
