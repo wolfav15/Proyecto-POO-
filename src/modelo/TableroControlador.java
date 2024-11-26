@@ -53,12 +53,14 @@ public class TableroControlador implements Observer {
         // Actualizar las cartas en el campo del jugador
         JLabel[] lblMonstruosJugador = vista.getLblMonstruosJugador();
         List<CartaMounstro> monstruosJugador = modelo.getCampoJugador().getCampoMounstruos().getCartaMounstrosEnCampo();
-    
+
         for (int i = 0; i < lblMonstruosJugador.length; i++) {
             if (i < monstruosJugador.size()) {
                 Carta carta = monstruosJugador.get(i);
-                lblMonstruosJugador[i].setIcon(null); // Limpiar cualquier icono anterior
+                lblMonstruosJugador[i].setIcon(new ImageIcon("src/modelo/Lluvia_de_Meteoritos.jpg")); // Limpiar cualquier icono anterior
                 lblMonstruosJugador[i].setText(carta.getNombre());
+                lblMonstruosJugador[i].setHorizontalTextPosition(JLabel.CENTER);
+                lblMonstruosJugador[i].setVerticalTextPosition(JLabel.BOTTOM);
                 lblMonstruosJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
                 lblMonstruosJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
             } else {
@@ -67,111 +69,6 @@ public class TableroControlador implements Observer {
                 lblMonstruosJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
                 lblMonstruosJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
             }
-        }
-    
-        // Actualizar las cartas en el campo del rival
-        JLabel[] lblMonstruosRival = vista.getLblMonstruosRival();
-        List<CartaMounstro> monstruosRival = modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo();
-    
-        for (int i = 0; i < lblMonstruosRival.length; i++) {
-            if (i < monstruosRival.size()) {
-                Carta carta = monstruosRival.get(i);
-                lblMonstruosRival[i].setIcon(null); // Limpiar cualquier icono anterior
-                lblMonstruosRival[i].setText(carta.getNombre());
-                lblMonstruosRival[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
-                lblMonstruosRival[i].setOpaque(true); // Para que el fondo transparente surta efecto
-            } else {
-                lblMonstruosRival[i].setText("");
-                lblMonstruosRival[i].setIcon(null); // Limpiar la imagen si no hay carta
-                lblMonstruosRival[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
-                lblMonstruosRival[i].setOpaque(true); // Para que el fondo transparente surta efecto
-            }
-        }
-    
-        JLabel[] lblCartasMagicasJugador = vista.getLblHechizosJugador();
-        List<CartaMagica> cartasMagicasJugador = modelo.getCampoJugador().getCampoMagias().getCartaMagicasEnCampo();
-    
-        for (int i = 0; i < lblCartasMagicasJugador.length; i++) {
-            if (i < cartasMagicasJugador.size()) {
-                CartaMagica carta = cartasMagicasJugador.get(i);
-                lblCartasMagicasJugador[i].setIcon(null); // Limpiar cualquier icono anterior
-                lblCartasMagicasJugador[i].setText(carta.getNombre());
-                lblCartasMagicasJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
-                lblCartasMagicasJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
-            } else {
-                lblCartasMagicasJugador[i].setText("");
-                lblCartasMagicasJugador[i].setIcon(null); // Limpiar la imagen si no hay carta
-                lblCartasMagicasJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
-                lblCartasMagicasJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
-            }
-        }
-    
-        JLabel[] lblCartasMagicasRival = vista.getLblHechizosRival();
-        List<CartaMagica> cartasMagicasRival = modelo.getCampoComputadora().getCampoMagias().getCartaMagicasEnCampo();
-    
-        for (int i = 0; i < lblCartasMagicasRival.length; i++) {
-            if (i < cartasMagicasRival.size()) {
-                CartaMagica carta = cartasMagicasRival.get(i);
-                lblCartasMagicasRival[i].setIcon(null); // Limpiar cualquier icono anterior
-                lblCartasMagicasRival[i].setText(carta.getNombre());
-                lblCartasMagicasRival[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
-                lblCartasMagicasRival[i].setOpaque(true); // Para que el fondo transparente surta efecto
-            } else {
-                lblCartasMagicasRival[i].setText("");
-                lblCartasMagicasRival[i].setIcon(null); // Limpiar la imagen si no hay carta
-                lblCartasMagicasRival[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
-                lblCartasMagicasRival[i].setOpaque(true); // Para que el fondo transparente surta efecto
-            }
-        }
-    
-        // Actualizar las cartas en la mano del jugador
-        JLabel[] lblCartasJugador = vista.getLblCartasJugador();
-        List<Carta> manoJugador = modelo.getJugador().getMano();
-        for (int i = 0; i < lblCartasJugador.length; i++) {
-            if (i < manoJugador.size()) {
-                lblCartasJugador[i].setText(manoJugador.get(i).getNombre());
-                lblCartasJugador[i].setIcon(null);
-                lblCartasJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
-                lblCartasJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
-            } else {
-                lblCartasJugador[i].setText("");
-                lblCartasJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
-                lblCartasJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
-            }
-        }
-    
-        // Actualizar la barra de vida de los jugadores
-        vista.getBarraVidaJugador().setValue(modelo.getJugador().getPuntosVida());
-        vista.getBarraVidaRival().setValue(modelo.getComputadora().getPuntosVida());
-    }
-    
-
-
-
-/* 
-    private void actualizarVista() {
-        // Actualizar las cartas en el campo del jugador
-        JLabel[] lblMonstruosJugador = vista.getLblMonstruosJugador();
-        List<CartaMounstro> monstruosJugador = modelo.getCampoJugador().getCampoMounstruos().getCartaMounstrosEnCampo();
-
-        for (int i = 0; i < lblMonstruosJugador.length; i++) {
-            if (i < monstruosJugador.size()) {
-                Carta carta = monstruosJugador.get(i);
-                /*
-                 * if (carta.getImagen() != null && !carta.getImagen().isEmpty()) {
-                 * lblMonstruosJugador[i].setIcon(new ImageIcon(carta.getImagen())); //
-                 * Establecer la imagen si existe
-                 * lblMonstruosJugador[i].setText(""); // Limpiar el texto si hay una imagen
-                 * } else {
-                 
-                lblMonstruosJugador[i].setIcon(null); // Limpiar cualquier icono anterior
-                lblMonstruosJugador[i].setText(carta.getNombre());
-            } else {
-                lblMonstruosJugador[i].setText("");
-                lblMonstruosJugador[i].setIcon(null); // Limpiar la imagen si no hay carta
-               
-            }
-
         }
 
         // Actualizar las cartas en el campo del rival
@@ -182,21 +79,18 @@ public class TableroControlador implements Observer {
         for (int i = 0; i < lblMonstruosRival.length; i++) {
             if (i < monstruosRival.size()) {
                 Carta carta = monstruosRival.get(i);
-                /*
-                 * if (carta.getImagen() != null && !carta.getImagen().isEmpty()) {
-                 * lblMonstruosRival[i].setIcon(new ImageIcon(carta.getImagen())); // Establecer
-                 * la imagen si existe
-                 * lblMonstruosRival[i].setText(""); // Limpiar el texto si hay una imagen
-                 * } else {
-                 
-                lblMonstruosRival[i].setIcon(null); // Limpiar cualquier icono anterior
+                lblMonstruosRival[i].setIcon(new ImageIcon("src/modelo/Lluvia_de_Meteoritos.jpg")); // Limpiar cualquier icono anterior
                 lblMonstruosRival[i].setText(carta.getNombre());
-
+                lblMonstruosRival[i].setHorizontalTextPosition(JLabel.CENTER);
+                lblMonstruosRival[i].setVerticalTextPosition(JLabel.BOTTOM);
+                lblMonstruosRival[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
+                lblMonstruosRival[i].setOpaque(true); // Para que el fondo transparente surta efecto
             } else {
                 lblMonstruosRival[i].setText("");
                 lblMonstruosRival[i].setIcon(null); // Limpiar la imagen si no hay carta
+                lblMonstruosRival[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
+                lblMonstruosRival[i].setOpaque(true); // Para que el fondo transparente surta efecto
             }
-
         }
 
         JLabel[] lblCartasMagicasJugador = vista.getLblHechizosJugador();
@@ -205,19 +99,18 @@ public class TableroControlador implements Observer {
         for (int i = 0; i < lblCartasMagicasJugador.length; i++) {
             if (i < cartasMagicasJugador.size()) {
                 CartaMagica carta = cartasMagicasJugador.get(i);
-                /*
-                 * if (carta.getImagen() != null && !carta.getImagen().isEmpty()) {
-                 * lblCartasMagicasJugador[i].setIcon(new ImageIcon(carta.getImagen())); //
-                 * Establecer la imagen si
-                 * lblCartasMagicasJugador[i].setText(""); // Limpiar el texto si hay una imagen
-                 * } else {
-                 
-
-                lblCartasMagicasJugador[i].setIcon(null); // Limpiar cualquier icono anterior
+                lblCartasMagicasJugador[i].setIcon(new ImageIcon("src/modelo/Lluvia_de_Meteoritos.jpg")); // Limpiar cualquier icono
+                                                                                      // anterior
                 lblCartasMagicasJugador[i].setText(carta.getNombre());
+                lblCartasMagicasJugador[i].setHorizontalTextPosition(JLabel.CENTER);
+                lblCartasMagicasJugador[i].setVerticalTextPosition(JLabel.BOTTOM);
+                lblCartasMagicasJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
+                lblCartasMagicasJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
             } else {
                 lblCartasMagicasJugador[i].setText("");
-                lblCartasMagicasJugador[i].setIcon(null);
+                lblCartasMagicasJugador[i].setIcon(null); // Limpiar la imagen si no hay carta
+                lblCartasMagicasJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
+                lblCartasMagicasJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
             }
         }
 
@@ -227,31 +120,36 @@ public class TableroControlador implements Observer {
         for (int i = 0; i < lblCartasMagicasRival.length; i++) {
             if (i < cartasMagicasRival.size()) {
                 CartaMagica carta = cartasMagicasRival.get(i);
-                /*
-                 * if (carta.getImagen() != null && !carta.getImagen().isEmpty()) {
-                 * lblCartasMagicasJugador[i].setIcon(new ImageIcon(carta.getImagen())); //
-                 * Establecer la imagen si
-                 * lblCartasMagicasJugador[i].setText(""); // Limpiar el texto si hay una imagen
-                 * } else {
-                 
-
-                lblCartasMagicasRival[i].setIcon(null); // Limpiar cualquier icono anterior
+                lblCartasMagicasRival[i].setIcon(new ImageIcon("src/modelo/Lluvia_de_Meteoritos.jpg")); // Limpiar cualquier icono anterior
                 lblCartasMagicasRival[i].setText(carta.getNombre());
+                lblCartasMagicasRival[i].setHorizontalTextPosition(JLabel.CENTER);
+                lblCartasMagicasRival[i].setVerticalTextPosition(JLabel.BOTTOM);
+                lblCartasMagicasRival[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
+                lblCartasMagicasRival[i].setOpaque(true); // Para que el fondo transparente surta efecto
             } else {
                 lblCartasMagicasRival[i].setText("");
-                lblCartasMagicasRival[i].setIcon(null);
+                lblCartasMagicasRival[i].setIcon(null); // Limpiar la imagen si no hay carta
+                lblCartasMagicasRival[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
+                lblCartasMagicasRival[i].setOpaque(true); // Para que el fondo transparente surta efecto
             }
         }
 
         // Actualizar las cartas en la mano del jugador
         JLabel[] lblCartasJugador = vista.getLblCartasJugador();
         List<Carta> manoJugador = modelo.getJugador().getMano();
+
         for (int i = 0; i < lblCartasJugador.length; i++) {
             if (i < manoJugador.size()) {
                 lblCartasJugador[i].setText(manoJugador.get(i).getNombre());
-                lblCartasJugador[i].setIcon(null);
+                lblCartasJugador[i].setHorizontalAlignment(JLabel.CENTER);
+                lblCartasJugador[i].setVerticalTextPosition(JLabel.BOTTOM);
+                lblCartasJugador[i].setIcon(new ImageIcon("src/modelo/Lluvia_de_Meteoritos.jpg"));
+                lblCartasJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
+                lblCartasJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
             } else {
                 lblCartasJugador[i].setText("");
+                lblCartasJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
+                lblCartasJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
             }
         }
 
@@ -259,7 +157,8 @@ public class TableroControlador implements Observer {
         vista.getBarraVidaJugador().setValue(modelo.getJugador().getPuntosVida());
         vista.getBarraVidaRival().setValue(modelo.getComputadora().getPuntosVida());
     }
-*/
+
+    
     private void seleccionarCarta(JLabel lblMonstruo, List<CartaMounstro> cartas) {
         // Restablecer el fondo de todas las cartas del jugador
         for (JLabel lbl : vista.getLblMonstruosJugador()) {
@@ -272,13 +171,7 @@ public class TableroControlador implements Observer {
 
     private CartaMounstro encontrarCartaMounstro(JLabel lblMonstruo, List<CartaMounstro> cartas) {
         for (CartaMounstro carta : cartas) {
-            if (lblMonstruo.getIcon() != null && lblMonstruo.getIcon() instanceof ImageIcon) {
-                // Comparar el icono del JLabel con el icono de la carta
-                ImageIcon icon = new ImageIcon(carta.getImagen());
-                if (icon.getImage().equals(((ImageIcon) lblMonstruo.getIcon()).getImage())) {
-                    return carta;
-                }
-            } else if (lblMonstruo.getText().equals(carta.getNombre())) {
+            if (lblMonstruo.getText().equals(carta.getNombre())) {
                 return carta;
             }
         }
@@ -287,13 +180,7 @@ public class TableroControlador implements Observer {
 
     private CartaMagica encontrarCartaEnCampoMagica(JLabel lblMonstruo, List<CartaMagica> cartas) {
         for (CartaMagica carta : cartas) {
-            if (lblMonstruo.getIcon() != null && lblMonstruo.getIcon() instanceof ImageIcon) {
-                // Comparar el icono del JLabel con el icono de la carta
-                ImageIcon icon = new ImageIcon(carta.getImagen());
-                if (icon.getImage().equals(((ImageIcon) lblMonstruo.getIcon()).getImage())) {
-                    return carta;
-                }
-            } else if (lblMonstruo.getText().equals(carta.getNombre())) {
+            if (lblMonstruo.getText().equals(carta.getNombre())) {
                 return carta;
             }
         }
@@ -382,14 +269,16 @@ public class TableroControlador implements Observer {
                         cartasEnMano.remove(carta);
                         i--; // Ajustar el índice después de la eliminación
                         JLabel lblHechizo = lblHechizosRival[cartasMagicasEnCampoBot.size() - 1];
-                        /*
-                         * if (carta.getImagen() != null && !carta.getImagen().isEmpty()) {
-                         * lblHechizo.setIcon(new ImageIcon(carta.getImagen()));
-                         * lblHechizo.setText("");
-                         * } else {}
-                         */
-                        lblHechizo.setIcon(null);
-                        lblHechizo.setText(carta.getNombre());
+
+                        if (carta.getImagen() != null && !carta.getImagen().isEmpty()) {
+                            lblHechizo.setIcon(new ImageIcon(carta.getImagen()));
+                            lblHechizo.setText("");
+                        } else {
+                            lblHechizo.setIcon(null);
+                            lblHechizo.setText(carta.getNombre());
+
+                        }
+
                         Runnable usarMagiaRunnable = new Runnable() {
 
                             public void run() {
@@ -498,7 +387,7 @@ public class TableroControlador implements Observer {
                         // Remover el listener temporal después de la selección
                         lblMonstruo.removeMouseListener(this);
                     }
-                
+
                 }
             });
         }
@@ -636,13 +525,7 @@ public class TableroControlador implements Observer {
                                 modelo.colocarCarta((CartaMounstro) cartaSeleccionada, modelo.getCampoJugador());
                                 modelo.getJugador().getMano().remove(cartaSeleccionada);
                                 vista.agregarAccionJugador("Carta colocada: " + cartaSeleccionada.getNombre());
-                                if (cartaSeleccionada.getImagen() != null && !cartaSeleccionada.getImagen().isEmpty()) {
-                                    lblCarta.setIcon(new ImageIcon(cartaSeleccionada.getImagen()));
-                                    lblCarta.setText("");
-                                } else {
-                                    lblCarta.setIcon(null); // Limpiar cualquier icono anterior
-                                    lblCarta.setText(cartaSeleccionada.getNombre());
-                                }
+                          
                             } catch (Exception ex) {
                                 ex.printStackTrace();
                             }
@@ -652,13 +535,7 @@ public class TableroControlador implements Observer {
                                 modelo.getJugador().getMano().remove(cartaSeleccionada);
                                 vista.agregarAccionJugador("Carta colocada: " + cartaSeleccionada.getNombre());
 
-                                if (cartaSeleccionada.getImagen() != null && !cartaSeleccionada.getImagen().isEmpty()) {
-                                    lblCarta.setIcon(new ImageIcon(cartaSeleccionada.getImagen()));
-                                    lblCarta.setText("");
-                                } else {
-                                    lblCarta.setIcon(null); // Limpiar cualquier icono anterior
-                                    lblCarta.setText(cartaSeleccionada.getNombre());
-                                }
+                               
                             } catch (Exception ex) {
                                 ex.printStackTrace();
                             }
@@ -745,7 +622,8 @@ public class TableroControlador implements Observer {
             @Override
             public void mouseClicked(MouseEvent e) {
                 modelo.getJugador().robarCarta();
-                vista.agregarAccionJugador("Carta robada: " + modelo.getJugador().getMano().get(modelo.getJugador().getMano().size() - 1).getNombre());
+                vista.agregarAccionJugador("Carta robada: "
+                        + modelo.getJugador().getMano().get(modelo.getJugador().getMano().size() - 1).getNombre());
                 actualizarVista();
             }
         });
