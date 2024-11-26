@@ -10,14 +10,15 @@ import java.util.Observable;
 
 public class TableroModelo extends Observable {
 
-    private Integer id_tablero;
-    private String tipo_elemento_tablero, imagenUrlTablero;
-
     private Jugador jugador;
     private Jugador computadora;
 
     private Campos campoJugador;
     private Campos campoComputadora;
+    
+    private Integer id_tablero;
+    private String tipo_elemento_tablero;
+    private String imagenUrlTablero;
 
     private List<CartaMounstro> mounstruosQueAtacaron;
 

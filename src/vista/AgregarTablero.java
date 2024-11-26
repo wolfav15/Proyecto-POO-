@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
@@ -18,13 +19,28 @@ public class AgregarTablero extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textUrl;
-	private JTextField textField_1;
-	private JPasswordField passwordField;
+	private JTextField textUsuario;
+	private JPasswordField textPass;
+	private JLabel ImagenLbl;
+	private JComboBox boxElemento;
 	
+	public JComboBox getBoxElemento() {
+		return boxElemento;
+	}
+	public JTextField getTextUrl() {
+		return textUrl;
+		
+	}
+	public JTextField getTextUsuario() {
+		return textUsuario;
+	}
 	public JPasswordField getPasswordField() {
-		return passwordField;
+		return textPass;
 	}
 
+	public JLabel getImagenLbl() {
+		return ImagenLbl;
+	}
 
 
 	public JButton getBtnPrevisualizar() {
@@ -67,7 +83,7 @@ public class AgregarTablero extends JFrame {
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JLabel ImagenLbl = new JLabel("");
+		ImagenLbl = new JLabel("");
 		ImagenLbl.setBounds(0, 5, 327, 258);
 		panel_2.add(ImagenLbl);
 		
@@ -83,7 +99,7 @@ public class AgregarTablero extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.EAST, lblNewLabel, -211, SpringLayout.EAST, panel_1);
 		panel_1.add(lblNewLabel);
 		
-		JComboBox boxElemento = new JComboBox();
+		boxElemento = new JComboBox();
 		sl_panel_1.putConstraint(SpringLayout.NORTH, boxElemento, -3, SpringLayout.NORTH, lblNewLabel);
 		sl_panel_1.putConstraint(SpringLayout.WEST, boxElemento, 6, SpringLayout.EAST, lblNewLabel);
 		boxElemento.setModel(new DefaultComboBoxModel(new String[] {"WATER", "EARTH", "WIND", "FIRE", "DARK", "LIGHT"}));
@@ -121,23 +137,27 @@ public class AgregarTablero extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_3_1, 10, SpringLayout.WEST, panel_1);
 		panel_1.add(lblNewLabel_3_1);
 		
-		textField_1 = new JTextField();
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, lblNewLabel_2, -24, SpringLayout.NORTH, textField_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, textField_1, 0, SpringLayout.WEST, boxElemento);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, textField_1, -69, SpringLayout.SOUTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, textField_1, 86, SpringLayout.WEST, boxElemento);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
+		textUsuario = new JTextField();
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, lblNewLabel_2, -24, SpringLayout.NORTH, textUsuario);
+		sl_panel_1.putConstraint(SpringLayout.WEST, textUsuario, 0, SpringLayout.WEST, boxElemento);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, textUsuario, -69, SpringLayout.SOUTH, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.EAST, textUsuario, 86, SpringLayout.WEST, boxElemento);
+		panel_1.add(textUsuario);
+		textUsuario.setColumns(10);
 		
-		passwordField = new JPasswordField();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, passwordField, 11, SpringLayout.SOUTH, textField_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, passwordField, 0, SpringLayout.WEST, boxElemento);
-		sl_panel_1.putConstraint(SpringLayout.EAST, passwordField, -119, SpringLayout.EAST, panel_1);
-		panel_1.add(passwordField);
+		textPass = new JPasswordField();
+		sl_panel_1.putConstraint(SpringLayout.NORTH, textPass, 11, SpringLayout.SOUTH, textUsuario);
+		sl_panel_1.putConstraint(SpringLayout.WEST, textPass, 0, SpringLayout.WEST, boxElemento);
+		sl_panel_1.putConstraint(SpringLayout.EAST, textPass, -119, SpringLayout.EAST, panel_1);
+		panel_1.add(textPass);
 		
 		btnAgregar = new JButton("Agregar");
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, btnAgregar, -10, SpringLayout.SOUTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, btnAgregar, -23, SpringLayout.EAST, panel_1);
 		panel_1.add(btnAgregar);
 	}
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(this, mensaje);
+	}
+	
 }

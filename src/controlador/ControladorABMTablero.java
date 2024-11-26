@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
+import modelo.JugadorDAO;
 import modelo.Tablero;
 import modelo.TableroDAO;
 import modelo.Usuario;
@@ -19,6 +20,7 @@ public class ControladorABMTablero {
 
 	private TablerosABM vista;
 	private TableroDAO dao;
+
 	
 	public ControladorABMTablero () {
 		vista = new TablerosABM();

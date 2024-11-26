@@ -30,6 +30,12 @@ import controlador.*;
 
 public class TableroControlador implements Observer {
 
+
+
+    private Boolean cartaRobadaJugador = false;
+    private int Count= 0;
+    private Boolean primerTurnoJugador = true;
+
     private TableroModelo modelo;
     private VistaTabla vista;
     // private CartaMounstro cartaMounstruoSeleccionada; //esto se pensaba para los
@@ -673,15 +679,38 @@ public class TableroControlador implements Observer {
 
             });
         }
-
+//
         vista.getLblBarajaJugador().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                modelo.getJugador().robarCarta();
-                vista.agregarAccionJugador("Carta robada: "
-                        + modelo.getJugador().getMano().get(modelo.getJugador().getMano().size() - 1).getNombre());
-                actualizarVista();
-            }
+                if (primerTurnoJugador)  {
+                    if(Count <=4){
+                    Count +=1;
+                        modelo.getJugador().robarCarta();
+                        vista.agregarAccionJugador("Carta robada: "
+                               + modelo.getJugador().getMano().get(modelo.getJugador().getMano().size() - 1).getNombre());
+                               actualizarVista();
+                            }
+                               else {
+                                vista.agregarAccionJugador("Solo se puede robar 5 cartas en el primer turno.");
+                            }
+                } 
+
+                
+               else{
+                     if (!cartaRobadaJugador){
+                     modelo.getJugador().robarCarta();
+                      vista.agregarAccionJugador("Carta robada: "
+                               + modelo.getJugador().getMano().get(modelo.getJugador().getMano().size() - 1).getNombre());
+                     cartaRobadaJugador = true;
+                      actualizarVista();
+                 }
+                 else {
+                      vista.agregarAccionJugador("Solo puede robar una carta por turno");
+                  }
+              }
+        }
+        
         });
 
         vista.getBtnFinalizarTurno().addActionListener(e -> {
