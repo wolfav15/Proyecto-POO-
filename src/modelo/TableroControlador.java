@@ -9,6 +9,7 @@ import java.util.Observer;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -162,9 +163,13 @@ public class TableroControlador implements Observer {
     private void seleccionarCarta(JLabel lblMonstruo, List<CartaMounstro> cartas) {
         // Restablecer el fondo de todas las cartas del jugador
         for (JLabel lbl : vista.getLblMonstruosJugador()) {
+            lbl.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
         }
         // Encontrar la carta correspondiente al JLabel
         cartaSeleccionada = encontrarCartaMounstro(lblMonstruo, cartas);
+        
+        lblMonstruo.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 2));
+
         if (cartaSeleccionada != null) {
         }
     }
