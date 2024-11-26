@@ -27,6 +27,7 @@ import vista.MenuBatalla;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -62,7 +63,7 @@ public class VistaTabla extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setLayout(new GridBagLayout());
 
-		FondoPanel fondo = new FondoPanel("C://Users//samue//Downloads//un sol de fuego.png");
+		FondoPanel fondo = new FondoPanel("src//modelo//tontos todos.jpg");
 		fondo.setLayout(new GridBagLayout());
 		setContentPane(fondo);
 
@@ -75,7 +76,7 @@ public class VistaTabla extends JFrame {
 		lblMonstruosRival = new JLabel[5];
 		panelMonstruosRival.setBackground(new Color(0, 0, 0, 0));
 		for (int i = 0; i < lblMonstruosRival.length; i++) {
-			lblMonstruosRival[i] = crearLabel("Monstruo " + (i + 1), new Dimension(70, 105));
+			lblMonstruosRival[i] = crearLabelConFondo("Monstruo " + (i + 1), new Dimension(100, 120),"src//modelo//fondo_carta.jpg");
 			panelMonstruosRival.add(lblMonstruosRival[i]);
 		}
 
@@ -86,10 +87,10 @@ public class VistaTabla extends JFrame {
 
 		// Paneles de monstruos del jugador
 		JPanel panelMonstruosJugador = new JPanel(new GridLayout(1, 5, 10, 0));
-		lblMonstruosJugador = new JLabel[5];
-		panelMonstruosJugador.setBackground(new Color(0, 0, 0, 0));
+		lblMonstruosJugador = new BackgroundLabel[5];
+panelMonstruosJugador.setOpaque(false);
 		for (int i = 0; i < lblMonstruosJugador.length; i++) {
-			lblMonstruosJugador[i] = crearLabel("Monstruo " + (i + 1), new Dimension(70, 105));
+			lblMonstruosJugador[i] = crearLabelConFondo("Monstruo " + (i + 1), new Dimension(100, 120),"src/modelo/fondo_carta.jpg");
 			panelMonstruosJugador.add(lblMonstruosJugador[i]);
 		}
 		gbc.gridx = 0;
@@ -101,7 +102,7 @@ public class VistaTabla extends JFrame {
 		lblHechizosRival = new JLabel[3];
 		panelHechizosRival.setBackground(new Color(0, 0, 0, 0));
 		for (int i = 0; i < lblHechizosRival.length; i++) {
-			lblHechizosRival[i] = crearLabel("Hechizo " + (i + 1), new Dimension(70, 105));
+			lblHechizosRival[i] = crearLabelConFondo("Hechizo " + (i + 1), new Dimension(100, 120),"src/modelo/fondo_carta.jpg");
 			panelHechizosRival.add(lblHechizosRival[i]);
 		}
 		gbc.gridx = 0;
@@ -114,7 +115,7 @@ public class VistaTabla extends JFrame {
 		lblHechizosJugador = new JLabel[3];
 		panelHechizosJugador.setBackground(new Color(0, 0, 0, 0));
 		for (int i = 0; i < lblHechizosJugador.length; i++) {
-			lblHechizosJugador[i] = crearLabel("Hechizo " + (i + 1), new Dimension(70, 105));
+			lblHechizosJugador[i] = crearLabelConFondo("Hechizo " + (i + 1), new Dimension(90, 120),"src/modelo/fondo_carta.jpg");
 			panelHechizosJugador.add(lblHechizosJugador[i]);
 		}
 		gbc.gridx = 0;
@@ -139,7 +140,14 @@ public class VistaTabla extends JFrame {
 		gbc.gridy = 0;
 		add(barraVidaRival, gbc);
 
-		btnFinalizarTurno = new JButton("Finalizar turno");
+		btnFinalizarTurno = new JButton("");
+		btnFinalizarTurno.setBorder(new LineBorder(new Color(0, 0, 0)));
+		btnFinalizarTurno.setIcon(new ImageIcon("src//modelo//FINALIZARBTN.png"));
+		btnFinalizarTurno.setContentAreaFilled(false);
+		btnFinalizarTurno.setBorderPainted(false);
+		btnFinalizarTurno.setFocusPainted(false);
+		btnFinalizarTurno.setOpaque(false);		
+	
 		gbc.gridx = 3;
 		gbc.gridy = 1;
 		gbc.gridwidth = 3;
@@ -165,7 +173,7 @@ public class VistaTabla extends JFrame {
 		lblCartasJugador = new JLabel[5];
 		panelCartasJugador.setBackground(new Color(0, 0, 0, 0));
 		for (int i = 0; i < lblCartasJugador.length; i++) {
-			lblCartasJugador[i] = crearLabel("Carta " + (i + 1), new Dimension(70, 105));
+			lblCartasJugador[i] = crearLabelConFondo("Carta " + (i + 1), new Dimension(100, 120),"src/modelo/fondo_carta.jpg");
 			panelCartasJugador.add(lblCartasJugador[i]);
 		}
 		gbc.gridx = 0;
@@ -177,12 +185,16 @@ public class VistaTabla extends JFrame {
 		JPanel panelCartasRival = new JPanel(new GridLayout(1, 5, 10, 0));
 		lblCartasRival = new JLabel[5];
 		for (int i = 0; i < lblCartasRival.length; i++) {
-			lblCartasRival[i] = crearLabel("Carta " + (i + 1), new Dimension(70, 105));
-			panelCartasRival.setBackground(new Color(0, 0, 0, 0));
+			lblCartasRival[i] = crearLabelConFondo("Carta " + (i + 1), new Dimension(100, 120),"src/modelo/fondo_carta.jpg");
 			panelCartasRival.add(lblCartasRival[i]);
 		}
 
-		JButton btnSalir = new JButton("Salir Batalla");
+		JButton btnSalir = new JButton("");
+		btnSalir.setContentAreaFilled(false);
+		btnSalir.setBorderPainted(false);
+		btnSalir.setFocusPainted(false);
+		btnSalir.setOpaque(false);
+		btnSalir.setIcon(new ImageIcon("src/modelo/SALIRBTN.png"));
 		gbc.gridx = 3;
 		gbc.gridy = 2;
 		add(btnSalir, gbc);
@@ -243,16 +255,13 @@ public class VistaTabla extends JFrame {
 		add(fondoinfoTablero, gbc);
 	}
 
-	private JLabel crearLabel(String nombre, Dimension dimension) {
-		JLabel label = new JLabel(nombre);
-		label.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
-		label.setPreferredSize(dimension);
-		label.setHorizontalAlignment(JLabel.CENTER);
-		label.setVerticalAlignment(JLabel.CENTER);
-		label.setOpaque(true);
-		label.setBorder(new LineBorder(new Color(0, 0, 0)));
-		label.setBackground(new Color(0, 0, 0, 0));
-		return label;
+	private JLabel crearLabelConFondo(String nombre, Dimension dimension, String rutaImagenFondo) {
+			BackgroundLabel label = new BackgroundLabel(rutaImagenFondo, nombre);
+			label.setBorder(new LineBorder(new Color(0, 0, 0, 0)));
+			label.setPreferredSize(dimension);
+			label.setHorizontalAlignment(JLabel.CENTER);
+			label.setVerticalAlignment(JLabel.CENTER);
+			return label;
 	}
 
 	public void mostrarEstadisticasMonstruo(CartaMounstro carta) {
@@ -266,8 +275,9 @@ public class VistaTabla extends JFrame {
 
 	public void mostrarEstadisticasHechizo(CartaMagica carta) {
 		areaEstadistica.setText("Nombre: " + carta.getNombre() + "\nEfecto: " + carta.getCantidad_efecto() +
-				"\nTipo " + carta.getClass().getSimpleName() +
-				"\nDescripcion: " + carta.getDescripcion());
+				"\nTipo " + carta.getClass().getSimpleName() 
+				//"\nDescripcion: " + carta.getDescripcion()
+				);
 		areaEstadistica.setVisible(true);
 	}
 
