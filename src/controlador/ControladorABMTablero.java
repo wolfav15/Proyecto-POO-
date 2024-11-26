@@ -60,7 +60,6 @@ public class ControladorABMTablero {
 			public void mouseClicked(MouseEvent e) {
 				new ControladorEditarTablero();
 			}
-			
 		});
 	}
 	private void inicializarTabla() {

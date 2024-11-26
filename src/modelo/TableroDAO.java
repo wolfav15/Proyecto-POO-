@@ -24,22 +24,25 @@ public class TableroDAO {
 		}
     }
 
-//    public Boolean buscarTablero (String tipo_elemento_tablero) throws SQLException{
-//        String query = "SELECT * FROM Tableros WHERE Tableros.tipo_elemento_tablero = ?";
-//        try (PreparedStatement consulta = conexion.prepareStatement(query)){
-//            consulta.setString(1, tipo_elemento_tablero);
-//            ResultSet resultado = consulta.executeQuery();
-//            // Si hay al menos una fila en el resultado, el tablero fue encontrado
-//            if (resultado.next()) {
-//            	System.out.println("Tablero encontrado.");
-//            	return true;	
-//            }
-//            return false;
-//        } catch(SQLException e){
-//            System.out.println("No se pudo buscar el tablero.");
-//            throw e;
-//        }
-//    }
+    public Tablero buscarTablero (Integer id) throws SQLException{
+        String query = "SELECT * FROM Tableros WHERE Tableros.id_tablero = ?";
+        try (PreparedStatement consulta = conexion.prepareStatement(query)){
+            consulta.setInt(1, id);
+            ResultSet resultado = consulta.executeQuery();
+            // Si hay al menos una fila en el resultado, el tablero fue encontrado
+            if (resultado.next()) {
+            	System.out.println("Tablero encontrado.");
+            	Integer idTablero = resultado.getInt("id_tablero");
+            	String tipo = resultado.getString("tipo_elemento_tablero");
+            	String url = resultado.getString("imagenUrlTablero");
+            	return new Tablero(idTablero, tipo, url);	
+            }
+            return null;
+        } catch(SQLException e){
+            System.out.println("No se pudo buscar el tablero.");
+            throw e;
+        }
+    }
 
     public void crearTablero(String tipo_elemento_tablero, String url) throws SQLException {
             String query = "INSERT INTO Tableros (tipo_elemento_tablero, imagenUrlTablero) VALUES (?, ?)";
