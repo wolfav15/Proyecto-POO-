@@ -24,25 +24,24 @@ public class TableroDAO {
 		}
     }
 
-    public Boolean buscarTablero (String tipo_elemento_tablero) throws SQLException{
-        String query = "SELECT * FROM Tableros WHERE Tableros.tipo_elemento_tablero = ?";
-        try (PreparedStatement consulta = conexion.prepareStatement(query)){
-            consulta.setString(1, tipo_elemento_tablero);
-            ResultSet resultado = consulta.executeQuery();
-            // Si hay al menos una fila en el resultado, el tablero fue encontrado
-            if (resultado.next()) {
-            	System.out.println("Tablero encontrado.");
-            	return true;	
-            }
-            return false;
-        } catch(SQLException e){
-            System.out.println("No se pudo buscar el tablero.");
-            throw e;
-        }
-    }
+//    public Boolean buscarTablero (String tipo_elemento_tablero) throws SQLException{
+//        String query = "SELECT * FROM Tableros WHERE Tableros.tipo_elemento_tablero = ?";
+//        try (PreparedStatement consulta = conexion.prepareStatement(query)){
+//            consulta.setString(1, tipo_elemento_tablero);
+//            ResultSet resultado = consulta.executeQuery();
+//            // Si hay al menos una fila en el resultado, el tablero fue encontrado
+//            if (resultado.next()) {
+//            	System.out.println("Tablero encontrado.");
+//            	return true;	
+//            }
+//            return false;
+//        } catch(SQLException e){
+//            System.out.println("No se pudo buscar el tablero.");
+//            throw e;
+//        }
+//    }
 
     public void crearTablero(String tipo_elemento_tablero, String url) throws SQLException {
-        if (!buscarTablero(tipo_elemento_tablero)){
             String query = "INSERT INTO Tableros (tipo_elemento_tablero, imagenUrlTablero) VALUES (?, ?)";
             try (PreparedStatement consulta = conexion.prepareStatement(query)) {
                 consulta.setString(1, tipo_elemento_tablero);
@@ -53,9 +52,6 @@ public class TableroDAO {
                 System.out.println("Error al ejecutar query.");
                 e.printStackTrace();
             }
-        } else {
-                System.out.println("El Tablero ya existe con ese elemento.");
-        }
     }
 
     public void actualizarTablero (Integer id_tablero, String tipo_elemento_tablero, String url) throws SQLException{

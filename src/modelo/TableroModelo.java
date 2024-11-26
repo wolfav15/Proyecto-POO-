@@ -10,9 +10,6 @@ import java.util.Observable;
 
 public class TableroModelo extends Observable {
 
-    private Integer id_tablero;
-    private String tipo_elemento_tablero, imagenUrlTablero;
-
     private Jugador jugador;
     private Jugador computadora;
 
@@ -27,12 +24,6 @@ public class TableroModelo extends Observable {
         this.campoComputadora = new Campos();
         this.campoJugador = new Campos();
         this.mounstruosQueAtacaron = new ArrayList<>();
-    }
-
-    public TableroModelo(Integer id_tablero, String tipo_elemento_tablero, String imagenUrlTablero){
-        this.id_tablero = id_tablero;
-        this.tipo_elemento_tablero = tipo_elemento_tablero;
-        this.imagenUrlTablero = imagenUrlTablero;
     }
     
     public ArrayList<Carta> bajarDeck() {
