@@ -498,7 +498,7 @@ public class TableroControlador implements Observer {
                         // Remover el listener temporal después de la selección
                         lblMonstruo.removeMouseListener(this);
                     }
-                   
+                
                 }
             });
         }
