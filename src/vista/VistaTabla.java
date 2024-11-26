@@ -17,12 +17,14 @@ import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.border.LineBorder;
 
+import ViejoSamuel.Tablero;
 import modelo.CartaMagica;
 import modelo.CartaMagicaArmadura;
 import modelo.CartaMagicaBuff;
 import modelo.CartaMagicaEquipada;
 import modelo.CartaMounstro;
 import vista.MenuBatalla;
+import modelo.TableroModelo;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -50,6 +52,7 @@ public class VistaTabla extends JFrame {
 	private JLabel lblBarajaJugador;
 	private JLabel lblBarajaRival;
 	private JTextArea infoJugador;
+	private FondoPanel fondo;
 
 	private JTextArea infoRival;
 
@@ -59,11 +62,12 @@ public class VistaTabla extends JFrame {
 
 	public VistaTabla() {
 		setTitle("Tablero");
+		TableroModelo modelo = new TableroModelo();	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setLayout(new GridBagLayout());
 
-		FondoPanel fondo = new FondoPanel("src//modelo//tontos todos.jpg");
+		fondo = new FondoPanel("src/modelo/tontos todos.jpg");
 		fondo.setLayout(new GridBagLayout());
 		setContentPane(fondo);
 
@@ -76,7 +80,7 @@ public class VistaTabla extends JFrame {
 		lblMonstruosRival = new JLabel[5];
 		panelMonstruosRival.setBackground(new Color(0, 0, 0, 0));
 		for (int i = 0; i < lblMonstruosRival.length; i++) {
-			lblMonstruosRival[i] = crearLabelConFondo("Monstruo " + (i + 1), new Dimension(100, 120),"src//modelo//fondo_carta.jpg");
+			lblMonstruosRival[i] = crearLabelConFondo("Monstruo " + (i + 1), new Dimension(120, 150),"src//modelo//fondo_carta.jpg");
 			panelMonstruosRival.add(lblMonstruosRival[i]);
 		}
 
@@ -90,7 +94,7 @@ public class VistaTabla extends JFrame {
 		lblMonstruosJugador = new BackgroundLabel[5];
 panelMonstruosJugador.setOpaque(false);
 		for (int i = 0; i < lblMonstruosJugador.length; i++) {
-			lblMonstruosJugador[i] = crearLabelConFondo("Monstruo " + (i + 1), new Dimension(100, 120),"src/modelo/fondo_carta.jpg");
+			lblMonstruosJugador[i] = crearLabelConFondo("Monstruo " + (i + 1), new Dimension(120, 150),"src/modelo/fondo_carta.jpg");
 			panelMonstruosJugador.add(lblMonstruosJugador[i]);
 		}
 		gbc.gridx = 0;
@@ -102,7 +106,7 @@ panelMonstruosJugador.setOpaque(false);
 		lblHechizosRival = new JLabel[3];
 		panelHechizosRival.setBackground(new Color(0, 0, 0, 0));
 		for (int i = 0; i < lblHechizosRival.length; i++) {
-			lblHechizosRival[i] = crearLabelConFondo("Hechizo " + (i + 1), new Dimension(100, 120),"src/modelo/fondo_carta.jpg");
+			lblHechizosRival[i] = crearLabelConFondo("Hechizo " + (i + 1), new Dimension(120, 150),"src/modelo/fondo_carta.jpg");
 			panelHechizosRival.add(lblHechizosRival[i]);
 		}
 		gbc.gridx = 0;
@@ -115,7 +119,7 @@ panelMonstruosJugador.setOpaque(false);
 		lblHechizosJugador = new JLabel[3];
 		panelHechizosJugador.setBackground(new Color(0, 0, 0, 0));
 		for (int i = 0; i < lblHechizosJugador.length; i++) {
-			lblHechizosJugador[i] = crearLabelConFondo("Hechizo " + (i + 1), new Dimension(90, 120),"src/modelo/fondo_carta.jpg");
+			lblHechizosJugador[i] = crearLabelConFondo("Hechizo " + (i + 1), new Dimension(120, 150),"src/modelo/fondo_carta.jpg");
 			panelHechizosJugador.add(lblHechizosJugador[i]);
 		}
 		gbc.gridx = 0;
@@ -173,7 +177,7 @@ panelMonstruosJugador.setOpaque(false);
 		lblCartasJugador = new JLabel[5];
 		panelCartasJugador.setBackground(new Color(0, 0, 0, 0));
 		for (int i = 0; i < lblCartasJugador.length; i++) {
-			lblCartasJugador[i] = crearLabelConFondo("Carta " + (i + 1), new Dimension(100, 120),"src/modelo/fondo_carta.jpg");
+			lblCartasJugador[i] = crearLabelConFondo("Carta " + (i + 1), new Dimension(120, 150),"src/modelo/fondo_carta.jpg");
 			panelCartasJugador.add(lblCartasJugador[i]);
 		}
 		gbc.gridx = 0;
@@ -185,7 +189,7 @@ panelMonstruosJugador.setOpaque(false);
 		JPanel panelCartasRival = new JPanel(new GridLayout(1, 5, 10, 0));
 		lblCartasRival = new JLabel[5];
 		for (int i = 0; i < lblCartasRival.length; i++) {
-			lblCartasRival[i] = crearLabelConFondo("Carta " + (i + 1), new Dimension(100, 120),"src/modelo/fondo_carta.jpg");
+			lblCartasRival[i] = crearLabelConFondo("Carta " + (i + 1), new Dimension(120, 150),"src/modelo/fondo_carta.jpg");
 			panelCartasRival.add(lblCartasRival[i]);
 		}
 
@@ -203,6 +207,7 @@ panelMonstruosJugador.setOpaque(false);
 		areaEstadistica.setEditable(false);
 		areaEstadistica.setBorder(new LineBorder(new Color(0, 0, 0)));
 		areaEstadistica.setVisible(false);
+		areaEstadistica.setForeground(Color.white);
 		areaEstadistica.setBackground(new Color(0, 0, 0, 0));
 		gbc.gridx = 1;
 		gbc.gridy = 4;

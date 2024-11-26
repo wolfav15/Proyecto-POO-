@@ -7,6 +7,9 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -19,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+
 import vista.VistaTabla;
 import controlador.*;
 
@@ -33,9 +37,10 @@ public class TableroControlador implements Observer {
     private CartaMagica cartaMagicaSeleccionada; // las distintas situaciones que
     // se manejan, dejo la idea aqui
     private Carta cartaSeleccionada; // originalmente solo habia esto para mounstruos en el de Samuel
-
+    private ArrayList<Tablero> tableroModelos;
     private boolean turnoRival = true;
     private boolean turnoJugador = false;
+    private Random random;
 
     public TableroControlador(TableroModelo modelo, VistaTabla vista) {
         this.modelo = modelo;
@@ -67,8 +72,8 @@ public class TableroControlador implements Observer {
                 visualizarImagen(lblMonstruosJugador[i], carta.getImagen());
                 lblMonstruosJugador[i].setText(carta.getNombre());
                 lblMonstruosJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
-               // lblMonstruosJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
-            } else { 
+                lblMonstruosJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
+            } else {
                 lblMonstruosJugador[i].setText("");
                 lblMonstruosJugador[i].setIcon(null); // Limpiar la imagen si no hay carta
                 lblMonstruosJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
@@ -84,7 +89,7 @@ public class TableroControlador implements Observer {
         for (int i = 0; i < lblMonstruosRival.length; i++) {
             if (i < monstruosRival.size() && monstruosRival.get(i) != null) {
                 Carta carta = monstruosRival.get(i);
-          visualizarImagen(lblMonstruosRival[i], carta.getImagen());
+                visualizarImagen(lblMonstruosRival[i], carta.getImagen());
                 lblMonstruosRival[i].setText(carta.getNombre());
                 lblMonstruosRival[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
                 lblMonstruosRival[i].setOpaque(true); // Para que el fondo transparente surta efecto
@@ -102,8 +107,8 @@ public class TableroControlador implements Observer {
         for (int i = 0; i < lblCartasMagicasJugador.length; i++) {
             if (i < cartasMagicasJugador.size() && cartasMagicasJugador.get(i) != null) {
                 CartaMagica carta = cartasMagicasJugador.get(i);
-                visualizarImagen(lblCartasMagicasJugador[i], carta.getImagen());
-                // anterior
+                lblCartasMagicasJugador[i].setIcon(new ImageIcon(carta.getImagen()));
+
                 lblCartasMagicasJugador[i].setText(carta.getNombre());
                 lblCartasMagicasJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
                 lblCartasMagicasJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
@@ -122,8 +127,7 @@ public class TableroControlador implements Observer {
             if (i < cartasMagicasRival.size() && cartasMagicasRival.get(i) != null) {
                 CartaMagica carta = cartasMagicasRival.get(i);
                 lblCartasMagicasRival[i].setText(carta.getNombre());
-                visualizarImagen(lblCartasMagicasRival[i], carta.getImagen());
-
+                lblCartasMagicasRival[i].setIcon(new ImageIcon(carta.getImagen()));
                 lblCartasMagicasRival[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
                 lblCartasMagicasRival[i].setOpaque(true); // Para que el fondo transparente surta efecto
             } else {
@@ -139,7 +143,7 @@ public class TableroControlador implements Observer {
         List<Carta> manoJugador = modelo.getJugador().getMano();
 
         for (int i = 0; i < lblCartasJugador.length; i++) {
-            if (i < manoJugador.size() && manoJugador.get(i) != null) {
+            if (i < manoJugador.size() && manoJugador.get(i) != null && manoJugador.get(i) instanceof CartaMounstro) {
                 lblCartasJugador[i].setText(manoJugador.get(i).getNombre());
                 lblCartasJugador[i].setHorizontalAlignment(JLabel.CENTER);
                 lblCartasJugador[i].setVerticalTextPosition(JLabel.BOTTOM);
@@ -147,29 +151,24 @@ public class TableroControlador implements Observer {
                 lblCartasJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
                 lblCartasJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
             } else {
-                lblCartasJugador[i].setText("");
-                lblCartasJugador[i].setIcon(null); // Limpiar la imagen si no hay carta
-                lblCartasJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
-                lblCartasJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
+                if (i < manoJugador.size() && manoJugador.get(i) != null && manoJugador.get(i) instanceof CartaMagica) {
+                    lblCartasJugador[i].setText(manoJugador.get(i).getNombre());
+                    lblCartasJugador[i].setHorizontalAlignment(JLabel.CENTER);
+                    lblCartasJugador[i].setVerticalTextPosition(JLabel.BOTTOM);
+                    lblCartasJugador[i].setIcon(new ImageIcon(manoJugador.get(i).getImagen()));
+                } else {
+                    lblCartasJugador[i].setText("");
+                    lblCartasJugador[i].setIcon(null); // Limpiar la imagen si no hay carta
+                    lblCartasJugador[i].setBackground(new Color(0, 0, 0, 0)); // Fondo transparente
+                    lblCartasJugador[i].setOpaque(true); // Para que el fondo transparente surta efecto
+                }
             }
         }
-
         // Actualizar la barra de vida de los jugadores
         vista.getBarraVidaJugador().setValue(modelo.getJugador().getPuntosVida());
         vista.getBarraVidaRival().setValue(modelo.getComputadora().getPuntosVida());
-    }
-
-    private void seleccionarCarta(JLabel lblMonstruo, List<CartaMounstro> cartas) {
-        // Restablecer el fondo de todas las cartas del jugador
-        for (JLabel lbl : vista.getLblMonstruosJugador()) {
-            lbl.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-        }
-        // Encontrar la carta correspondiente al JLabel
-        cartaSeleccionada = encontrarCartaMounstro(lblMonstruo, cartas);
-        
-        lblMonstruo.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 2));
-
-        if (cartaSeleccionada != null) {
+        if (modelo.getComputadora().getPuntosVida() <= 0) {
+            vista.monstrarMensajeGanador("FELICIDADES SHINJI", "C://Users//samue//Desktop//ganador.jpg");
         }
     }
 
@@ -200,14 +199,41 @@ public class TableroControlador implements Observer {
         return null;
     }
 
-    public void finalizarTurno() {
-
+    public void finalizarTurno(Tablero tablero) throws SQLException {
         cartaSeleccionada = null;
         modelo.reiniciarAtaqueMounstruos();
+
+        modelo.setTipo_elemento_tablero(tablero.getTipo_elemento_tablero());
+        modelo.setImagenUrlTablero(tablero.getImagenUrlTablero());
+        vista.agregarAccionTablero("Turno Finalizado");
+        vista.agregarAccionTablero("El Tablero Es tipo " + modelo.getTipo_elemento_tablero());
+
         if (turnoJugador) {
             turnoJugador = !turnoJugador;
             turnoRival = !turnoRival;
             vista.agregarAccionTablero("Turno del Rival");
+        } else {
+            turnoRival = !turnoRival;
+            turnoJugador = !turnoJugador;
+            vista.agregarAccionTablero("Turno del Jugador");
+            bot();
+        }
+
+        actualizarVista();
+
+    }
+
+    public void finalizarTurno() {
+        cartaSeleccionada = null;
+        modelo.reiniciarAtaqueMounstruos();
+
+        vista.agregarAccionTablero("El Tablero Es tipo " + modelo.getTipo_elemento_tablero());
+
+        if (turnoJugador) {
+            turnoJugador = !turnoJugador;
+            turnoRival = !turnoRival;
+            vista.agregarAccionTablero("Turno del Rival");
+
         } else {
             turnoRival = !turnoRival;
             turnoJugador = !turnoJugador;
@@ -242,11 +268,14 @@ public class TableroControlador implements Observer {
                 if (carta instanceof CartaMounstro) {
                     try {
                         modelo.colocarCarta((CartaMounstro) carta, modelo.getCampoComputadora());
+                        if (((CartaMounstro) carta).getElemento().equals(modelo.getTipo_elemento_tablero())) {
+                            vista.agregarAccionRival("Carta Buffeada por" + ((CartaMounstro) carta).getElemento());
+                        }
                         // cartasMounstruosEnCampoBot =
                         // modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo();
                         cartasEnMano.remove(carta);
                         i--; // Ajustar el índice después de la eliminación
-                       
+
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
@@ -379,19 +408,18 @@ public class TableroControlador implements Observer {
         }
     }
 
-
     private void visualizarImagen(JLabel jLabel, String link) {
-        jLabel.setIcon(null); //Para limpiar la anterior imagen
+        jLabel.setIcon(null); // Para limpiar la anterior imagen
         Image image = null;
         URL url = null;
-        
+
         try {
-        	
-            url = new URL(link); 
+
+            url = new URL(link);
         } catch (MalformedURLException e1) {
             e1.printStackTrace();
         }
-        
+
         try {
             image = ImageIO.read(url);
         } catch (IOException e1) {
@@ -404,8 +432,9 @@ public class TableroControlador implements Observer {
 
             // Poner la imagen redimensionada en el JLabel
 
-            jLabel.setIcon(new ImageIcon(imagenNueva));}
-	}
+            jLabel.setIcon(new ImageIcon(imagenNueva));
+        }
+    }
 
     @SuppressWarnings("unused")
     private void agregarManejadoresDeEventos() {
@@ -432,11 +461,14 @@ public class TableroControlador implements Observer {
                             }
                         }
                     } else {
-                        // Manejar selección de carta con clic izquierdo
-                        // seleccionarCarta(lblMonstruo,
-                        // modelo.getCampoJugador().getCampoMounstruos().getCartaMounstrosEnCampo());
-                        vista.agregarAccionJugador("Carta seleccionada: " + cartaSeleccionada.getNombre());
+                        cartaSeleccionada = encontrarCartaMounstro(lblMonstruo,
+                                modelo.getCampoJugador().getCampoMounstruos().getCartaMounstrosEnCampo());
+                        if (cartaSeleccionada != null) {
+                            vista.agregarAccionJugador("Carta seleccionada: " + cartaSeleccionada.getNombre());
+                        }
+
                     }
+                    actualizarVista();
                 }
 
                 @Override
@@ -495,6 +527,10 @@ public class TableroControlador implements Observer {
 
             @Override
             public void mouseClicked(MouseEvent e) {
+                if (cartaSeleccionada != null) {
+                    vista.agregarAccionTablero("pendejo");
+                }
+
                 if ((modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo().size() == 0)
                         && cartaSeleccionada != null) {
                     modelo.atacarJugador((CartaMounstro) cartaSeleccionada, modelo.getJugador(),
@@ -539,6 +575,11 @@ public class TableroControlador implements Observer {
                                 modelo.colocarCarta((CartaMounstro) cartaSeleccionada, modelo.getCampoJugador());
                                 modelo.getJugador().getMano().remove(cartaSeleccionada);
                                 vista.agregarAccionJugador("Carta colocada: " + cartaSeleccionada.getNombre());
+                                if (((CartaMounstro) cartaSeleccionada).getElemento()
+                                        .equals(modelo.getTipo_elemento_tablero())) {
+                                    vista.agregarAccionJugador(
+                                            "Carta Buffeada por elemento" + modelo.getTipo_elemento_tablero());
+                                }
 
                             } catch (Exception ex) {
                                 ex.printStackTrace();

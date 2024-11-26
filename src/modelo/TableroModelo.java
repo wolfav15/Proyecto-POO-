@@ -29,12 +29,12 @@ public class TableroModelo extends Observable {
         this.mounstruosQueAtacaron = new ArrayList<>();
     }
 
-    public TableroModelo(Integer id_tablero, String tipo_elemento_tablero, String imagenUrlTablero){
+    public TableroModelo(Integer id_tablero, String tipo_elemento_tablero, String imagenUrlTablero) {
         this.id_tablero = id_tablero;
         this.tipo_elemento_tablero = tipo_elemento_tablero;
         this.imagenUrlTablero = imagenUrlTablero;
     }
-    
+
     public ArrayList<Carta> bajarDeck() {
         ArrayList<Carta> deck = new ArrayList<>();
         CartaDAO dao = new CartaDAO();
@@ -77,17 +77,22 @@ public class TableroModelo extends Observable {
         setChanged();
     }
 
-    public void reiniciarAtaqueMounstruos() {
-        for (CartaMounstro carta : mounstruosQueAtacaron) {
-            carta.resetearAtaqueEnTurno();
-            mounstruosQueAtacaron.remove(carta);
-        }
-
-        notifyObservers();
-        setChanged();
-    }
+    
+      public void reiniciarAtaqueMounstruos() {
+      for (CartaMounstro carta : mounstruosQueAtacaron) {
+      carta.resetearAtaqueEnTurno();
+      mounstruosQueAtacaron.remove(carta);
+      }
+      
+      notifyObservers();
+      setChanged();
+      }
+     
 
     public void jugarCartaEnTablero(CartaMounstro carta_jugada) throws Exception {
+        if (carta_jugada.getElemento() == tipo_elemento_tablero) {
+            carta_jugada.setAtaque(carta_jugada.getAtaque() + 600);
+        }
         jugador.jugarCarta(carta_jugada, this, campoJugador);
         notifyObservers();
         setChanged();
@@ -141,7 +146,6 @@ public class TableroModelo extends Observable {
         } else {
             return false;
         }
-
     }
 
     public Campos getCampoJugador() {
@@ -158,6 +162,22 @@ public class TableroModelo extends Observable {
 
     public Jugador getComputadora() {
         return computadora;
+    }
+
+    public String getTipo_elemento_tablero() {
+        return tipo_elemento_tablero;
+    }
+
+    public void setTipo_elemento_tablero(String tipo_elemento_tablero) {
+        this.tipo_elemento_tablero = tipo_elemento_tablero;
+    }
+
+    public String getImagenUrlTablero() {
+        return imagenUrlTablero;
+    }
+
+    public void setImagenUrlTablero(String imagenUrlTablero) {
+        this.imagenUrlTablero = imagenUrlTablero;
     }
 
 }
