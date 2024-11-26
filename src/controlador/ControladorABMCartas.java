@@ -1,12 +1,16 @@
 package controlador;
 
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
+import modelo.Carta;
 import modelo.CartaDAO;
 import modelo.CartaMounstro;
 import vista.CartasABM;
@@ -30,7 +34,8 @@ public class ControladorABMCartas {
 		DefaultTableModel model = (DefaultTableModel) vista.getTable().getModel(); //El modelo es lo que le especifica las columnas y filas.
 		model.setRowCount(0);
 		try {
-			List<CartaMounstro> cartas = dao.obtenerCartas();
+			ArrayList<CartaMounstro> cartas = dao.obtenerCartasMonstruos();
+
 			for (CartaMounstro carta : cartas) {
 				Object[] fila = new Object[6];
 				fila[0] = carta.getId();
@@ -63,6 +68,13 @@ public class ControladorABMCartas {
 	}
 	
 	private void inicializarEventos() {
+		
+		vista.getTable().addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				inicializarTabla();
+			}
+		});
 		
 		vista.getBtnAgregar().addMouseListener(new MouseAdapter() {
 			 @Override

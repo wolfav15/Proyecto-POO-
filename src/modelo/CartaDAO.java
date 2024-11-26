@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CartaDAO {
     
@@ -52,16 +51,14 @@ public class CartaDAO {
             // Si hay al menos una fila en el resultado, la carta fue encontrada
             if(res.next()){
                 return new CartaMounstro(
-                		res.getInt("id_carta"),
+                	res.getInt("id_carta"),
                     res.getString("nombre"),
                     res.getString("descripcion"),
-                    res.getInt("nivel"),
-                    res.getString("id_tipo_carta"),
-                    res.getString("imagenUrl"),
                     res.getInt("ataque"),
                     res.getInt("defensa"),
-                    res.getString("tipo_elemento")
-                );
+                    res.getInt("nivel"),
+                    res.getString("imagenUrl"),
+                    res.getString("tipo_elemento"));
             } else {
                 System.out.println("No encontro carta con ese id");
             }
@@ -122,8 +119,8 @@ public class CartaDAO {
         }
     }
 
-    public List<CartaMounstro> obtenerCartas() throws SQLException{
-    	List<CartaMounstro> cartas = new ArrayList<>();
+    public ArrayList<CartaMounstro> obtenerCartasMonstruos() throws SQLException{
+    	ArrayList<CartaMounstro> cartas = new ArrayList<>();
     	String query = "SELECT * FROM Cartas where id_tipo_carta = 1";
     	PreparedStatement statement = conexion.prepareStatement(query);
         try(ResultSet res = statement.executeQuery()){   
@@ -132,20 +129,41 @@ public class CartaDAO {
                 	res.getInt("id_carta"),
                     res.getString("nombre"),
                     res.getString("descripcion"),
-                    res.getInt("nivel"),
-                    res.getString("id_tipo_carta"),
-                    res.getString("imagenUrl"),
                     res.getInt("ataque"),
                     res.getInt("defensa"),
+                    res.getInt("nivel"),
+                    res.getString("imagenUrl"),
                     res.getString("tipo_elemento"));
+
                     cartas.add(cartaHecha);
                 }
             } catch (SQLException e) {
-                System.out.println("Error al traer las cartas de la db");
+                System.out.println("Error al traer las cartas monstruo de la db");
                 throw e;
             }
             return cartas;
         }
+
+        public ArrayList<CartaMagica> obtenerCartasMagicas() throws SQLException{
+            ArrayList<CartaMagica> cartas = new ArrayList<>();
+            String query = "SELECT * FROM Cartas where id_tipo_carta = 2";
+            PreparedStatement statement = conexion.prepareStatement(query);
+            try(ResultSet res = statement.executeQuery()){   
+                while (res.next()) {
+                    CartaMagica cartaHecha = new CartaMagica(
+                        res.getInt("id_carta"),
+                        res.getString("nombre"),
+                        res.getString("descripcion"),
+                        res.getInt("cantidad_efecto"),
+                        res.getString("imagenUrl"));
+                        cartas.add(cartaHecha);
+                    }
+                } catch (SQLException e) {
+                    System.out.println("Error al traer las cartas magicas de la db");
+                    throw e;
+                }
+                return cartas;
+            }
 
         public void borrarCarta (Integer id) throws SQLException{
             try {
@@ -163,14 +181,34 @@ public class CartaDAO {
             }
         }
 
+        public ArrayList<Carta> obtenerCartas() throws SQLException {
+            ArrayList<Carta> deck = new ArrayList<Carta>();
+            ArrayList<CartaMounstro> cartas1 = obtenerCartasMonstruos();
+            ArrayList<CartaMagica> cartas2 = obtenerCartasMagicas();
+
+            for (CartaMounstro cartaMounstro : cartas1) {
+                deck.add(cartaMounstro);
+            }
+            for (CartaMagica cartaMagica : cartas2) {
+                deck.add(cartaMagica);
+            }
+
+            for (Carta carta : deck) {
+                System.out.println(carta.toString());
+            }
+
+            return deck;
+        }
+
         public static void main(String[] args) throws SQLException {
+
+
             CartaDAO dao = new CartaDAO();
-            // List<CartaMounstro> cartas = new ArrayList<>();
-            // cartas = dao.obtenerCartas();
-            System.out.println(dao.buscarCartaMonstruo(21).toString());
-            // for (CartaMounstro cartaMounstro : cartas) {
-            //     System.out.println(cartaMounstro.toString());
-            // }
-            
+
+            ArrayList<Carta> deck = dao.obtenerCartas();
+
+            for (Carta carta : deck) {
+                System.out.println(carta.toString());
+            }
         }
 }

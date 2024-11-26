@@ -20,7 +20,9 @@ public abstract class Carta {
 		this.activo = false;
 	}
 	
-
+	public Integer getId (){
+		return this.id;
+	}
 	public boolean getActivo (){
 		return this.activo;
 	}

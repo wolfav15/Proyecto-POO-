@@ -129,10 +129,6 @@ public class CartaMounstro extends Carta {
 		ataque_realizado = true;
 	}
 
-	public int getId() {
-		return id;
-	}
-
 	public int getNivel() {
 		return nivel;
 	}

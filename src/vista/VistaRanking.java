@@ -3,6 +3,7 @@ package vista;
 import java.awt.EventQueue;
 import java.util.List;
 import modelo.Jugador;
+import modelo.Usuario;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -53,17 +54,17 @@ public class VistaRanking extends JFrame {
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 	}
 	
-	public void mostrarRanking(List<Jugador> jugadores) {
+	public void mostrarRanking(List<Usuario> jugadores) {
 	    panel.removeAll(); // Limpia el panel
 	    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); 
 
 	    int limite = Math.min(10, jugadores.size()); // Hasta 10 jugadores
 	    for (int i = 0; i < limite; i++) {
-	        Jugador jugador = jugadores.get(i);
+	        Usuario jugador = jugadores.get(i);
 	        JLabel jugadorLabel = new JLabel(
 	            (i + 1) + ". Nombre: " + jugador.getNombre() +
-	            " | Victorias: " + jugador.getVictorias() +
-	            " | Derrotas: " + jugador.getDerrotas()
+	            " | Victorias: " + jugador.getContador_victorias() +
+	            " | Derrotas: " + jugador.getContador_derrotas()
 	        );
 	        panel.add(jugadorLabel);
 	    }

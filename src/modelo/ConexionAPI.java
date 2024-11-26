@@ -26,6 +26,7 @@ import org.json.JSONObject;
 @SuppressWarnings("deprecation")
 public class ConexionAPI {
 
+    private CartaDAO dao;
     protected static ConexionAPI instancia;
     protected static List<CartaMounstro> listaCartaMounstros = new ArrayList<>();
         
@@ -63,20 +64,16 @@ public class ConexionAPI {
     
                         JSONObject objeto = data.getJSONObject(contador); //Contiene la carta, de la cual solo nos interesan los siguientes atributos:
   
-                        CartaMounstro carta = new CartaMounstro(
+                        dao.crearCarta(
                             objeto.getString("name"),
                             objeto.getString("desc"),
-                            objeto.getInt("level"),
-                            objeto.getString("type"), //tipo "Normal Monster" o  "Hechizo"
-                            objeto.getJSONArray("card_images").getJSONObject(0).getString("image_url"),
                             objeto.getInt("atk"),
                             objeto.getInt("def"),
-                            objeto.getString("attribute")); //Atributo significa elemento
+                            objeto.getInt("level"),
+                            objeto.getString("attribute"), //Atributo significa elemento
+                            objeto.getJSONArray("card_images").getJSONObject(0).getString("image_url"));
 
-                        
-                        //Ahora procedo a guardarlo en el arreglo de Cartas.
-                        listaCartaMounstros.add(carta);
-                        
+                        //Cartas agregadas
                     }
                 }
             } catch (MalformedURLException e) {
@@ -107,19 +104,17 @@ public class ConexionAPI {
 
             for (CartaMounstro cartaMounstro : cartasObtenidas) {
 
-                CartaMounstro carta =  new CartaMounstro(
-                    cartaMounstro.getNombre(),
-                     cartaMounstro.getDescripcion(),
-                      cartaMounstro.getNivel(),
-                     //  cartaMounstro.getTipo(),
-                        cartaMounstro.getImagen(),
-                         cartaMounstro.getAtaque(),
-                         cartaMounstro.getDefensa(),
-                          cartaMounstro.getElemento());
+                    String nombre = cartaMounstro.getNombre();
+                     String descripcion = cartaMounstro.getDescripcion();
+                     Integer ataque = cartaMounstro.getAtaque();
+                     Integer defensa = cartaMounstro.getDefensa();
+                      Integer nivel = cartaMounstro.getNivel();
+                        String img = cartaMounstro.getImagen();
+                          String elem = cartaMounstro.getElemento();
 
                 CartaDAO dao = new CartaDAO();
 
-                dao.crearCarta(carta);
+                dao.crearCarta(nombre, descripcion, ataque, defensa, nivel, img, elem);
             }
         } catch (Exception e) {
             System.out.println(e);

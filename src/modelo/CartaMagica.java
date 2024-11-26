@@ -1,6 +1,6 @@
 package modelo;
 
-public abstract class CartaMagica extends Carta {
+public class CartaMagica extends Carta {
 
 	protected int cantidad_efecto; // se usara o para curar, o para inflijir daño, o buffar, depende del texto
 

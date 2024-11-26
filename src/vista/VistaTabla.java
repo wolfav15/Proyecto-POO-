@@ -248,7 +248,7 @@ public class VistaTabla extends JFrame {
 
 	public void mostrarEstadisticasMonstruo(CartaMounstro carta) {
 		areaEstadistica.setText("Nombre: " + carta.getNombre() + "\nAtaque: " + carta.getAtaque() + "\nDefensa: "
-				+ carta.getDefensa() + "\nNivel: " + carta.getNivel() + "\nAtributo: " + carta.getAtributo()
+				+ carta.getDefensa() + "\nNivel: " + carta.getNivel() + "\nAtributo: " + carta.getElemento()
 				+ "\nPosicion: " + carta.getPosicion());
 		areaEstadistica.setVisible(true);
 	}
@@ -280,7 +280,7 @@ public class VistaTabla extends JFrame {
 				"\nAtaque: " + ataqueMostrar +
 				"\nDefensa: " + defensaMostrar +
 				"\nNivel: " + carta.getNivel() +
-				"\nAtributo: " + carta.getAtributo() +
+				"\nElemento: " + carta.getElemento() +
 				"\nPosición: " + carta.getPosicion());
 		areaEstadistica.setVisible(true);
 	}
