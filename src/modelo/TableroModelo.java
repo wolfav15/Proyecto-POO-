@@ -8,6 +8,9 @@ import java.util.Observable;
 
 public class TableroModelo extends Observable {
 
+    private Integer id_tablero;
+    private String tipo_elemento_tablero, imagenUrlTablero;
+
     private Jugador jugador;
     private Jugador computadora;
 
@@ -24,6 +27,12 @@ public class TableroModelo extends Observable {
         this.mounstruosQueAtacaron = new ArrayList<>();
     }
 
+    public TableroModelo(Integer id_tablero, String tipo_elemento_tablero, String imagenUrlTablero){
+        this.id_tablero = id_tablero;
+        this.tipo_elemento_tablero = tipo_elemento_tablero;
+        this.imagenUrlTablero = imagenUrlTablero;
+    }
+    
     public ArrayList<Carta> bajarDeck() {
         // acá debería haber una bajada de tablas.
         Carta carta1 = new CartaMounstro(1, "Dragon", "Es un Dragon", 400, 100, 5, "Tira fuego", "urlImagen");
