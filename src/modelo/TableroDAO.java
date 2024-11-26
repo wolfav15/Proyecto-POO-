@@ -93,15 +93,15 @@ public class TableroDAO {
         }
     }
     
-    public ArrayList<TableroModelo> obtenerTableros() throws SQLException{
-            ArrayList<TableroModelo> tableros = new ArrayList<>();
+    public ArrayList<Tablero> obtenerTableros() throws SQLException{
+            ArrayList<Tablero> tableros = new ArrayList<>();
             String query = "SELECT * FROM Tableros";
             PreparedStatement statement = conexion.prepareStatement(query);
             try(ResultSet res = statement.executeQuery()){   
                 while (res.next()) {
-                TableroModelo tableroHecho = new TableroModelo(
+                	Tablero tableroHecho = new Tablero(
                     res.getInt("id_tablero"),
-                    res.getString("tipo_eslento_tablero"),
+                    res.getString("tipo_elemento_tablero"),
                     res.getString("imagenUrlTablero"));
                         tableros.add(tableroHecho);
                     }
