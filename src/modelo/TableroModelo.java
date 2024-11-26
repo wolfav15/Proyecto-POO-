@@ -22,7 +22,13 @@ public class TableroModelo extends Observable {
 
     private List<CartaMounstro> mounstruosQueAtacaron;
 
-    public TableroModelo() {
+    public TableroModelo(Integer id_tablero, String tipo_elemento_tablero, String imagenUrlTablero) {
+        this.id_tablero = id_tablero;
+        this.tipo_elemento_tablero = tipo_elemento_tablero;
+        this.imagenUrlTablero = imagenUrlTablero;
+    }
+
+    public void setAtributosTableroModelo() {
         jugador = new Jugador("Jugador1", this.bajarDeck());
         computadora = new Jugador("Computadora", this.bajarDeck());
         this.campoComputadora = new Campos();
@@ -30,11 +36,6 @@ public class TableroModelo extends Observable {
         this.mounstruosQueAtacaron = new ArrayList<>();
     }
 
-    public TableroModelo(Integer id_tablero, String tipo_elemento_tablero, String imagenUrlTablero) {
-        this.id_tablero = id_tablero;
-        this.tipo_elemento_tablero = tipo_elemento_tablero;
-        this.imagenUrlTablero = imagenUrlTablero;
-    }
 
     public ArrayList<Carta> bajarDeck() {
         ArrayList<Carta> deck = new ArrayList<>();
