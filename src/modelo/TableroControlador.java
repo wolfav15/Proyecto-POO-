@@ -14,6 +14,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -156,6 +157,20 @@ public class TableroControlador implements Observer {
         // Actualizar la barra de vida de los jugadores
         vista.getBarraVidaJugador().setValue(modelo.getJugador().getPuntosVida());
         vista.getBarraVidaRival().setValue(modelo.getComputadora().getPuntosVida());
+    }
+
+    private void seleccionarCarta(JLabel lblMonstruo, List<CartaMounstro> cartas) {
+        // Restablecer el fondo de todas las cartas del jugador
+        for (JLabel lbl : vista.getLblMonstruosJugador()) {
+            lbl.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+        }
+        // Encontrar la carta correspondiente al JLabel
+        cartaSeleccionada = encontrarCartaMounstro(lblMonstruo, cartas);
+        
+        lblMonstruo.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 2));
+
+        if (cartaSeleccionada != null) {
+        }
     }
 
     private CartaMounstro encontrarCartaMounstro(JLabel lblMonstruo, List<CartaMounstro> cartas) {

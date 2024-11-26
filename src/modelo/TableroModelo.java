@@ -2,12 +2,16 @@ package modelo;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
 @SuppressWarnings("deprecation")
 
 public class TableroModelo extends Observable {
+
+    private Integer id_tablero;
+    private String tipo_elemento_tablero, imagenUrlTablero;
 
     private Jugador jugador;
     private Jugador computadora;
@@ -25,11 +29,18 @@ public class TableroModelo extends Observable {
         this.mounstruosQueAtacaron = new ArrayList<>();
     }
 
+    public TableroModelo(Integer id_tablero, String tipo_elemento_tablero, String imagenUrlTablero){
+        this.id_tablero = id_tablero;
+        this.tipo_elemento_tablero = tipo_elemento_tablero;
+        this.imagenUrlTablero = imagenUrlTablero;
+    }
+    
     public ArrayList<Carta> bajarDeck() {
         ArrayList<Carta> deck = new ArrayList<>();
         CartaDAO dao = new CartaDAO();
         try {
             deck = dao.obtenerCartas();
+            Collections.shuffle(deck);
         } catch (SQLException e) {
             e.printStackTrace();
         }

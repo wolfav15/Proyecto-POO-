@@ -19,13 +19,13 @@ public class Jugador {
     public void robarCarta() {
 
         // maximo de 6 cartas en la mano
-        if (this.mano.size() <= 5) {
+        if (this.mano.size() <= 4) {
             this.mano.add(this.deck.remove(0));
         } else {
             // este mensaje debería mostrarse en pantalla
 
             // maximo de 5 cartas en la mano
-            if (this.mano.size() <= 5) {
+            if (this.mano.size() <= 4) {
                 this.mano.add(this.deck.remove(0));
             } else {
                 // este mensaje debería mostrarse en pantalla
