@@ -9,7 +9,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -23,18 +22,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import vista.FondoPanel;
 import vista.VistaTabla;
 import controlador.*;
 
 @SuppressWarnings("deprecation")
 
 public class TableroControlador implements Observer {
-
-
-
-    private Boolean cartaRobadaJugador = false;
-    private int Count= 0;
-    private Boolean primerTurnoJugador = true;
 
     private TableroModelo modelo;
     private VistaTabla vista;
@@ -46,7 +40,6 @@ public class TableroControlador implements Observer {
     private ArrayList<Tablero> tableroModelos;
     private boolean turnoRival = true;
     private boolean turnoJugador = false;
-    private Random random;
 
     public TableroControlador(TableroModelo modelo, VistaTabla vista) {
         this.modelo = modelo;
@@ -54,6 +47,7 @@ public class TableroControlador implements Observer {
         this.modelo.addObserver(this);
         inicializarVista();
         agregarManejadoresDeEventos();
+        vista.agregarAccionTablero("El Tablero Es tipo " + modelo.getTipo_elemento_tablero());
     }
 
     private void inicializarVista() {
@@ -205,14 +199,13 @@ public class TableroControlador implements Observer {
         return null;
     }
 
-    public void finalizarTurno(Tablero tablero) throws SQLException {
+
+    public void finalizarTurno( ) throws SQLException {
         cartaSeleccionada = null;
         modelo.reiniciarAtaqueMounstruos();
 
-        modelo.setTipo_elemento_tablero(tablero.getTipo_elemento_tablero());
-        modelo.setImagenUrlTablero(tablero.getImagenUrlTablero());
         vista.agregarAccionTablero("Turno Finalizado");
-        vista.agregarAccionTablero("El Tablero Es tipo " + modelo.getTipo_elemento_tablero());
+       
 
         if (turnoJugador) {
             turnoJugador = !turnoJugador;
@@ -225,14 +218,16 @@ public class TableroControlador implements Observer {
             bot();
         }
 
+
+
         actualizarVista();
 
     }
-
+/* 
     public void finalizarTurno() {
         cartaSeleccionada = null;
         modelo.reiniciarAtaqueMounstruos();
-
+        cartaRobadaJugador = !cartaRobadaJugador;
         vista.agregarAccionTablero("El Tablero Es tipo " + modelo.getTipo_elemento_tablero());
 
         if (turnoJugador) {
@@ -249,7 +244,7 @@ public class TableroControlador implements Observer {
 
         actualizarVista();
 
-    }
+    } */
 
     private void bot() {
         Jugador rival = modelo.getComputadora();
@@ -376,7 +371,11 @@ public class TableroControlador implements Observer {
             }
         } // Atacar directamente al jugador si no hay cartas del rival en el campo
 
-        finalizarTurno();
+        try {
+            finalizarTurno();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         actualizarVista();
         // Actualizar la vista después de las acciones del bot// Pasar el turno al
         // jugador
@@ -496,6 +495,7 @@ public class TableroControlador implements Observer {
         JLabel[] lblMonstruosRival = vista.getLblMonstruosRival();
         for (JLabel lblMonstruo : lblMonstruosRival) {
             lblMonstruo.addMouseListener(new MouseAdapter() {
+
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (cartaSeleccionada != null) {
@@ -679,41 +679,21 @@ public class TableroControlador implements Observer {
 
             });
         }
-//
+        //
         vista.getLblBarajaJugador().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (primerTurnoJugador)  {
-                    if(Count <=4){
-                    Count +=1;
-                        modelo.getJugador().robarCarta();
-                        vista.agregarAccionJugador("Carta robada: "
-                               + modelo.getJugador().getMano().get(modelo.getJugador().getMano().size() - 1).getNombre());
-                               actualizarVista();
-                            }
-                               else {
-                                vista.agregarAccionJugador("Solo se puede robar 5 cartas en el primer turno.");
-                            }
-                } 
+                modelo.getJugador().robarCarta();
+                vista.agregarAccionJugador("Carta robada: "
+                        + modelo.getJugador().getMano().get(modelo.getJugador().getMano().size() - 1).getNombre());
+                actualizarVista();
+            }
 
-                
-               else{
-                     if (!cartaRobadaJugador){
-                     modelo.getJugador().robarCarta();
-                      vista.agregarAccionJugador("Carta robada: "
-                               + modelo.getJugador().getMano().get(modelo.getJugador().getMano().size() - 1).getNombre());
-                     cartaRobadaJugador = true;
-                      actualizarVista();
-                 }
-                 else {
-                      vista.agregarAccionJugador("Solo puede robar una carta por turno");
-                  }
-              }
-        }
-        
         });
 
-        vista.getBtnFinalizarTurno().addActionListener(e -> {
+        vista.getBtnFinalizarTurno().addActionListener(e ->
+
+        {
             try {
                 finalizarTurno();
             } catch (Exception e1) {

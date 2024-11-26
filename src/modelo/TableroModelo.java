@@ -15,7 +15,7 @@ public class TableroModelo extends Observable {
 
     private Campos campoJugador;
     private Campos campoComputadora;
-    
+
     private Integer id_tablero;
     private String tipo_elemento_tablero;
     private String imagenUrlTablero;
@@ -78,17 +78,15 @@ public class TableroModelo extends Observable {
         setChanged();
     }
 
-    
-      public void reiniciarAtaqueMounstruos() {
-      for (CartaMounstro carta : mounstruosQueAtacaron) {
-      carta.resetearAtaqueEnTurno();
-      mounstruosQueAtacaron.remove(carta);
-      }
-      
-      notifyObservers();
-      setChanged();
-      }
-     
+    public void reiniciarAtaqueMounstruos() {
+        for (CartaMounstro carta : mounstruosQueAtacaron) {
+            carta.resetearAtaqueEnTurno();
+            mounstruosQueAtacaron.remove(carta);
+        }
+
+        notifyObservers();
+        setChanged();
+    }
 
     public void jugarCartaEnTablero(CartaMounstro carta_jugada) throws Exception {
         if (carta_jugada.getElemento() == tipo_elemento_tablero) {

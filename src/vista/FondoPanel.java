@@ -7,6 +7,7 @@ public class FondoPanel extends JPanel {
 
     public FondoPanel(String rutaImagen) {
         this.imagenFondo = new ImageIcon(rutaImagen).getImage();
+        this.setLayout(new GridBagLayout());
     }
 
     @Override
