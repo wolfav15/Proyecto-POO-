@@ -3,8 +3,11 @@ package modelo;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Observable;
+import java.util.Random;
 
 @SuppressWarnings("deprecation")
 
@@ -19,6 +22,12 @@ public class TableroModelo extends Observable {
     private Integer id_tablero;
     private String tipo_elemento_tablero;
     private String imagenUrlTablero;
+    private TableroDAO dao;
+
+
+    private Random random = new Random();
+
+    private Map<String, String> imagenes;
 
     private List<CartaMounstro> mounstruosQueAtacaron;
 
@@ -28,13 +37,45 @@ public class TableroModelo extends Observable {
         this.imagenUrlTablero = imagenUrlTablero;
     }
 
+    public TableroModelo( ) {
+        this.dao = new TableroDAO();
+        imagenes = new HashMap<>(); 
+        imagenes.put("WATER", "src//modelo//Tablero_Water.png");
+         imagenes.put("WIND", "src//modelo//Tablero_Wind.jpg");
+         imagenes.put("FIRE", "src//modelo//Tablero_Fire.png");
+         imagenes.put("EARTH", "src//modelo//Tablero_Tierra.jpg");
+         imagenes.put("LIGHT", "src//modelo//Tablero_Light.png");
+         imagenes.put("DARK", "src//modelo//Tablero_Dark.jpg");
+         imagenes.put("Default", "src//modelo//tontos todos.jpg");
+         setAtributosTableroModelo();
+    }
+
     public void setAtributosTableroModelo() {
         jugador = new Jugador("Jugador1", this.bajarDeck());
         computadora = new Jugador("Computadora", this.bajarDeck());
         this.campoComputadora = new Campos();
         this.campoJugador = new Campos();
         this.mounstruosQueAtacaron = new ArrayList<>();
+
+        try {
+            // Obtener la lista de tableros una sola vez
+            List<Tablero> tableros = dao.obtenerTableros();
+            if (!tableros.isEmpty()) {
+                int randomIndex = new Random().nextInt(tableros.size());
+                // Seleccionar un tablero aleatoriamente y obtener su tipo de elemento
+                this.tipo_elemento_tablero = tableros.get(randomIndex).getTipo_elemento_tablero();
+                this.imagenUrlTablero = imagenes.getOrDefault(this.tipo_elemento_tablero, imagenes.get("Default"));
+                System.out.println("Tablero seleccionado: " + this.tipo_elemento_tablero);
+            } else {
+                System.out.println("No hay tableros disponibles en la base de datos.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
+
+
 
 
     public ArrayList<Carta> bajarDeck() {
