@@ -20,6 +20,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Toolkit;
 
 public class EditarCarta extends JFrame {
 
@@ -44,32 +46,14 @@ public class EditarCarta extends JFrame {
 	private JLabel lblNewLabel_6;
 	private JTextField textId;
 	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AgregarCarta frame = new AgregarCarta();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public EditarCarta() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(EditarCarta.class.getResource("/vista/imagenes/calavera.png")));
 		setTitle("Ver/Editar carta");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 640, 490);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLocationRelativeTo(null);
 
 		setContentPane(contentPane);
 		SpringLayout sl_contentPane = new SpringLayout();
@@ -89,6 +73,7 @@ public class EditarCarta extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.EAST, panel_1, -15, SpringLayout.EAST, contentPane);
 		
 		lblImagen = new JLabel("");
+		lblImagen.setBackground(new Color(255, 255, 255));
 		lblImagen.setIcon(null);
 		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
 		lblImagen.setBounds(0, 0, 240, 360);
@@ -101,6 +86,8 @@ public class EditarCarta extends JFrame {
 		panel_1.setLayout(sl_panel_1);
 		
 		JLabel lblNewLabel = new JLabel("Nombre");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel, 10, SpringLayout.NORTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel, 10, SpringLayout.WEST, panel_1);
 		panel_1.add(lblNewLabel);
@@ -113,11 +100,15 @@ public class EditarCarta extends JFrame {
 		textNombre.setColumns(10);
 		
 		JLabel lblDescripcion = new JLabel("Descripcion");
+		lblDescripcion.setForeground(new Color(255, 255, 255));
+		lblDescripcion.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblDescripcion, 28, SpringLayout.SOUTH, lblNewLabel);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblDescripcion, 0, SpringLayout.WEST, lblNewLabel);
 		panel_1.add(lblDescripcion);
 		
 		JLabel lblAtaque = new JLabel("ATK");
+		lblAtaque.setForeground(new Color(255, 255, 255));
+		lblAtaque.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblAtaque, 76, SpringLayout.SOUTH, lblDescripcion);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblAtaque, 0, SpringLayout.WEST, lblNewLabel);
 		panel_1.add(lblAtaque);
@@ -129,6 +120,8 @@ public class EditarCarta extends JFrame {
 		panel_1.add(textDefensa);
 		
 		JLabel lblDefensa = new JLabel("DEF");
+		lblDefensa.setForeground(new Color(255, 255, 255));
+		lblDefensa.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		sl_panel_1.putConstraint(SpringLayout.WEST, textDefensa, 6, SpringLayout.EAST, lblDefensa);
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblDefensa, 0, SpringLayout.NORTH, lblAtaque);
 		panel_1.add(lblDefensa);
@@ -142,6 +135,8 @@ public class EditarCarta extends JFrame {
 		panel_1.add(textAtaque);
 		
 		JLabel lblUrlImagen = new JLabel("URL imagen");
+		lblUrlImagen.setForeground(new Color(255, 255, 255));
+		lblUrlImagen.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblUrlImagen, 188, SpringLayout.NORTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, textAtaque, -29, SpringLayout.NORTH, lblUrlImagen);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblUrlImagen, 0, SpringLayout.WEST, lblNewLabel);
@@ -155,6 +150,8 @@ public class EditarCarta extends JFrame {
 		panel_1.add(textUrl);
 		
 		btnEditar = new JButton("Editar");
+		btnEditar.setForeground(new Color(255, 255, 255));
+		btnEditar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 
 		sl_panel_1.putConstraint(SpringLayout.WEST, btnEditar, -104, SpringLayout.EAST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, btnEditar, 0, SpringLayout.SOUTH, panel_1);
@@ -169,26 +166,36 @@ public class EditarCarta extends JFrame {
 		textUsuario.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Usuario");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 315, SpringLayout.NORTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.NORTH, textUsuario, -3, SpringLayout.NORTH, lblNewLabel_1);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_1, 0, SpringLayout.WEST, lblNewLabel);
 		panel_1.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Contraseña");
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 17, SpringLayout.SOUTH, lblNewLabel_1);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_2, 0, SpringLayout.WEST, lblNewLabel);
 		panel_1.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Solo administradores pueden editar.");
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
+		lblNewLabel_3.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, lblNewLabel_3, -112, SpringLayout.SOUTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_3, 0, SpringLayout.WEST, lblNewLabel);
 		panel_1.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("ELM");
+		lblNewLabel_4.setForeground(new Color(255, 255, 255));
+		lblNewLabel_4.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_4, 0, SpringLayout.NORTH, lblAtaque);
 		panel_1.add(lblNewLabel_4);
 		
 		boxElemento = new JComboBox();
+		boxElemento.setForeground(new Color(255, 255, 255));
+		boxElemento.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		sl_panel_1.putConstraint(SpringLayout.WEST, boxElemento, 236, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, boxElemento, -10, SpringLayout.EAST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, lblNewLabel_4, -6, SpringLayout.WEST, boxElemento);
@@ -197,6 +204,8 @@ public class EditarCarta extends JFrame {
 		panel_1.add(boxElemento);
 		
 		btnPrevisualizar = new JButton("Previsualizar");
+		btnPrevisualizar.setForeground(new Color(255, 255, 255));
+		btnPrevisualizar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 
 		sl_panel_1.putConstraint(SpringLayout.NORTH, btnPrevisualizar, 11, SpringLayout.SOUTH, textUrl);
 		sl_panel_1.putConstraint(SpringLayout.WEST, btnPrevisualizar, -128, SpringLayout.EAST, panel_1);
@@ -220,11 +229,15 @@ public class EditarCarta extends JFrame {
 		panel_1.add(textArea);
 		
 		lblNewLabel_5 = new JLabel("LVL");
+		lblNewLabel_5.setForeground(new Color(255, 255, 255));
+		lblNewLabel_5.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_5, 0, SpringLayout.NORTH, lblAtaque);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_5, 6, SpringLayout.EAST, textDefensa);
 		panel_1.add(lblNewLabel_5);
 		
 		boxNivel = new JComboBox();
+		boxNivel.setForeground(new Color(255, 255, 255));
+		boxNivel.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		boxNivel.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6"}));
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, textArea, -25, SpringLayout.NORTH, boxNivel);
 		sl_panel_1.putConstraint(SpringLayout.NORTH, boxNivel, -4, SpringLayout.NORTH, lblAtaque);
@@ -233,6 +246,8 @@ public class EditarCarta extends JFrame {
 		panel_1.add(boxNivel);
 		
 		lblNewLabel_6 = new JLabel("Carta ID");
+		lblNewLabel_6.setForeground(new Color(255, 255, 255));
+		lblNewLabel_6.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblNewLabel_6, 0, SpringLayout.NORTH, panel_1);
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblNewLabel_6, 0, SpringLayout.WEST, ImagenPanel);
 		contentPane.add(lblNewLabel_6);
@@ -245,6 +260,8 @@ public class EditarCarta extends JFrame {
 		textId.setColumns(10);
 		
 		btnBuscar = new JButton("Buscar");
+		btnBuscar.setForeground(new Color(255, 255, 255));
+		btnBuscar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		sl_contentPane.putConstraint(SpringLayout.NORTH, btnBuscar, 0, SpringLayout.NORTH, textId);
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnBuscar, 6, SpringLayout.EAST, textId);
 		contentPane.add(btnBuscar);

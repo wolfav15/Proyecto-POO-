@@ -110,7 +110,7 @@ public class ControladorEditarTablero {
 
         if (image != null) {
             // Redimensionar la imagen a 200x300
-            Image imagenNueva = image.getScaledInstance(400, 200, Image.SCALE_SMOOTH);
+            Image imagenNueva = image.getScaledInstance(400, 300, Image.SCALE_SMOOTH);
 
             // Poner la imagen redimensionada en el JLabel
             vista.getImagenLbl().setIcon(new ImageIcon(imagenNueva));

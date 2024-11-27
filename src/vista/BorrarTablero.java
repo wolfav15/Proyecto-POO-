@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Color;
 
 public class BorrarTablero extends JFrame {
 
@@ -27,41 +29,47 @@ public class BorrarTablero extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLocationRelativeTo(null);
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nombre");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(10, 67, 46, 14);
+		lblNewLabel.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 18));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel.setBounds(33, 67, 103, 14);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblPass = new JLabel("Pass");
-		lblPass.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPass.setBounds(10, 107, 46, 14);
+		JLabel lblPass = new JLabel("Contraseña");
+		lblPass.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 18));
+		lblPass.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPass.setBounds(33, 107, 103, 14);
 		contentPane.add(lblPass);
 		
 		textField = new JTextField();
-		textField.setBounds(88, 64, 131, 20);
+		textField.setBounds(171, 66, 131, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(88, 104, 131, 20);
+		passwordField.setBounds(171, 106, 131, 20);
 		contentPane.add(passwordField);
 		
 		btnBorrar = new JButton("Borrar");
+		btnBorrar.setForeground(new Color(255, 255, 255));
+		btnBorrar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 20));
 
-		btnBorrar.setBounds(130, 135, 89, 23);
+		btnBorrar.setBounds(171, 148, 103, 39);
 		contentPane.add(btnBorrar);
 		
 		lblNewLabel_1 = new JLabel("ID Tablero");
-		lblNewLabel_1.setBounds(10, 28, 59, 14);
+		lblNewLabel_1.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 18));
+		lblNewLabel_1.setBounds(33, 28, 103, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		textId = new JTextField();
 		textId.setColumns(10);
-		textId.setBounds(88, 25, 53, 20);
+		textId.setBounds(171, 27, 53, 20);
 		contentPane.add(textId);
 	}
 

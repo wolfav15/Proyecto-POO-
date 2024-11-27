@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.Font;
 
 public class AgregarJugador extends JFrame {
 
@@ -28,44 +30,57 @@ public class AgregarJugador extends JFrame {
 	 * Create the frame.
 	 */
 	public AgregarJugador() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AgregarJugador.class.getResource("/vista/imagenes/calavera.png")));
+		setTitle("Agregar jugador");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLocationRelativeTo(null);
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		 btnCrear = new JButton("Crear");
+		 btnCrear.setForeground(new Color(255, 255, 255));
+		 btnCrear.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 16));
 
-		btnCrear.setBounds(10, 227, 89, 23);
-		btnCrear.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnCrear.setBounds(234, 197, 107, 35);
 		contentPane.add(btnCrear);
 		
 		JLabel lblNewLabel = new JLabel("Nombre");
-		lblNewLabel.setBounds(10, 26, 46, 14);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 16));
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setBounds(70, 44, 99, 14);
 		contentPane.add(lblNewLabel);
 		
 		nombre = new JTextField();
-		nombre.setBounds(143, 23, 99, 20);
+		nombre.setBounds(218, 42, 123, 20);
 		contentPane.add(nombre);
 		nombre.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Contraseña");
-		lblNewLabel_1.setBounds(10, 67, 66, 14);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_1.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 16));
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setBounds(70, 87, 89, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		pass = new JPasswordField();
-		pass.setBounds(143, 64, 99, 20);
+		pass.setBounds(218, 85, 123, 20);
 		contentPane.add(pass);
 		
 		JLabel lblNewLabel_2 = new JLabel("Repetir contraseña");
-		lblNewLabel_2.setBounds(10, 115, 106, 14);
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_2.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 16));
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setBounds(70, 131, 123, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		passConfimar = new JPasswordField();
-		passConfimar.setBounds(143, 112, 99, 20);
+		passConfimar.setBounds(218, 129, 123, 20);
 		contentPane.add(passConfimar);
 		
 		lblMensaje = new JLabel("");

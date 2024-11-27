@@ -25,6 +25,7 @@ public class MenuOpciones extends JFrame {
 		setTitle("Opciones");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 400);
+		setLocationRelativeTo(null);
 		
 		JPanel contentPane = new JPanel() {
 			private static final long serialVersionUID = 1L;

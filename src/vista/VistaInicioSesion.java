@@ -17,6 +17,9 @@ import java.awt.Insets;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
+import javax.swing.SpringLayout;
+import java.awt.Font;
+import java.awt.Color;
 
 public class VistaInicioSesion extends JFrame {
 
@@ -26,104 +29,73 @@ public class VistaInicioSesion extends JFrame {
 	private JPasswordField campoContrasenia;
 	private JButton Confirma, botonCrearCuenta;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaInicioSesion frame = new VistaInicioSesion();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VistaInicioSesion() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Inicio de sesion");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLocationRelativeTo(null);
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel ContenedorCampos = new JPanel();
 		contentPane.add(ContenedorCampos, BorderLayout.CENTER);
-		GridBagLayout gbl_ContenedorCampos = new GridBagLayout();
-		gbl_ContenedorCampos.columnWidths = new int[]{118, 46, 0, 0, 86, 46, 0};
-		gbl_ContenedorCampos.rowHeights = new int[]{20, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_ContenedorCampos.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_ContenedorCampos.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		ContenedorCampos.setLayout(gbl_ContenedorCampos);
+		SpringLayout sl_ContenedorCampos = new SpringLayout();
+		ContenedorCampos.setLayout(sl_ContenedorCampos);
 		
 		JLabel lblNewLabel_1 = new JLabel("USUARIO");
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1.gridx = 1;
-		gbc_lblNewLabel_1.gridy = 1;
-		ContenedorCampos.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		sl_ContenedorCampos.putConstraint(SpringLayout.WEST, lblNewLabel_1, 78, SpringLayout.WEST, ContenedorCampos);
+		lblNewLabel_1.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 16));
+		ContenedorCampos.add(lblNewLabel_1);
 		
 		campoUsuario = new JTextField();
-		GridBagConstraints gbc_campoUsuario = new GridBagConstraints();
-		gbc_campoUsuario.fill = GridBagConstraints.HORIZONTAL;
-		gbc_campoUsuario.gridwidth = 2;
-		gbc_campoUsuario.anchor = GridBagConstraints.NORTH;
-		gbc_campoUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_campoUsuario.gridx = 2;
-		gbc_campoUsuario.gridy = 1;
-		ContenedorCampos.add(campoUsuario, gbc_campoUsuario);
+		sl_ContenedorCampos.putConstraint(SpringLayout.NORTH, campoUsuario, 30, SpringLayout.NORTH, ContenedorCampos);
+		sl_ContenedorCampos.putConstraint(SpringLayout.WEST, campoUsuario, 216, SpringLayout.WEST, ContenedorCampos);
+		sl_ContenedorCampos.putConstraint(SpringLayout.EAST, campoUsuario, -65, SpringLayout.EAST, ContenedorCampos);
+		sl_ContenedorCampos.putConstraint(SpringLayout.NORTH, lblNewLabel_1, -2, SpringLayout.NORTH, campoUsuario);
+		ContenedorCampos.add(campoUsuario);
 		campoUsuario.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("CONTRASEÑA");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 1;
-		gbc_lblNewLabel.gridy = 2;
-		ContenedorCampos.add(lblNewLabel, gbc_lblNewLabel);
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		sl_ContenedorCampos.putConstraint(SpringLayout.NORTH, lblNewLabel, 12, SpringLayout.SOUTH, lblNewLabel_1);
+		sl_ContenedorCampos.putConstraint(SpringLayout.WEST, lblNewLabel, 78, SpringLayout.WEST, ContenedorCampos);
+		sl_ContenedorCampos.putConstraint(SpringLayout.EAST, lblNewLabel, -214, SpringLayout.EAST, ContenedorCampos);
+		lblNewLabel.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 16));
+		ContenedorCampos.add(lblNewLabel);
 		
 		campoContrasenia = new JPasswordField();
-		GridBagConstraints gbc_campoContrasenia = new GridBagConstraints();
-		gbc_campoContrasenia.gridwidth = 2;
-		gbc_campoContrasenia.insets = new Insets(0, 0, 5, 5);
-		gbc_campoContrasenia.fill = GridBagConstraints.HORIZONTAL;
-		gbc_campoContrasenia.gridx = 2;
-		gbc_campoContrasenia.gridy = 2;
-		ContenedorCampos.add(campoContrasenia, gbc_campoContrasenia);
+		sl_ContenedorCampos.putConstraint(SpringLayout.NORTH, campoContrasenia, 4, SpringLayout.NORTH, lblNewLabel);
+		sl_ContenedorCampos.putConstraint(SpringLayout.WEST, campoContrasenia, 216, SpringLayout.WEST, ContenedorCampos);
+		sl_ContenedorCampos.putConstraint(SpringLayout.EAST, campoContrasenia, 0, SpringLayout.EAST, campoUsuario);
+		ContenedorCampos.add(campoContrasenia);
 		
 		Confirma = new JButton("Confirmar");
-		GridBagConstraints gbc_Confirma = new GridBagConstraints();
-		gbc_Confirma.anchor = GridBagConstraints.WEST;
-		gbc_Confirma.insets = new Insets(0, 0, 5, 5);
-		gbc_Confirma.gridx = 2;
-		gbc_Confirma.gridy = 4;
-		ContenedorCampos.add(Confirma, gbc_Confirma);
+		Confirma.setForeground(new Color(255, 255, 255));
+		Confirma.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 13));
+		sl_ContenedorCampos.putConstraint(SpringLayout.NORTH, Confirma, 19, SpringLayout.SOUTH, campoContrasenia);
+		sl_ContenedorCampos.putConstraint(SpringLayout.WEST, Confirma, 0, SpringLayout.WEST, campoUsuario);
+		sl_ContenedorCampos.putConstraint(SpringLayout.EAST, Confirma, -115, SpringLayout.EAST, ContenedorCampos);
+		ContenedorCampos.add(Confirma);
 		
 		JLabel lblNewLabel_3 = new JLabel("¿No tienes usuario?");
-		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-		gbc_lblNewLabel_3.insets = new Insets(0, 0, 0, 5);
-		gbc_lblNewLabel_3.gridx = 1;
-		gbc_lblNewLabel_3.gridy = 7;
-		ContenedorCampos.add(lblNewLabel_3, gbc_lblNewLabel_3);
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
+		sl_ContenedorCampos.putConstraint(SpringLayout.NORTH, lblNewLabel_3, 202, SpringLayout.NORTH, ContenedorCampos);
+		sl_ContenedorCampos.putConstraint(SpringLayout.SOUTH, lblNewLabel, -113, SpringLayout.NORTH, lblNewLabel_3);
+		lblNewLabel_3.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 14));
+		ContenedorCampos.add(lblNewLabel_3);
 		
 		botonCrearCuenta = new JButton("Crea una cuenta");
-		GridBagConstraints gbc_BotonCrearCuenta = new GridBagConstraints();
-		gbc_BotonCrearCuenta.insets = new Insets(0, 0, 0, 5);
-		gbc_BotonCrearCuenta.gridx = 2;
-		gbc_BotonCrearCuenta.gridy = 7;
-		ContenedorCampos.add(botonCrearCuenta, gbc_BotonCrearCuenta);
-		
-		JLabel lblNewLabel_2 = new JLabel("INICIO SESION");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lblNewLabel_2, BorderLayout.NORTH);
+		botonCrearCuenta.setForeground(new Color(255, 255, 255));
+		botonCrearCuenta.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 12));
+		sl_ContenedorCampos.putConstraint(SpringLayout.SOUTH, Confirma, -69, SpringLayout.NORTH, botonCrearCuenta);
+		sl_ContenedorCampos.putConstraint(SpringLayout.EAST, lblNewLabel_3, -22, SpringLayout.WEST, botonCrearCuenta);
+		sl_ContenedorCampos.putConstraint(SpringLayout.NORTH, botonCrearCuenta, -1, SpringLayout.NORTH, lblNewLabel_3);
+		sl_ContenedorCampos.putConstraint(SpringLayout.WEST, botonCrearCuenta, 0, SpringLayout.WEST, campoUsuario);
+		ContenedorCampos.add(botonCrearCuenta);
 	}
 	
 	public JButton getBotonLogin() {

@@ -10,6 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.Toolkit;
 
 public class BorrarJugador extends JFrame {
 
@@ -18,56 +21,47 @@ public class BorrarJugador extends JFrame {
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private JButton btnBorrar;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BorrarJugador frame = new BorrarJugador();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public BorrarJugador() {
+		setTitle("Borrar jugador");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(BorrarJugador.class.getResource("/vista/imagenes/calavera.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLocationRelativeTo(null);
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nombre");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(10, 30, 46, 14);
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 18));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel.setBounds(66, 57, 94, 14);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblPass = new JLabel("Pass");
-		lblPass.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPass.setBounds(10, 70, 46, 14);
+		JLabel lblPass = new JLabel("Contraseña");
+		lblPass.setForeground(new Color(255, 255, 255));
+		lblPass.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 18));
+		lblPass.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPass.setBounds(67, 100, 106, 14);
 		contentPane.add(lblPass);
 		
 		textField = new JTextField();
-		textField.setBounds(88, 27, 131, 20);
+		textField.setBounds(211, 56, 131, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(88, 67, 131, 20);
+		passwordField.setBounds(211, 99, 131, 20);
 		contentPane.add(passwordField);
 		
 		btnBorrar = new JButton("Borrar");
+		btnBorrar.setForeground(new Color(255, 255, 255));
+		btnBorrar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 17));
 
-		btnBorrar.setBounds(88, 115, 89, 23);
+		btnBorrar.setBounds(242, 159, 100, 32);
 		contentPane.add(btnBorrar);
 	}
 
