@@ -74,6 +74,7 @@ public class Jugador {
         int danio = cartaAtacante.atacar(CartaAtacada);
         if (danio < 0) {
             oponente.recibirDaño(-danio);
+            
         } else if (danio > 0) {
             this.recibirDaño(danio);
         }
