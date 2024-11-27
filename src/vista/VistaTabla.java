@@ -287,7 +287,7 @@ public class VistaTabla extends JFrame {
 	}
 
 	public void mostrarEstadisticasMonstruo(CartaMounstro carta) {
-		areaEstadistica.setText("Nombre: " + carta.getNombre() + "\nAtaque: " + carta.getAtaque() + "\nDefensa: "
+		areaEstadistica.setText("Nombre: " + carta.getNombre() + "\nBuffTabla: " + carta.getBuffTabla() + "\nAtaque: " + carta.getAtaque() + "\nDefensa: "
 				+ carta.getDefensa() + "\nNivel: " + carta.getNivel() + "\nAtributo: " + carta.getElemento()
 				+ "\nPosicion: " + carta.getPosicion());
 		areaEstadistica.setVisible(true);

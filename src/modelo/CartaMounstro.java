@@ -6,6 +6,7 @@ public class CartaMounstro extends Carta {
 	private boolean ataque_realizado = false;
 	private String posicion = "en mano";
 	private String elemento;
+	private int buffTabla = 0;
 
 	// estado lo que indica es para verificar si esta boca arriba o colocado, para
 	// el observer del campo detecte si mostrarlo o no
@@ -111,6 +112,14 @@ public class CartaMounstro extends Carta {
 
 	public void setAtaque(int ataque) {
 		this.ataque = ataque;
+	}
+
+	public int getBuffTabla() {
+		return buffTabla;
+	}
+
+	public void setBuffTabla(int val) {
+		this.buffTabla = val;
 	}
 	
 	public void setDefensa(int defensa) {

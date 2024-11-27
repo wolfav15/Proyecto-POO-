@@ -98,6 +98,12 @@ public class TableroModelo extends Observable {
     public void jugarCartaEnTablero(CartaMounstro carta_jugada) throws Exception {
         if (carta_jugada.getElemento() == tablero.getTipo_elemento_tablero()) {
             carta_jugada.setAtaque(carta_jugada.getAtaque() + 600);
+            carta_jugada.setBuffTabla(600);
+        }
+        if (carta_jugada.getNombre() == "MILEI") {
+            //reproducir
+        } else if (carta_jugada.getNombre() == "Nacho Scosso") {
+            //reproducir
         }
         jugador.jugarCarta(carta_jugada, this, campoJugador);
         notifyObservers();

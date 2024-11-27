@@ -26,7 +26,6 @@ import modelo.CartaMounstro;
 import modelo.Jugador;
 import modelo.JugadorDAO;
 import modelo.TableroModelo;
-import vista.FondoPanel;
 import vista.VistaTabla;
 
 @SuppressWarnings("deprecation")
@@ -276,15 +275,17 @@ public class TableroControlador implements Observer {
                 // Carta carta = cartasEnMano.get(i);
                 if (carta instanceof CartaMounstro) {
                     try {
+
                         modelo.colocarCarta((CartaMounstro) carta, modelo.getCampoComputadora());
+                        vista.agregarAccionRival("El bot jugo la carta " + carta.getNombre());
                         if (((CartaMounstro) carta).getElemento().equals(modelo.getTablero().getTipo_elemento_tablero())) {
-                            vista.agregarAccionRival("Carta Buffeada por" + ((CartaMounstro) carta).getElemento());
+                            vista.agregarAccionRival("Carta Buffeada por la tabla " + ((CartaMounstro) carta).getElemento());
+                            ((CartaMounstro) carta).setAtaque(((CartaMounstro) carta).getAtaque() + 1000);
+                            ((CartaMounstro) carta).setBuffTabla(1000);
                         }
-                        // cartasMounstruosEnCampoBot =
-                        // modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo();
                         cartasEnMano.remove(carta);
                         i--; // Ajustar el índice después de la eliminación
-
+                        
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
@@ -357,9 +358,26 @@ public class TableroControlador implements Observer {
         if (cartasMounstruoJugador.size() > 0) {
             for (CartaMounstro carta : modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo()) {
                 CartaMounstro cartaAtacada = cartasMounstruoJugador.get(random.nextInt(cartasMounstruoJugador.size()));
-                try {
-                    modelo.atacarEnTablero(rival, carta, modelo.getJugador(), cartaAtacada);
-                    vista.agregarAccionRival("Ataco a " + cartaAtacada.getNombre());
+                try {             
+        
+                    Runnable esperarMounstruo = new Runnable() {
+
+                    public void run() {
+
+                        try {
+                            Thread.sleep(5000);
+                            modelo.atacarEnTablero(rival, carta, modelo.getJugador(), cartaAtacada);
+                            vista.agregarAccionRival("Ataco a " + cartaAtacada.getNombre());
+                            actualizarVista();
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                new Thread(esperarMounstruo).start();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -599,6 +617,7 @@ public class TableroControlador implements Observer {
                                             "Carta Buffeada por elemento " + modelo.getTablero().getTipo_elemento_tablero());
                                     ((CartaMounstro) cartaSeleccionada)
                                             .setAtaque(((CartaMounstro) cartaSeleccionada).getAtaque() + 1000);
+                                            ((CartaMounstro)cartaSeleccionada).setBuffTabla(1000);
                                 }
 
                             } catch (Exception ex) {
