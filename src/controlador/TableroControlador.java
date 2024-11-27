@@ -174,6 +174,9 @@ public class TableroControlador implements Observer {
                 daoJugador.sumarVictoria(modelo.getIdUsuario());
                 vista.monstrarMensajeGanador("FELICIDADES SHINJI", "src\\vista\\imagenes\\trofeo.png");
                 vista.dispose();
+                ControladorMenu controlador = new ControladorMenu();
+				controlador.getVista().setVisible(true);
+                
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -228,31 +231,7 @@ public class TableroControlador implements Observer {
         actualizarVista();
 
     }
-    /*
-     * public void finalizarTurno() {
-     * cartaSeleccionada = null;
-     * modelo.reiniciarAtaqueMounstruos();
-     * cartaRobadaJugador = !cartaRobadaJugador;
-     * vista.agregarAccionTablero("El Tablero Es tipo " +
-     * modelo.getTipo_elemento_tablero());
-     * 
-     * if (turnoJugador) {
-     * turnoJugador = !turnoJugador;
-     * turnoRival = !turnoRival;
-     * vista.agregarAccionTablero("Turno del Rival");
-     * 
-     * } else {
-     * turnoRival = !turnoRival;
-     * turnoJugador = !turnoJugador;
-     * vista.agregarAccionTablero("Turno del Jugador");
-     * bot();
-     * }
-     * 
-     * actualizarVista();
-     * 
-     * }
-     */
-
+  
     private void bot() {
         Jugador rival = modelo.getComputadora();
         Random random = new Random();
@@ -392,6 +371,9 @@ public class TableroControlador implements Observer {
                     	daoJugador.sumarDerrota(modelo.getIdUsuario());
                         vista.mostrarMensajeDerrota("MALDITO PERDEDOR", "src\\vista\\imagenes\\calavera.png");
                         vista.dispose();
+                        ControladorMenu controlador = new ControladorMenu();
+        				controlador.getVista().setVisible(true);
+                        
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -571,11 +553,7 @@ public class TableroControlador implements Observer {
                             modelo.getComputadora());
                     cartaSeleccionada = null;
                     vista.agregarAccionJugador("Rival atacado: " + cartaSeleccionada.getNombre());
-                    if (modelo.getComputadora().getPuntosVida() <= 0) {
-                    	
-                        vista.monstrarMensajeGanador("FELICIDADES SHINJI", "C://Users//samue//Desktop//ganador.jpg");
-                        
-                    }
+                    
                     actualizarVista();
                 }
             }
@@ -736,13 +714,17 @@ public class TableroControlador implements Observer {
 
     }
 
-//    public static void main(String[] args) {
-//
-//        TableroModelo modelo = new TableroModelo();
-//
-//        VistaTabla vista = new VistaTabla(modelo);
-//        new TableroControlador(modelo, vista);
-//
-//    }
+    public static void main(String[] args) {
+        TableroModelo modelo = new TableroModelo(null);
 
-}
+      VistaTabla vista = new VistaTabla(modelo);
+
+		new TableroControlador(modelo, vista);
+
+		
+
+	}
+//
+   }
+
+

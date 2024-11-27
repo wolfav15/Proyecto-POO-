@@ -71,6 +71,7 @@ public class ControladorInicioSesion {
             try {
                 Thread.sleep(2000);
                 
+                this.vista.dispose();
                 TableroModelo modelo = new TableroModelo(idUsuario);
                 VistaTabla vista = new VistaTabla(modelo);
                 
