@@ -82,16 +82,7 @@ public class ControladorAgregarCarta {
 	    		String usuarioAdmin = vista.getTextUsuario().getText().trim();
 	    		String passAdmin = String.valueOf(vista.getTextPass().getPassword()).trim();
 
-	    		
-//	    		System.out.println("\nNombre: " + nombre + 
-//	    				"\nDescripcion: " + descripcion +
-//	    				"\nAtaque: " + ataque +
-//	    				"\nDefensa: " + defensa +
-//	    				"\nElemento: " + elemento +
-//	    				"\nURL: " + url +
-//	    				"\nUsuario ADMIN: " + usuarioAdmin + 
-//	    				"\nPass ADMIN: " + passAdmin
-//	    				);
+	    	
 	    		try {
 					if (dao2.esAdmin(usuarioAdmin, passAdmin))
 						try {

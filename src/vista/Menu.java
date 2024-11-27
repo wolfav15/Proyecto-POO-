@@ -5,9 +5,7 @@ import javax.swing.*;
 
 public class Menu extends JFrame {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	public JButton botonBatalla = new JButton("Batalla");
 	public JButton botonReglasBatalla = new JButton("Reglas de Batalla");
@@ -17,9 +15,10 @@ public class Menu extends JFrame {
 	
 	
 	public Menu() {
+		JFrame.setDefaultLookAndFeelDecorated(true);
 		setTitle("Juego de Cartas de Monstruos");
 		setSize(800, 600);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 
@@ -29,7 +28,7 @@ public class Menu extends JFrame {
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				ImageIcon background = new ImageIcon("C:\\Users\\samue\\Desktop\\momazos\\descargar.jpg"); // Cambia la
+				ImageIcon background = new ImageIcon("src\\vista\\imagenes\\fondoMenu.jpg"); // Cambia la
 																											// ruta a tu
 																											// imagen si
 																											// quieren

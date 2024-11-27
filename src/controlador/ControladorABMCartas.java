@@ -6,11 +6,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-import modelo.Carta;
 import modelo.CartaDAO;
 import modelo.CartaMounstro;
 import vista.CartasABM;
