@@ -10,15 +10,20 @@ public class Tablero {
     	this.imagenUrlTablero = img;
     }
 
-	public Integer getId_tablero() {
-		return id_tablero;
-	}
+    public String getTipo_elemento_tablero() {
+        return tipo_elemento_tablero;
+    }
 
-	public String getTipo_elemento_tablero() {
-		return tipo_elemento_tablero;
-	}
+    public void setTipo_elemento_tablero(String tipo_elemento_tablero) {
+        this.tipo_elemento_tablero = tipo_elemento_tablero;
+    }
 
-	public String getImagenUrlTablero() {
-		return imagenUrlTablero;
-	}
+    public String getImagenUrlTablero() {
+        return imagenUrlTablero;
+    }
+
+    public void setImagenUrlTablero(String imagenUrlTablero) {
+        this.imagenUrlTablero = imagenUrlTablero;
+    }
+
 }
