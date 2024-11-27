@@ -211,6 +211,17 @@ public class VistaTabla extends JFrame {
 		gbc.gridx = 3;
 		gbc.gridy = 2;
 		add(btnSalir, gbc);
+		
+		
+		btnSalir.addActionListener((ActionListener) new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Menu menu = new Menu();
+				menu.setVisible(true);
+			}
+		});
+	
 
 		areaEstadistica = new JTextArea(5, 20);
 		areaEstadistica.setEditable(false);
@@ -259,6 +270,11 @@ public class VistaTabla extends JFrame {
 		gbc.gridwidth = 3;
 
 		add(fondoinfoTablero, gbc);
+		
+		
+	
+		
+		
 	}
 
 	private JLabel crearLabelConFondo(String nombre, Dimension dimension, String rutaImagenFondo) {
@@ -311,7 +327,6 @@ public class VistaTabla extends JFrame {
 				"\nPosición: " + carta.getPosicion());
 		areaEstadistica.setVisible(true);
 	}
-
 	
 
 	public void mostrarMensajeDerrota(String mensaje, String rutaImagen) {
