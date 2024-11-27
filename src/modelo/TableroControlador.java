@@ -37,7 +37,6 @@ public class TableroControlador implements Observer {
     private CartaMagica cartaMagicaSeleccionada; // las distintas situaciones que
     // se manejan, dejo la idea aqui
     private Carta cartaSeleccionada; // originalmente solo habia esto para mounstruos en el de Samuel
-    private ArrayList<Tablero> tableroModelos;
     private boolean turnoRival = true;
     private boolean turnoJugador = false;
 
@@ -199,42 +198,16 @@ public class TableroControlador implements Observer {
         return null;
     }
 
-
-    public void finalizarTurno( ) throws SQLException {
+    public void finalizarTurno() throws SQLException {
         cartaSeleccionada = null;
         modelo.reiniciarAtaqueMounstruos();
 
         vista.agregarAccionTablero("Turno Finalizado");
-       
 
         if (turnoJugador) {
             turnoJugador = !turnoJugador;
             turnoRival = !turnoRival;
             vista.agregarAccionTablero("Turno del Rival");
-        } else {
-            turnoRival = !turnoRival;
-            turnoJugador = !turnoJugador;
-            vista.agregarAccionTablero("Turno del Jugador");
-            bot();
-        }
-
-
-
-        actualizarVista();
-
-    }
-/* 
-    public void finalizarTurno() {
-        cartaSeleccionada = null;
-        modelo.reiniciarAtaqueMounstruos();
-        cartaRobadaJugador = !cartaRobadaJugador;
-        vista.agregarAccionTablero("El Tablero Es tipo " + modelo.getTipo_elemento_tablero());
-
-        if (turnoJugador) {
-            turnoJugador = !turnoJugador;
-            turnoRival = !turnoRival;
-            vista.agregarAccionTablero("Turno del Rival");
-
         } else {
             turnoRival = !turnoRival;
             turnoJugador = !turnoJugador;
@@ -244,7 +217,31 @@ public class TableroControlador implements Observer {
 
         actualizarVista();
 
-    } */
+    }
+    /*
+     * public void finalizarTurno() {
+     * cartaSeleccionada = null;
+     * modelo.reiniciarAtaqueMounstruos();
+     * cartaRobadaJugador = !cartaRobadaJugador;
+     * vista.agregarAccionTablero("El Tablero Es tipo " +
+     * modelo.getTipo_elemento_tablero());
+     * 
+     * if (turnoJugador) {
+     * turnoJugador = !turnoJugador;
+     * turnoRival = !turnoRival;
+     * vista.agregarAccionTablero("Turno del Rival");
+     * 
+     * } else {
+     * turnoRival = !turnoRival;
+     * turnoJugador = !turnoJugador;
+     * vista.agregarAccionTablero("Turno del Jugador");
+     * bot();
+     * }
+     * 
+     * actualizarVista();
+     * 
+     * }
+     */
 
     private void bot() {
         Jugador rival = modelo.getComputadora();
@@ -554,6 +551,7 @@ public class TableroControlador implements Observer {
 
         JLabel[] lblCartasJugador = vista.getLblCartasJugador();
         for (JLabel lblCarta : lblCartasJugador) {
+
             lblCarta.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
@@ -584,7 +582,9 @@ public class TableroControlador implements Observer {
                                 if (((CartaMounstro) cartaSeleccionada).getElemento()
                                         .equals(modelo.getTipo_elemento_tablero())) {
                                     vista.agregarAccionJugador(
-                                            "Carta Buffeada por elemento" + modelo.getTipo_elemento_tablero());
+                                            "Carta Buffeada por elemento " + modelo.getTipo_elemento_tablero());
+                                    ((CartaMounstro) cartaSeleccionada)
+                                            .setAtaque(((CartaMounstro) cartaSeleccionada).getAtaque() + 1000);
                                 }
 
                             } catch (Exception ex) {
@@ -707,7 +707,7 @@ public class TableroControlador implements Observer {
 
         TableroModelo modelo = new TableroModelo();
 
-        VistaTabla vista = new VistaTabla();
+        VistaTabla vista = new VistaTabla(modelo);
         new TableroControlador(modelo, vista);
 
     }

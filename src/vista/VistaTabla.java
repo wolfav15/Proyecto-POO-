@@ -23,6 +23,7 @@ import modelo.CartaMagicaArmadura;
 import modelo.CartaMagicaBuff;
 import modelo.CartaMagicaEquipada;
 import modelo.CartaMounstro;
+import modelo.TableroDAO;
 import vista.MenuBatalla;
 import modelo.TableroModelo;
 
@@ -63,14 +64,15 @@ public class VistaTabla extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public VistaTabla() {
+	public VistaTabla(TableroModelo modelo) {
+
 		setTitle("Tablero");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setLayout(new GridBagLayout());
 
-		fondo = new FondoPanel(TableroImagenes());
+		fondo = new FondoPanel(modelo.getImagenUrlTablero());
 		fondo.setLayout(new GridBagLayout());
 		setContentPane(fondo);
 
@@ -320,19 +322,7 @@ public class VistaTabla extends JFrame {
 		areaEstadistica.setVisible(true);
 	}
 
-	public String TableroImagenes() {
-		Random random = new Random();
-		ArrayList<String> imagenes = new ArrayList<String>();
-		imagenes.add("src//modelo//tontos todos.jpg");
-		imagenes.add("src//modelo//Tablero_Water.png");
-		imagenes.add("src//modelo//Tablero_Wind.jpg");
-		imagenes.add("src//modelo//Tablero_Fire.png");
-		imagenes.add("src//modelo//Tablero_Earth.png");
-		imagenes.add("src//modelo//Tablero_Light.png");
-		imagenes.add("src//modelo//Tablero_Dark.jpg");
-		return imagenes.get(random.nextInt(imagenes.size()));
-
-	}
+	
 
 	public void mostrarMensajeDerrota(String mensaje, String rutaImagen) {
 		ImageIcon icon = new ImageIcon(rutaImagen);
@@ -441,8 +431,9 @@ public class VistaTabla extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
+				TableroModelo modelo = new TableroModelo();
 				try {
-					VistaTabla frame = new VistaTabla();
+					VistaTabla frame = new VistaTabla(modelo);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -466,6 +457,5 @@ public class VistaTabla extends JFrame {
 	public FondoPanel getPanelFondo() {
 		return fondo;
 	}
-
 
 }
