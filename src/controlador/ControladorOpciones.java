@@ -11,21 +11,6 @@ public class ControladorOpciones {
 	public ControladorOpciones ()  {
 		this.vista = new MenuOpciones();
 		
-		this.vista.getBotonDificultad().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				vista.mostrarMensaje("Seleccionando dificultad...");
-			}
-		});
-		this.vista.getBotonReproducirMusica().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				vista.mostrarMensaje("Reproduciendo...");
-			}
-		});
-		this.vista.getBotonPararMusica().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				vista.mostrarMensaje("Deteniendo...");
-			}
-		});
 		
 		this.vista.getBotonABMJugadores().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -36,6 +21,12 @@ public class ControladorOpciones {
 		this.vista.getBotonABMCartas().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new ControladorABMCartas();
+			}
+		});
+		
+		this.vista.getBotonABMTableros().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ControladorABMTablero();
 			}
 		});
 		

@@ -164,7 +164,7 @@ public class JugadorDAO {
     	
     	List<Usuario> usuarios = new ArrayList<>();
     	
-    	String query = "SELECT * FROM Jugadores ORDER BY Jugadores.contador_victorias";
+    	String query = "SELECT * FROM Jugadores ORDER BY Jugadores.contador_victorias DESC";
     	PreparedStatement statement = conexion.prepareStatement(query);
         try(ResultSet resultSet = statement.executeQuery()){
                 

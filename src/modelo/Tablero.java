@@ -9,7 +9,9 @@ public class Tablero {
     	this.tipo_elemento_tablero = elemento;
     	this.imagenUrlTablero = img;
     }
-
+    public Integer getId_tablero() {
+        return id_tablero;
+    }
     public String getTipo_elemento_tablero() {
         return tipo_elemento_tablero;
     }

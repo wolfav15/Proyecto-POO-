@@ -11,6 +11,8 @@ import java.util.Random;
 
 public class TableroModelo extends Observable {
 
+    private Integer id;
+
     private Jugador jugador;
     private Jugador computadora;
 
@@ -21,7 +23,8 @@ public class TableroModelo extends Observable {
 
     private List<CartaMounstro> mounstruosQueAtacaron;
 
-    public TableroModelo() {
+    public TableroModelo(Integer id) {
+        this.id = id;
         jugador = new Jugador("Jugador1", this.bajarDeck());
         computadora = new Jugador("Computadora", this.bajarDeck());
         this.campoComputadora = new Campos();
@@ -151,7 +154,7 @@ public class TableroModelo extends Observable {
         }
     }
     public Integer getIdUsuario() {
-    	return idUsuario;
+    	return id;
     }
 
     public Campos getCampoJugador() {

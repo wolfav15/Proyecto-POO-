@@ -25,7 +25,6 @@ public class ControladorInicioSesion {
 
         //Al construirlo, se crea un evento al tocar el boton de login
         this.vista.getBotonLogin().addActionListener(e -> {
-                System.out.println("Boton de login presionado");
                 iniciarSesion();
             });
         

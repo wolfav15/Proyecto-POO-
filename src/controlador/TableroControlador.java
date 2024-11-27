@@ -16,9 +16,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
-<<<<<<< HEAD:src/modelo/TableroControlador.java
-=======
-
 import modelo.Carta;
 import modelo.CartaMagica;
 import modelo.CartaMagicaArrojadiza;
@@ -30,7 +27,6 @@ import modelo.Jugador;
 import modelo.JugadorDAO;
 import modelo.TableroModelo;
 import vista.FondoPanel;
->>>>>>> 8a1a2d99e6e4899fd613765de3607cab56b86e12:src/controlador/TableroControlador.java
 import vista.VistaTabla;
 
 @SuppressWarnings("deprecation")
