@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="lib/json-20200518.jar"/>
 	<classpathentry kind="lib" path="lib/sqlite-jdbc-3.39.4.0.jar"/>
 	<classpathentry kind="lib" path="lib/flatlaf-3.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/jlayer-1.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
