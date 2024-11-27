@@ -19,14 +19,18 @@ public class ControladorInicioSesion {
 
         iniciarVista();
 
+        this.vista.getBotonLogin().setEnabled(true);
+
         //Al construirlo, se crea un evento al tocar el boton de login
-        this.vista.getBotonLogin().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        this.vista.getBotonLogin().addActionListener(e -> {
+            
+            
+                System.out.println("Boton de login presionado");
                 iniciarSesion();
-            }
-        });
-    }
+                
+            });
+        }
+    
 
     public void iniciarVista() {
         this.vista.setVisible(true);

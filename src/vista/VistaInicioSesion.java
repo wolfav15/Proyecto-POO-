@@ -99,7 +99,7 @@ public class VistaInicioSesion extends JFrame {
 		gbc_campoContrasenia.gridy = 2;
 		ContenedorCampos.add(campoContrasenia, gbc_campoContrasenia);
 		
-		JButton Confirma = new JButton("Confirmar");
+		Confirma = new JButton("Confirmar");
 		GridBagConstraints gbc_Confirma = new GridBagConstraints();
 		gbc_Confirma.anchor = GridBagConstraints.WEST;
 		gbc_Confirma.insets = new Insets(0, 0, 5, 5);
