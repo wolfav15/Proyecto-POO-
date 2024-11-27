@@ -42,6 +42,8 @@ public class ControladorInicioSesion {
         this.vista.setVisible(true);
     }
 
+    
+
     public void iniciarSesion() {
         String usuario = this.vista.getCampoUsuario().getText();
         String contrasenia = String.valueOf(vista.getCampoContra().getPassword()).trim();
