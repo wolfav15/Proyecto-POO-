@@ -1,40 +1,28 @@
 package vista; //esta vista es la que tenia Samuel en su zip
 
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import javax.swing.border.LineBorder;
-
 import modelo.CartaMagica;
 import modelo.CartaMagicaArmadura;
 import modelo.CartaMagicaBuff;
 import modelo.CartaMagicaEquipada;
 import modelo.CartaMounstro;
-import modelo.TableroDAO;
 import modelo.TableroModelo;
-
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Random;
 
 public class VistaTabla extends JFrame {
 
@@ -434,21 +422,6 @@ public class VistaTabla extends JFrame {
 	}
 
 	
-
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//
-//			public void run() {
-//				TableroModelo modelo = new TableroModelo();
-//				try {
-//					VistaTabla frame = new VistaTabla(modelo);
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	public JLabel[] getLblCartasRival() {
 		return lblCartasRival;
