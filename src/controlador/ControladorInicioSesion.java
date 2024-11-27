@@ -24,9 +24,13 @@ public class ControladorInicioSesion {
         //Al construirlo, se crea un evento al tocar el boton de login
         this.vista.getBotonLogin().addActionListener(e -> {
             
-            
-                System.out.println("Boton de login presionado");
                 iniciarSesion();
+                
+            });
+
+            this.vista.getBotonCrearCuenta().addActionListener(e -> {
+            
+                CrearUsuario();
                 
             });
         }
@@ -35,6 +39,8 @@ public class ControladorInicioSesion {
     public void iniciarVista() {
         this.vista.setVisible(true);
     }
+
+    
 
     public void iniciarSesion() {
         String usuario = this.vista.getCampoUsuario().getText();
