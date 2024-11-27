@@ -335,7 +335,9 @@ public class TableroControlador implements Observer {
                 .getCartaMounstrosEnCampo();
 
         if (cartasMounstruoJugador.size() > 0) {
+        
             for (CartaMounstro carta : modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo()) {
+                if (modelo.getJugador().getPuntosVida() > 0) {
                 CartaMounstro cartaAtacada = cartasMounstruoJugador.get(random.nextInt(cartasMounstruoJugador.size()));
                 try {             
         
@@ -359,11 +361,13 @@ public class TableroControlador implements Observer {
                 new Thread(esperarMounstruo).start();
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                }
+                }}
             }
         }
         if (cartasMounstruoJugador.size() == 0) {
+
             for (CartaMounstro carta : modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo()) {
+                if (modelo.getJugador().getPuntosVida() > 0) {
                 try {
                     modelo.atacarJugador(carta, modelo.getComputadora(), modelo.getJugador());
                     vista.agregarAccionRival("Ataco al jugador");
@@ -377,7 +381,7 @@ public class TableroControlador implements Observer {
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                }
+                } }
             }
         } // Atacar directamente al jugador si no hay cartas del rival en el campo
 

@@ -107,7 +107,9 @@ public class ControladorEditarCarta {
 					e1.printStackTrace();
 				}
 	    		
-	    		
+	    		if (cartaBuscada == null) {
+	    			vista.mostrarMensaje("No se encontró la carta");
+	    		}
 	    		
 	    		vista.getTextNombre().setText(cartaBuscada.getNombre());
 	    		vista.getTextDescripcion().setText(cartaBuscada.getDescripcion());

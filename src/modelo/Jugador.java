@@ -70,16 +70,18 @@ public class Jugador {
         this.puntosVida += puntos;
     }
 
-    public void atacarCarta(CartaMounstro cartaAtacante, CartaMounstro CartaAtacada, Jugador oponente) {
-        int danio = cartaAtacante.atacar(CartaAtacada);
+    public void atacarCarta(CartaMounstro cartaAtacante, CartaMounstro cartaAtacada, Jugador oponente) {
+        int danio = cartaAtacante.atacar(cartaAtacada);
         if (danio < 0) {
             oponente.recibirDaño(-danio);
+            cartaAtacada.destruirse();
         } else if (danio > 0) {
             this.recibirDaño(danio);
+            cartaAtacante.destruirse();
         }
         else {
             cartaAtacante.destruirse();
-            CartaAtacada.destruirse();
+            cartaAtacada.destruirse();
         }
     }
 

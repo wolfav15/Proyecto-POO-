@@ -17,6 +17,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import java.awt.Toolkit;
 
 public class CartasABM extends JFrame {
 
@@ -30,19 +34,28 @@ public class CartasABM extends JFrame {
 	private JTable table;
 	
 	public CartasABM() {
+		setTitle("ABM Cartas");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CartasABM.class.getResource("/vista/imagenes/calavera.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 700, 340);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLocationRelativeTo(null);
 
 		setContentPane(contentPane);
 		
 		btnBorrar = new JButton("Borrar");
+		btnBorrar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 16));
+		btnBorrar.setForeground(new Color(255, 255, 255));
 		btnBorrar.setBounds(559, 211, 94, 75);
 		btnEditar = new JButton("Ver/Editar");
+		btnEditar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 13));
+		btnEditar.setForeground(new Color(255, 255, 255));
 		btnEditar.setBounds(559, 113, 94, 75);
 		btnAgregar = new JButton("Agregar");
+		btnAgregar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 16));
+		btnAgregar.setForeground(new Color(255, 255, 255));
 		btnAgregar.setBounds(559, 15, 94, 75);
 		contentPane.setLayout(null);
 		contentPane.add(btnAgregar);
@@ -54,6 +67,8 @@ public class CartasABM extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.setForeground(new Color(255, 255, 255));
+		table.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {

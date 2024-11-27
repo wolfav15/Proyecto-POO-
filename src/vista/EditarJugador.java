@@ -10,6 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.Toolkit;
 
 public class EditarJugador extends JFrame {
 
@@ -22,45 +25,35 @@ public class EditarJugador extends JFrame {
 	private JButton btnEditar;
 	private JButton btnEditarAlternativo;
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					EditarJugador frame = new EditarJugador();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public EditarJugador() {
+		setTitle("Editar jugador");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(EditarJugador.class.getResource("/vista/imagenes/calavera.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLocationRelativeTo(null);
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		btnEditar = new JButton("Editar");
+		btnEditar.setForeground(new Color(255, 255, 255));
+		btnEditar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 14));
 
-		btnEditar.setBounds(78, 216, 89, 23);
+		btnEditar.setBounds(62, 216, 89, 23);
 		contentPane.add(btnEditar);
 		
 		btnEditarAlternativo = new JButton("Editar y reiniciar contadores");
-		btnEditarAlternativo.setBounds(201, 216, 178, 23);
+		btnEditarAlternativo.setForeground(new Color(255, 255, 255));
+		btnEditarAlternativo.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 14));
+		btnEditarAlternativo.setBounds(174, 216, 205, 23);
 		contentPane.add(btnEditarAlternativo);
 		
 		JLabel lblNewLabel = new JLabel("Nombre");
-		lblNewLabel.setBounds(78, 43, 46, 14);
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 14));
+		lblNewLabel.setBounds(62, 43, 89, 14);
 		contentPane.add(lblNewLabel);
 		
 		textNombre = new JTextField();
@@ -69,7 +62,9 @@ public class EditarJugador extends JFrame {
 		textNombre.setColumns(10);
 		
 		JLabel lblNuevoNombre = new JLabel("Nuevo nombre");
-		lblNuevoNombre.setBounds(78, 74, 103, 14);
+		lblNuevoNombre.setForeground(new Color(255, 255, 255));
+		lblNuevoNombre.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 14));
+		lblNuevoNombre.setBounds(62, 74, 119, 14);
 		contentPane.add(lblNuevoNombre);
 		
 		textNuevoNombre = new JTextField();
@@ -78,7 +73,9 @@ public class EditarJugador extends JFrame {
 		contentPane.add(textNuevoNombre);
 		
 		JLabel lblContrasea = new JLabel("Contraseña");
-		lblContrasea.setBounds(78, 105, 103, 14);
+		lblContrasea.setForeground(new Color(255, 255, 255));
+		lblContrasea.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 14));
+		lblContrasea.setBounds(62, 105, 119, 14);
 		contentPane.add(lblContrasea);
 		
 		passField = new JPasswordField();
@@ -87,7 +84,9 @@ public class EditarJugador extends JFrame {
 		contentPane.add(passField);
 		
 		JLabel lblContraseaNueva = new JLabel("Contraseña nueva");
-		lblContraseaNueva.setBounds(78, 140, 103, 14);
+		lblContraseaNueva.setForeground(new Color(255, 255, 255));
+		lblContraseaNueva.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 14));
+		lblContraseaNueva.setBounds(62, 140, 119, 14);
 		contentPane.add(lblContraseaNueva);
 		
 		passFieldNuevo = new JPasswordField();
