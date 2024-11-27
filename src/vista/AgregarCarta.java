@@ -16,8 +16,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPasswordField;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
@@ -186,10 +184,10 @@ public class AgregarCarta extends JFrame {
 		panel_1.add(lblNewLabel_4);
 		
 		boxElemento = new JComboBox();
-		sl_panel_1.putConstraint(SpringLayout.WEST, boxElemento, 236, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, boxElemento, -10, SpringLayout.EAST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, lblNewLabel_4, -6, SpringLayout.WEST, boxElemento);
 		sl_panel_1.putConstraint(SpringLayout.NORTH, boxElemento, -3, SpringLayout.NORTH, lblAtaque);
+		sl_panel_1.putConstraint(SpringLayout.WEST, boxElemento, 254, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.EAST, boxElemento, 0, SpringLayout.EAST, textNombre);
 		boxElemento.setModel(new DefaultComboBoxModel(new String[] {"DARK", "LIGHT", "FIRE", "WATER", "EARTH", "WIND"}));
 		panel_1.add(boxElemento);
 		
@@ -222,11 +220,11 @@ public class AgregarCarta extends JFrame {
 		panel_1.add(lblNewLabel_5);
 		
 		boxNivel = new JComboBox();
+		sl_panel_1.putConstraint(SpringLayout.WEST, boxNivel, 6, SpringLayout.EAST, lblNewLabel_5);
+		sl_panel_1.putConstraint(SpringLayout.EAST, boxNivel, -24, SpringLayout.WEST, lblNewLabel_4);
 		boxNivel.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6"}));
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, textArea, -25, SpringLayout.NORTH, boxNivel);
 		sl_panel_1.putConstraint(SpringLayout.NORTH, boxNivel, -4, SpringLayout.NORTH, lblAtaque);
-		sl_panel_1.putConstraint(SpringLayout.WEST, boxNivel, -43, SpringLayout.WEST, lblNewLabel_4);
-		sl_panel_1.putConstraint(SpringLayout.EAST, boxNivel, -6, SpringLayout.WEST, lblNewLabel_4);
 		panel_1.add(boxNivel);
 	}
 

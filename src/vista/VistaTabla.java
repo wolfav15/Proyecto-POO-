@@ -17,14 +17,12 @@ import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.border.LineBorder;
 
-import ViejoSamuel.Tablero;
 import modelo.CartaMagica;
 import modelo.CartaMagicaArmadura;
 import modelo.CartaMagicaBuff;
 import modelo.CartaMagicaEquipada;
 import modelo.CartaMounstro;
 import modelo.TableroDAO;
-import vista.MenuBatalla;
 import modelo.TableroModelo;
 
 import java.awt.GridBagConstraints;
@@ -86,7 +84,7 @@ public class VistaTabla extends JFrame {
 		panelMonstruosRival.setBackground(new Color(0, 0, 0, 0));
 		for (int i = 0; i < lblMonstruosRival.length; i++) {
 			lblMonstruosRival[i] = crearLabelConFondo("Monstruo " + (i + 1), new Dimension(120, 150),
-					"src//modelo//fondo_carta.jpg");
+					"src\\vista\\imagenes\\fondo_carta.jpg");
 			panelMonstruosRival.add(lblMonstruosRival[i]);
 		}
 
@@ -101,7 +99,7 @@ public class VistaTabla extends JFrame {
 		panelMonstruosJugador.setOpaque(false);
 		for (int i = 0; i < lblMonstruosJugador.length; i++) {
 			lblMonstruosJugador[i] = crearLabelConFondo("Monstruo " + (i + 1), new Dimension(120, 150),
-					"src/modelo/fondo_carta.jpg");
+					"src\\vista\\imagenes\\fondo_carta.jpg");
 			panelMonstruosJugador.add(lblMonstruosJugador[i]);
 		}
 		gbc.gridx = 0;
@@ -114,7 +112,7 @@ public class VistaTabla extends JFrame {
 		panelHechizosRival.setBackground(new Color(0, 0, 0, 0));
 		for (int i = 0; i < lblHechizosRival.length; i++) {
 			lblHechizosRival[i] = crearLabelConFondo("Hechizo " + (i + 1), new Dimension(120, 150),
-					"src/modelo/fondo_carta.jpg");
+					"src\\vista\\imagenes\\fondo_carta.jpg");
 			panelHechizosRival.add(lblHechizosRival[i]);
 		}
 		gbc.gridx = 0;
@@ -128,7 +126,7 @@ public class VistaTabla extends JFrame {
 		panelHechizosJugador.setBackground(new Color(0, 0, 0, 0));
 		for (int i = 0; i < lblHechizosJugador.length; i++) {
 			lblHechizosJugador[i] = crearLabelConFondo("Hechizo " + (i + 1), new Dimension(120, 150),
-					"src/modelo/fondo_carta.jpg");
+					"src\\vista\\imagenes\\fondo_carta.jpg");
 			panelHechizosJugador.add(lblHechizosJugador[i]);
 		}
 		gbc.gridx = 0;
@@ -155,7 +153,7 @@ public class VistaTabla extends JFrame {
 
 		btnFinalizarTurno = new JButton("");
 		btnFinalizarTurno.setBorder(new LineBorder(new Color(0, 0, 0)));
-		btnFinalizarTurno.setIcon(new ImageIcon("src//modelo//FINALIZARBTN.png"));
+		btnFinalizarTurno.setIcon(new ImageIcon("src\\vista\\imagenes\\FINALIZARBTN.png"));
 		btnFinalizarTurno.setContentAreaFilled(false);
 		btnFinalizarTurno.setBorderPainted(false);
 		btnFinalizarTurno.setFocusPainted(false);
@@ -169,7 +167,7 @@ public class VistaTabla extends JFrame {
 		lblBarajaJugador = new JLabel("BARAJA");
 		lblBarajaJugador.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblBarajaJugador.setPreferredSize(new Dimension(100, 150));
-		lblBarajaJugador.setIcon(new ImageIcon("src/modelo/Baraja.jpg"));
+		lblBarajaJugador.setIcon(new ImageIcon("src\\vista\\imagenes\\Baraja.jpg"));
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		add(lblBarajaJugador, gbc);
@@ -177,7 +175,7 @@ public class VistaTabla extends JFrame {
 		lblBarajaRival = new JLabel("BARAJA RIVAL");
 		lblBarajaRival.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblBarajaRival.setPreferredSize(new Dimension(100, 150));
-		lblBarajaRival.setIcon(new ImageIcon("src/modelo/Baraja.jpg"));
+		lblBarajaRival.setIcon(new ImageIcon("src\\vista\\imagenes\\Baraja.jpg"));
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		add(lblBarajaRival, gbc);
@@ -187,7 +185,7 @@ public class VistaTabla extends JFrame {
 		panelCartasJugador.setBackground(new Color(0, 0, 0, 0));
 		for (int i = 0; i < lblCartasJugador.length; i++) {
 			lblCartasJugador[i] = crearLabelConFondo("Carta " + (i + 1), new Dimension(120, 150),
-					"src/modelo/fondo_carta.jpg");
+					"src\\vista\\imagenes\\fondo_carta.jpg");
 			panelCartasJugador.add(lblCartasJugador[i]);
 		}
 		gbc.gridx = 0;
@@ -200,7 +198,7 @@ public class VistaTabla extends JFrame {
 		lblCartasRival = new JLabel[5];
 		for (int i = 0; i < lblCartasRival.length; i++) {
 			lblCartasRival[i] = crearLabelConFondo("Carta " + (i + 1), new Dimension(120, 150),
-					"src/modelo/fondo_carta.jpg");
+					"src\\vista\\imagenes\\fondo_carta.jpg");
 			panelCartasRival.add(lblCartasRival[i]);
 		}
 
@@ -209,7 +207,7 @@ public class VistaTabla extends JFrame {
 		btnSalir.setBorderPainted(false);
 		btnSalir.setFocusPainted(false);
 		btnSalir.setOpaque(false);
-		btnSalir.setIcon(new ImageIcon("src/modelo/SALIRBTN.png"));
+		btnSalir.setIcon(new ImageIcon("src\\vista\\imagenes\\SALIRBTN.png"));
 		gbc.gridx = 3;
 		gbc.gridy = 2;
 		add(btnSalir, gbc);
@@ -224,20 +222,12 @@ public class VistaTabla extends JFrame {
 		gbc.gridy = 4;
 
 		add(areaEstadistica, gbc);
-		btnSalir.addActionListener((ActionListener) new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				MenuBatalla menuBatalla = new MenuBatalla();
-				menuBatalla.setVisible(true);
-			}
-		});
 
 		infoJugador = new JTextArea(5, 20);
 		infoJugador.setEditable(false);
 		infoJugador.setOpaque(false);
 		infoJugador.setForeground(Color.white);
-		BackgroundPanel fondoInfoJugador = new BackgroundPanel("src/modelo/Info.jpg");
+		BackgroundPanel fondoInfoJugador = new BackgroundPanel("src\\vista\\imagenes\\info.jpg");
 		fondoInfoJugador.add(infoJugador);
 
 		gbc.gridx = 1;
@@ -250,7 +240,7 @@ public class VistaTabla extends JFrame {
 		infoRival.setEditable(false);
 		infoRival.setOpaque(false);
 		infoRival.setForeground(Color.white);
-		BackgroundPanel fondoInfoRival = new BackgroundPanel("src/modelo/Info.jpg");
+		BackgroundPanel fondoInfoRival = new BackgroundPanel("src\\vista\\imagenes\\info.jpg");
 		fondoInfoRival.add(infoRival);
 
 		gbc.gridx = 2;
@@ -261,7 +251,7 @@ public class VistaTabla extends JFrame {
 		infoTablero = new JTextArea(5, 20);
 		infoTablero.setOpaque(false);
 		infoTablero.setForeground(Color.white);
-		BackgroundPanel fondoinfoTablero = new BackgroundPanel("src/modelo/Info.jpg");
+		BackgroundPanel fondoinfoTablero = new BackgroundPanel("src\\vista\\imagenes\\info.jpg");
 		fondoinfoTablero.add(infoTablero);
 
 		gbc.gridx = 0;
@@ -334,7 +324,7 @@ public class VistaTabla extends JFrame {
 		JOptionPane.showMessageDialog(this, mensaje, "Fin del juego", JOptionPane.INFORMATION_MESSAGE, icon);
 	}
 
-	BackgroundPanel fondoInfo = new BackgroundPanel("src/modelo/Info.jpg");
+	BackgroundPanel fondoInfo = new BackgroundPanel("src\\vista\\imagenes\\info.jpg");
 
 	public void agregarAccionJugador(String accion) {
 		String[] lineas = infoJugador.getText().split("\n");
@@ -427,20 +417,20 @@ public class VistaTabla extends JFrame {
 		this.areaEstadistica = areaEstadistica;
 	}
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-
-			public void run() {
-				TableroModelo modelo = new TableroModelo();
-				try {
-					VistaTabla frame = new VistaTabla(modelo);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//
+//			public void run() {
+//				TableroModelo modelo = new TableroModelo();
+//				try {
+//					VistaTabla frame = new VistaTabla(modelo);
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	public JLabel[] getLblCartasRival() {
 		return lblCartasRival;

@@ -4,7 +4,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
-import modelo.CartaDAO;
 import modelo.JugadorDAO;
 import modelo.TableroDAO;
 import vista.BorrarTablero;

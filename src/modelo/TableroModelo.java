@@ -150,6 +150,9 @@ public class TableroModelo extends Observable {
             return false;
         }
     }
+    public Integer getIdUsuario() {
+    	return idUsuario;
+    }
 
     public Campos getCampoJugador() {
         return this.campoJugador;
