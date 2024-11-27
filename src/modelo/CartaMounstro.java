@@ -52,52 +52,11 @@ public class CartaMounstro extends Carta {
 	}
 
 	public int  atacar(CartaMounstro carta_atacada) {
-		//acá se almacena el daño que recibiria el atacante, puede ser 0 o mayor que 0
-		int dañoAlAtacante;
-		if (carta_atacada.getPosicion() == "defensa"){
-			dañoAlAtacante=carta_atacada.defender(this.ataque);
-		}
-		else {
-			//la carta atacada está en posición de ataque
-			dañoAlAtacante = carta_atacada.contraatacar(this.ataque, this);
-		}
-		return dañoAlAtacante;
+		
+		return (carta_atacada.getDefensa()-this.ataque);
 		
 	}
-	//aca se incluye la lógica de defenderse de un ataque, si la carta atacada...
-	//está en posición de defensa
 	
-	public int defender(int danio){
-			if (danio > this.defensa){
-				this.destruirse();
-				return 0;
-			}
-			else if  (this.defensa == danio){
-				return 0;
-			}
-			else {
-				return this.defensa - danio;
-			}
-	}
-	//aca se incluye la lógica de contraatacar, si la carta atacada...
-	//está en posición de ataque
-	//contraatacar necesita una instancia de la carta por si esta se destruye.
-	public int contraatacar(int danio, Carta cartaAtacante){
-		if (danio < this.ataque){
-			cartaAtacante.destruirse();
-			return this.ataque - danio;
-		}
-		else if  (this.defensa == danio){
-			this.destruirse();
-			cartaAtacante.destruirse();
-			return 0;
-		}
-		else {
-			this.destruirse();
-			
-			return (-danio);
-		}
-}
 	public int getAtaque() {
 		return ataque;
 	}

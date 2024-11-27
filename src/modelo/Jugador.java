@@ -77,6 +77,10 @@ public class Jugador {
         } else if (danio > 0) {
             this.recibirDaño(danio);
         }
+        else {
+            cartaAtacante.destruirse();
+            CartaAtacada.destruirse();
+        }
     }
 
     public void atacarJugador(CartaMounstro cartaAtacante, Jugador oponente) {
