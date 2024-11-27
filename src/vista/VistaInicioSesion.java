@@ -114,12 +114,12 @@ public class VistaInicioSesion extends JFrame {
 		gbc_lblNewLabel_3.gridy = 7;
 		ContenedorCampos.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
-		botonCrearCuenta = new JButton("Crea una cuenta");
+		JButton BotonCrearCuenta = new JButton("Crea una cuenta");
 		GridBagConstraints gbc_BotonCrearCuenta = new GridBagConstraints();
 		gbc_BotonCrearCuenta.insets = new Insets(0, 0, 0, 5);
 		gbc_BotonCrearCuenta.gridx = 2;
 		gbc_BotonCrearCuenta.gridy = 7;
-		ContenedorCampos.add(botonCrearCuenta, gbc_BotonCrearCuenta);
+		ContenedorCampos.add(BotonCrearCuenta, gbc_BotonCrearCuenta);
 		
 		JLabel lblNewLabel_2 = new JLabel("INICIO SESION");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);

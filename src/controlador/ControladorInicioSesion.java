@@ -1,10 +1,9 @@
 package controlador;
 
 import modelo.JugadorDAO;
-import modelo.TableroModelo;
 import vista.VistaInicioSesion;
-import vista.VistaTabla;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
@@ -14,7 +13,6 @@ public class ControladorInicioSesion {
     private JugadorDAO JugadorDAO; 
 
 
-    @SuppressWarnings("unused")
     public ControladorInicioSesion(VistaInicioSesion vista, JugadorDAO jugadorDAO) {
         this.vista = vista;
         this.JugadorDAO = new JugadorDAO();
@@ -25,16 +23,12 @@ public class ControladorInicioSesion {
 
         //Al construirlo, se crea un evento al tocar el boton de login
         this.vista.getBotonLogin().addActionListener(e -> {
+            
+            
                 System.out.println("Boton de login presionado");
                 iniciarSesion();
+                
             });
-        
-        this.vista.getBotonCrearCuenta().addActionListener(e -> {
-            
-            
-            new ControladorAgregarJugadores();
-            
-        });
         }
     
 
@@ -46,9 +40,10 @@ public class ControladorInicioSesion {
 
     public void iniciarSesion() {
         String usuario = this.vista.getCampoUsuario().getText();
-        String contrasenia = String.valueOf(vista.getCampoContra().getPassword()).trim();
+        String contrasenia = this.vista.getCampoContra().getText();
 
 
+        if (usuario.isEmpty() || contrasenia.isEmpty()) {
         //Comprobamos que el campo usuario no este vacio
         if (usuario.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El campo de usuario no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
@@ -56,7 +51,7 @@ public class ControladorInicioSesion {
         }
 
         //Comprobamos que la contraseña no este vacia
-        else if (contrasenia.isEmpty()) {
+        if (contrasenia.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El campo de contraseña no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -71,13 +66,11 @@ public class ControladorInicioSesion {
 
             try {
                 Thread.sleep(2000);
-                
-                TableroModelo modelo = new TableroModelo(idUsuario);
-                VistaTabla vista = new VistaTabla(modelo);
-                
-                new TableroControlador(modelo, vista);
+                ControladorMenu controladorMenu = new ControladorMenu();
+
+                vista.setVisible(false);
             } catch (Exception e) {
-                e.printStackTrace();
+                // TODO: handle exception
             }
             
         } else {
@@ -88,12 +81,12 @@ public class ControladorInicioSesion {
         e.printStackTrace(); // No tengo idea de esto
     }
         }
- }
-    
+    }
+    }
 
-//    public static void main(String[] args) {
-//        VistaInicioSesion vista = new VistaInicioSesion();
-//        new ControladorInicioSesion(vista, null);
-//    }
+    public static void main(String[] args) {
+        VistaInicioSesion vista = new VistaInicioSesion();
+        new ControladorInicioSesion(vista, null);
+    }
 
 }

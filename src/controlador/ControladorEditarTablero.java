@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import modelo.CartaMounstro;
 import modelo.JugadorDAO;
 import modelo.Tablero;
 import modelo.TableroDAO;
