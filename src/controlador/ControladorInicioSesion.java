@@ -78,5 +78,9 @@ public class ControladorInicioSesion {
     }
     }
 
+    public static void main(String[] args) {
+        VistaInicioSesion vista = new VistaInicioSesion();
+        new ControladorInicioSesion(vista, null);
+    }
 
 }
