@@ -19,7 +19,7 @@ public class TableroModelo extends Observable {
     private Campos campoJugador;
     private Campos campoComputadora;
 
-    private Integer id_tablero, idUsuario;
+    private Integer id_tablero;
     private String tipo_elemento_tablero;
     private String imagenUrlTablero;
     private TableroDAO dao;
@@ -37,16 +37,16 @@ public class TableroModelo extends Observable {
         this.imagenUrlTablero = imagenUrlTablero;
     }
 
-    public TableroModelo( Integer id) {
-    	this.idUsuario = id;
+    public TableroModelo( ) {
         this.dao = new TableroDAO();
         imagenes = new HashMap<>(); 
-        imagenes.put("WATER", "src\\vista\\imagenes\\Tablero_Water.png");
-         imagenes.put("WIND", "src\\vista\\imagenes\\Tablero_Wind.jpg");
-         imagenes.put("FIRE", "src\\vista\\imagenes\\Tablero_Fire.png");
-         imagenes.put("EARTH", "src\\vista\\imagenes\\Tablero_Tierra.jpg");
-         imagenes.put("LIGHT", "src\\vista\\imagenes\\Tablero_Light.png");
-         imagenes.put("DARK", "src\\vista\\imagenes\\Tablero_Dark.jpg");
+        imagenes.put("WATER", "src//modelo//Tablero_Water.png");
+         imagenes.put("WIND", "src//modelo//Tablero_Wind.jpg");
+         imagenes.put("FIRE", "src//modelo//Tablero_Fire.png");
+         imagenes.put("EARTH", "src//modelo//Tablero_Tierra.jpg");
+         imagenes.put("LIGHT", "src//modelo//Tablero_Light.png");
+         imagenes.put("DARK", "src//modelo//Tablero_Dark.jpg");
+         imagenes.put("Default", "src//modelo//tontos todos.jpg");
          setAtributosTableroModelo();
     }
 
@@ -187,9 +187,6 @@ public class TableroModelo extends Observable {
         } else {
             return false;
         }
-    }
-    public Integer getIdUsuario() {
-    	return idUsuario;
     }
 
     public Campos getCampoJugador() {

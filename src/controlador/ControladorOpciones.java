@@ -41,7 +41,7 @@ public class ControladorOpciones {
 		
 		this.vista.getBotonSalir().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vista.dispose();
+				vista.mostrarMensaje("Saliendo...");
 			}
 		});
 	}

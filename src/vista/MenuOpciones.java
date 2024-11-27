@@ -1,5 +1,8 @@
 package vista;
 
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+
 import javax.swing.border.EmptyBorder;
 
 //import modelo.ReproductorMusica;
@@ -18,29 +21,12 @@ public class MenuOpciones extends JFrame {
 	
 	private JButton botonABMJugadores = new JButton("Jugadores");
 	private JButton botonABMCartas = new JButton("Cartas");
-	private JButton botonABMTableros = new JButton("Tableros");
-	
 	
 	public MenuOpciones() {
 		setTitle("Opciones");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 500, 400);
-		
-		JPanel contentPane = new JPanel() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				ImageIcon background = new ImageIcon("src\\vista\\imagenes\\fondoOpciones.jpg"); // Cambia la
-																											// ruta a tu
-																											// imagen si
-																											// quieren
-																											// meter
-																											// fondo
-				g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
-			}
-		};
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridBagLayout());
@@ -51,15 +37,19 @@ public class MenuOpciones extends JFrame {
 		// Añadir los botones al panel de menú centrado
 		gbc.gridx = 0;
 		gbc.gridy = 0;
+		contentPane.add(botonDificultad, gbc);
+
+		gbc.gridy++;
+		contentPane.add(botonReproducirMusica, gbc);
+
+		gbc.gridy++;
+		contentPane.add(botonPararMusica, gbc);
 		
 		gbc.gridy++;
 		contentPane.add(botonABMJugadores, gbc);
 		
 		gbc.gridy++;
 		contentPane.add(botonABMCartas, gbc);
-		
-		gbc.gridy++;
-		contentPane.add(botonABMTableros, gbc);
 
 		gbc.gridy++;
 		contentPane.add(botonSalir, gbc);
@@ -92,9 +82,6 @@ public class MenuOpciones extends JFrame {
 
 	public JButton getBotonABMCartas() {
 		return botonABMCartas;
-	}
-	public JButton getBotonABMTableros() {
-		return botonABMTableros;
 	}
 
 }
