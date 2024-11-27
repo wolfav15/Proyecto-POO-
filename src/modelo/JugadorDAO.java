@@ -184,9 +184,7 @@ public class JugadorDAO {
     
     public static void main(String[] args) throws SQLException {
         JugadorDAO dao = new JugadorDAO();
-        for (int i = 0; i < 50; i++) {
-			dao.borrarUsuario("pedro", "pedro");
-		}
+        dao.sumarVictoria(1);
     	
 //        dao.borrarUsuario("pedro");
     }

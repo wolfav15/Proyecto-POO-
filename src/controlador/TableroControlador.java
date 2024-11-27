@@ -1,4 +1,4 @@
-package modelo;
+package controlador;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -22,14 +22,23 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import modelo.Carta;
+import modelo.CartaMagica;
+import modelo.CartaMagicaArrojadiza;
+import modelo.CartaMagicaCuracion;
+import modelo.CartaMagicaEquipada;
+import modelo.CartaMagicaHerida;
+import modelo.CartaMounstro;
+import modelo.Jugador;
+import modelo.JugadorDAO;
+import modelo.TableroModelo;
 import vista.FondoPanel;
 import vista.VistaTabla;
-import controlador.*;
 
 @SuppressWarnings("deprecation")
 
 public class TableroControlador implements Observer {
-
+	private JugadorDAO daoJugador;
     private TableroModelo modelo;
     private VistaTabla vista;
     // private CartaMounstro cartaMounstruoSeleccionada; //esto se pensaba para los
@@ -44,6 +53,7 @@ public class TableroControlador implements Observer {
         this.modelo = modelo;
         this.vista = vista;
         this.modelo.addObserver(this);
+        this.daoJugador = new JugadorDAO();
         inicializarVista();
         agregarManejadoresDeEventos();
         vista.agregarAccionTablero("El Tablero Es tipo " + modelo.getTipo_elemento_tablero());
@@ -167,7 +177,14 @@ public class TableroControlador implements Observer {
         vista.getBarraVidaJugador().setValue(modelo.getJugador().getPuntosVida());
         vista.getBarraVidaRival().setValue(modelo.getComputadora().getPuntosVida());
         if (modelo.getComputadora().getPuntosVida() <= 0) {
-            vista.monstrarMensajeGanador("FELICIDADES SHINJI", "C://Users//samue//Desktop//ganador.jpg");
+            try {
+                daoJugador.sumarVictoria(modelo.getIdUsuario());
+                vista.monstrarMensajeGanador("FELICIDADES SHINJI", "src\\vista\\imagenes\\trofeo.png");
+                vista.dispose();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
@@ -360,7 +377,9 @@ public class TableroControlador implements Observer {
                     modelo.atacarJugador(carta, modelo.getComputadora(), modelo.getJugador());
                     vista.agregarAccionRival("Ataco al jugador");
                     if (modelo.getJugador().getPuntosVida() <= 0) {
-                        vista.mostrarMensajeDerrota("MALDITO PERDEDOR", "C://Users//samue//Desktop//derrota.jpg");
+                    	daoJugador.sumarDerrota(modelo.getIdUsuario());
+                        vista.mostrarMensajeDerrota("MALDITO PERDEDOR", "src\\vista\\imagenes\\calavera.png");
+                        vista.dispose();
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -541,8 +560,9 @@ public class TableroControlador implements Observer {
                     cartaSeleccionada = null;
                     vista.agregarAccionJugador("Rival atacado: " + cartaSeleccionada.getNombre());
                     if (modelo.getComputadora().getPuntosVida() <= 0) {
+                    	
                         vista.monstrarMensajeGanador("FELICIDADES SHINJI", "C://Users//samue//Desktop//ganador.jpg");
-
+                        
                     }
                     actualizarVista();
                 }
@@ -703,13 +723,13 @@ public class TableroControlador implements Observer {
 
     }
 
-    public static void main(String[] args) {
-
-        TableroModelo modelo = new TableroModelo();
-
-        VistaTabla vista = new VistaTabla(modelo);
-        new TableroControlador(modelo, vista);
-
-    }
+//    public static void main(String[] args) {
+//
+//        TableroModelo modelo = new TableroModelo();
+//
+//        VistaTabla vista = new VistaTabla(modelo);
+//        new TableroControlador(modelo, vista);
+//
+//    }
 
 }

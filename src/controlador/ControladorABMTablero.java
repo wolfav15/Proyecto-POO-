@@ -6,14 +6,11 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-import modelo.JugadorDAO;
 import modelo.Tablero;
 import modelo.TableroDAO;
-import modelo.Usuario;
 import vista.TablerosABM;
 
 public class ControladorABMTablero {
