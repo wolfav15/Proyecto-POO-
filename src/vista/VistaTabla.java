@@ -29,6 +29,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
@@ -50,7 +51,7 @@ public class VistaTabla extends JFrame {
 	private JLabel[] lblCartasRival;
 	private JProgressBar barraVidaJugador;
 	private JProgressBar barraVidaRival;
-	private JTextArea areaEstadistica;
+	private BackgroundTextArea areaEstadistica;
 	private JLabel lblBarajaJugador;
 	private JLabel lblBarajaRival;
 	private JTextArea infoJugador;
@@ -75,6 +76,8 @@ public class VistaTabla extends JFrame {
 		setContentPane(fondo);
 
 		GridBagConstraints gbc = new GridBagConstraints();
+	
+		
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 
@@ -94,7 +97,7 @@ public class VistaTabla extends JFrame {
 		add(panelMonstruosRival, gbc);
 
 		// Paneles de monstruos del jugador
-		JPanel panelMonstruosJugador = new JPanel(new GridLayout(1, 5, 10, 0));
+		JPanel panelMonstruosJugador = new JPanel(new GridLayout(1, 5, 10, 3));
 		lblMonstruosJugador = new BackgroundLabel[5];
 		panelMonstruosJugador.setOpaque(false);
 		for (int i = 0; i < lblMonstruosJugador.length; i++) {
@@ -104,6 +107,7 @@ public class VistaTabla extends JFrame {
 		}
 		gbc.gridx = 0;
 		gbc.gridy = -3;
+		gbc.gridwidth= 0;
 		add(panelMonstruosJugador, gbc);
 
 		// Paneles de hechizos rivales
@@ -223,14 +227,18 @@ public class VistaTabla extends JFrame {
 		});
 	
 
-		areaEstadistica = new JTextArea(5, 20);
+		areaEstadistica = new BackgroundTextArea("src\\vista\\imagenes\\heavy.png");
 		areaEstadistica.setEditable(false);
 		areaEstadistica.setBorder(new LineBorder(new Color(0, 0, 0)));
 		areaEstadistica.setVisible(false);
 		areaEstadistica.setForeground(Color.white);
-		areaEstadistica.setBackground(new Color(0, 0, 0, 0));
+		areaEstadistica.setLineWrap(true);
+		areaEstadistica.setBackground(new Color(0, 0, 0,0));
+		areaEstadistica.setRows(10);
+		areaEstadistica.setColumns(20);
 		gbc.gridx = 1;
 		gbc.gridy = 4;
+		gbc.gridwidth= 6;
 
 		add(areaEstadistica, gbc);
 
@@ -270,11 +278,6 @@ public class VistaTabla extends JFrame {
 		gbc.gridwidth = 3;
 
 		add(fondoinfoTablero, gbc);
-		
-		
-	
-		
-		
 	}
 
 	private JLabel crearLabelConFondo(String nombre, Dimension dimension, String rutaImagenFondo) {
@@ -289,7 +292,8 @@ public class VistaTabla extends JFrame {
 	public void mostrarEstadisticasMonstruo(CartaMounstro carta) {
 		areaEstadistica.setText("Nombre: " + carta.getNombre() + "\nBuffTabla: " + carta.getBuffTabla() + "\nAtaque: " + carta.getAtaque() + "\nDefensa: "
 				+ carta.getDefensa() + "\nNivel: " + carta.getNivel() + "\nAtributo: " + carta.getElemento()
-				+ "\nPosicion: " + carta.getPosicion());
+				+ "\nPosicion: " + carta.getPosicion()
+				+ "\nDescripcion: " + carta.getDescripcion() );
 		areaEstadistica.setVisible(true);
 		areaEstadistica.setOpaque(false);
 
@@ -297,10 +301,11 @@ public class VistaTabla extends JFrame {
 
 	public void mostrarEstadisticasHechizo(CartaMagica carta) {
 		areaEstadistica.setText("Nombre: " + carta.getNombre() + "\nEfecto: " + carta.getCantidad_efecto() +
-				"\nTipo " + carta.getClass().getSimpleName()
-		// "\nDescripcion: " + carta.getDescripcion()
+				"\nTipo " + carta.getClass().getSimpleName() +
+		 "\nDescripcion: " + carta.getDescripcion()
 		);
 		areaEstadistica.setVisible(true);
+		areaEstadistica.setOpaque(false);
 	}
 
 	public void mostrarEstadisticaMonstruoBuffeado(CartaMounstro carta, CartaMagicaEquipada cartaMagica) {
@@ -424,13 +429,11 @@ public class VistaTabla extends JFrame {
 		this.panelesMonstruosRival = panelesMonstruosRival;
 	}
 
-	public JTextArea getAreaEstadistica() {
+	public BackgroundTextArea getAreaEstadistica() {
 		return areaEstadistica;
 	}
 
-	public void setAreaEstadistica(JTextArea areaEstadistica) {
-		this.areaEstadistica = areaEstadistica;
-	}
+	
 
 //	public static void main(String[] args) {
 //		EventQueue.invokeLater(new Runnable() {
