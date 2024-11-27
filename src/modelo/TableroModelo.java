@@ -3,9 +3,7 @@ package modelo;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Observable;
 import java.util.Random;
 
@@ -19,64 +17,28 @@ public class TableroModelo extends Observable {
     private Campos campoJugador;
     private Campos campoComputadora;
 
-    private Integer id_tablero;
-    private String tipo_elemento_tablero;
-    private String imagenUrlTablero;
-    private TableroDAO dao;
-
-
-    private Random random = new Random();
-
-    private Map<String, String> imagenes;
+    private Tablero tablero;
 
     private List<CartaMounstro> mounstruosQueAtacaron;
 
-    public TableroModelo(Integer id_tablero, String tipo_elemento_tablero, String imagenUrlTablero) {
-        this.id_tablero = id_tablero;
-        this.tipo_elemento_tablero = tipo_elemento_tablero;
-        this.imagenUrlTablero = imagenUrlTablero;
-    }
-
-    public TableroModelo( ) {
-        this.dao = new TableroDAO();
-        imagenes = new HashMap<>(); 
-        imagenes.put("WATER", "src//modelo//Tablero_Water.png");
-         imagenes.put("WIND", "src//modelo//Tablero_Wind.jpg");
-         imagenes.put("FIRE", "src//modelo//Tablero_Fire.png");
-         imagenes.put("EARTH", "src//modelo//Tablero_Tierra.jpg");
-         imagenes.put("LIGHT", "src//modelo//Tablero_Light.png");
-         imagenes.put("DARK", "src//modelo//Tablero_Dark.jpg");
-         imagenes.put("Default", "src//modelo//tontos todos.jpg");
-         setAtributosTableroModelo();
-    }
-
-    public void setAtributosTableroModelo() {
+    public TableroModelo() {
         jugador = new Jugador("Jugador1", this.bajarDeck());
         computadora = new Jugador("Computadora", this.bajarDeck());
         this.campoComputadora = new Campos();
         this.campoJugador = new Campos();
         this.mounstruosQueAtacaron = new ArrayList<>();
 
+        TableroDAO tableros = new TableroDAO();
+        Random random = new Random();
+
         try {
             // Obtener la lista de tableros una sola vez
-            List<Tablero> tableros = dao.obtenerTableros();
-            if (!tableros.isEmpty()) {
-                int randomIndex = new Random().nextInt(tableros.size());
-                // Seleccionar un tablero aleatoriamente y obtener su tipo de elemento
-                this.tipo_elemento_tablero = tableros.get(randomIndex).getTipo_elemento_tablero();
-                this.imagenUrlTablero = imagenes.getOrDefault(this.tipo_elemento_tablero, imagenes.get("Default"));
-                System.out.println("Tablero seleccionado: " + this.tipo_elemento_tablero);
-            } else {
-                System.out.println("No hay tableros disponibles en la base de datos.");
-            }
+            ArrayList<Tablero> tableroAleatorio = tableros.obtenerTableros();
+            this.tablero = tableroAleatorio.get(random.nextInt(tableroAleatorio.size()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-
-
-
 
     public ArrayList<Carta> bajarDeck() {
         ArrayList<Carta> deck = new ArrayList<>();
@@ -131,7 +93,7 @@ public class TableroModelo extends Observable {
     }
 
     public void jugarCartaEnTablero(CartaMounstro carta_jugada) throws Exception {
-        if (carta_jugada.getElemento() == tipo_elemento_tablero) {
+        if (carta_jugada.getElemento() == tablero.getTipo_elemento_tablero()) {
             carta_jugada.setAtaque(carta_jugada.getAtaque() + 600);
         }
         jugador.jugarCarta(carta_jugada, this, campoJugador);
@@ -197,6 +159,10 @@ public class TableroModelo extends Observable {
         return this.campoComputadora;
     }
 
+    public String getImagenUrlTablero() {
+        return tablero.getImagenUrlTablero();
+    }
+
     public Jugador getJugador() {
         return jugador;
     }
@@ -205,20 +171,8 @@ public class TableroModelo extends Observable {
         return computadora;
     }
 
-    public String getTipo_elemento_tablero() {
-        return tipo_elemento_tablero;
-    }
-
-    public void setTipo_elemento_tablero(String tipo_elemento_tablero) {
-        this.tipo_elemento_tablero = tipo_elemento_tablero;
-    }
-
-    public String getImagenUrlTablero() {
-        return imagenUrlTablero;
-    }
-
-    public void setImagenUrlTablero(String imagenUrlTablero) {
-        this.imagenUrlTablero = imagenUrlTablero;
+    public Tablero getTablero() {
+        return tablero;
     }
 
 }

@@ -8,23 +8,15 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-
-import vista.FondoPanel;
 import vista.VistaTabla;
-import controlador.*;
 
 @SuppressWarnings("deprecation")
 
@@ -46,7 +38,7 @@ public class TableroControlador implements Observer {
         this.modelo.addObserver(this);
         inicializarVista();
         agregarManejadoresDeEventos();
-        vista.agregarAccionTablero("El Tablero Es tipo " + modelo.getTipo_elemento_tablero());
+        vista.agregarAccionTablero("El Tablero Es tipo " + modelo.getTablero().getTipo_elemento_tablero());
     }
 
     private void inicializarVista() {
@@ -266,7 +258,7 @@ public class TableroControlador implements Observer {
                 if (carta instanceof CartaMounstro) {
                     try {
                         modelo.colocarCarta((CartaMounstro) carta, modelo.getCampoComputadora());
-                        if (((CartaMounstro) carta).getElemento().equals(modelo.getTipo_elemento_tablero())) {
+                        if (((CartaMounstro) carta).getElemento().equals(modelo.getTablero().getTipo_elemento_tablero())) {
                             vista.agregarAccionRival("Carta Buffeada por" + ((CartaMounstro) carta).getElemento());
                         }
                         // cartasMounstruosEnCampoBot =
@@ -580,9 +572,9 @@ public class TableroControlador implements Observer {
                                 modelo.getJugador().getMano().remove(cartaSeleccionada);
                                 vista.agregarAccionJugador("Carta colocada: " + cartaSeleccionada.getNombre());
                                 if (((CartaMounstro) cartaSeleccionada).getElemento()
-                                        .equals(modelo.getTipo_elemento_tablero())) {
+                                        .equals(modelo.getTablero().getTipo_elemento_tablero())) {
                                     vista.agregarAccionJugador(
-                                            "Carta Buffeada por elemento " + modelo.getTipo_elemento_tablero());
+                                            "Carta Buffeada por elemento " + modelo.getTablero().getTipo_elemento_tablero());
                                     ((CartaMounstro) cartaSeleccionada)
                                             .setAtaque(((CartaMounstro) cartaSeleccionada).getAtaque() + 1000);
                                 }
