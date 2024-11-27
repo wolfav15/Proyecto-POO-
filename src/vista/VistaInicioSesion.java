@@ -24,6 +24,7 @@ public class VistaInicioSesion extends JFrame {
 	private JPanel contentPane;
 	private JTextField campoUsuario;
 	private JPasswordField campoContrasenia;
+	private JButton Confirma, botonCrearCuenta;
 
 	/**
 	 * Launch the application.
@@ -138,7 +139,7 @@ public class VistaInicioSesion extends JFrame {
 	}
 	
 	public JButton getBotonCrearCuenta() {
-	    return BotonCrearCuenta; 
+	    return botonCrearCuenta; 
 	}
 
 
