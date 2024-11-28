@@ -35,7 +35,8 @@ public class TableroDAO {
                 Integer idTablero = resultado.getInt("id_tablero");
                 String tipo = resultado.getString("tipo_elemento_tablero");
                 String url = resultado.getString("imagenUrlTablero");
-                return new Tablero(idTablero, tipo, url);
+                String fondo = resultado.getString("FondoCarta");
+                return new Tablero(idTablero, tipo, url,fondo);
             }
             return null;
         } catch (SQLException e) {
@@ -101,7 +102,8 @@ public class TableroDAO {
                 Tablero tableroHecho = new Tablero(
                         res.getInt("id_tablero"),
                         res.getString("tipo_elemento_tablero"),
-                        res.getString("imagenUrlTablero"));
+                        res.getString("imagenUrlTablero"),
+                        res.getString("FondoCarta"));
                 tableros.add(tableroHecho);
             }
         } catch (SQLException e) {

@@ -22,6 +22,7 @@ public class AgregarTablero extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textUrl;
+	private JTextField textUrl2;
 	private JTextField textUsuario;
 	private JPasswordField textPass;
 	private JLabel ImagenLbl;
@@ -116,12 +117,21 @@ public class AgregarTablero extends JFrame {
 		boxElemento.setModel(new DefaultComboBoxModel(new String[] {"WATER", "EARTH", "WIND", "FIRE", "DARK", "LIGHT"}));
 		panel_1.add(boxElemento);
 		
-		JLabel lblNewLabel_1 = new JLabel("URL");
+		JLabel lblNewLabel_1 = new JLabel("Fondo");
 		lblNewLabel_1.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 19, SpringLayout.SOUTH, lblNewLabel);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_1, 0, SpringLayout.WEST, lblNewLabel);
+		sl_panel_1.putConstraint(SpringLayout.EAST, lblNewLabel_1, 60, SpringLayout.EAST, lblNewLabel);
 		panel_1.add(lblNewLabel_1);
+
+		JLabel lblNewLabel2 = new JLabel("Fondo Carta");
+		lblNewLabel2.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 11));
+		lblNewLabel2.setForeground(new Color(255, 255, 255));
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, lblNewLabel2, 25, SpringLayout.SOUTH, lblNewLabel_1);
+		
+		
+		panel_1.add(lblNewLabel2);
 		
 		textUrl = new JTextField();
 		sl_panel_1.putConstraint(SpringLayout.NORTH, textUrl, -3, SpringLayout.NORTH, lblNewLabel_1);
@@ -129,11 +139,17 @@ public class AgregarTablero extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.EAST, textUrl, -23, SpringLayout.EAST, panel_1);
 		panel_1.add(textUrl);
 		textUrl.setColumns(10);
+
+		textUrl2 = new JTextField();
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, textUrl2, 45, SpringLayout.NORTH, lblNewLabel_1);
+		sl_panel_1.putConstraint(SpringLayout.WEST, textUrl2, 0, SpringLayout.WEST, boxElemento);
+		panel_1.add(textUrl2);
+		textUrl2.setColumns(10);
 		
 		btnPrevisualizar = new JButton("Previsualizar");
-		sl_panel_1.putConstraint(SpringLayout.NORTH, btnPrevisualizar, 26, SpringLayout.SOUTH, textUrl);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, btnPrevisualizar, 46, SpringLayout.SOUTH, textUrl);
 		sl_panel_1.putConstraint(SpringLayout.WEST, btnPrevisualizar, 127, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, btnPrevisualizar, 57, SpringLayout.SOUTH, textUrl);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, btnPrevisualizar, 77, SpringLayout.SOUTH, textUrl);
 		sl_panel_1.putConstraint(SpringLayout.EAST, btnPrevisualizar, 0, SpringLayout.EAST, textUrl);
 		btnPrevisualizar.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 16));
 		btnPrevisualizar.setForeground(new Color(255, 255, 255));
@@ -184,6 +200,12 @@ public class AgregarTablero extends JFrame {
 	}
 	public void mostrarMensaje(String mensaje) {
 		JOptionPane.showMessageDialog(this, mensaje);
+	}
+
+	public static void main(String[] args) {
+		AgregarTablero frame = new AgregarTablero();
+					frame.setVisible(true);
+		
 	}
 	
 }

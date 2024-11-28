@@ -70,8 +70,7 @@ public class ControladorABMTablero {
 				fila[0] = tabla.getId_tablero();
 				fila[1] = tabla.getTipo_elemento_tablero();
 				fila[2] = tabla.getImagenUrlTablero();
-				
-
+				fila[3] = tabla.getFondoCartas();
 				model.addRow(fila);
 			}
 			

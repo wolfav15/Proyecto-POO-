@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import modelo.JugadorDAO;
 import modelo.Tablero;
@@ -40,7 +41,8 @@ public class ControladorEditarTablero {
 	    			tableroBuscado = dao.buscarTablero(id);
 	    			vista.getTextUrl().setText(tableroBuscado.getImagenUrlTablero());
 	    			vista.getBoxElemento().setSelectedItem(tableroBuscado.getTipo_elemento_tablero());
-	    			visualizarImagen(tableroBuscado.getImagenUrlTablero());
+	    			visualizarImagen(tableroBuscado.getImagenUrlTablero(), vista.getjLabelImagenTablero());
+				    visualizarImagen(tableroBuscado.getFondoCartas(), vista.getjLabelFondoCartas());
 	    			
 				} catch (SQLException e1) {
 					vista.mostrarMensaje("No se encontró la carta");
@@ -89,8 +91,8 @@ public class ControladorEditarTablero {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public void visualizarImagen(String link) {
-		vista.getImagenLbl().setIcon(null); //Para limpiar la anterior imagen
+	public void visualizarImagen(String link, JLabel jLabel) {
+		jLabel.setIcon(null); //Para limpiar la anterior imagen
         Image image = null;
         URL url = null;
         
@@ -113,7 +115,7 @@ public class ControladorEditarTablero {
             Image imagenNueva = image.getScaledInstance(400, 300, Image.SCALE_SMOOTH);
 
             // Poner la imagen redimensionada en el JLabel
-            vista.getImagenLbl().setIcon(new ImageIcon(imagenNueva));
+            jLabel.setIcon(new ImageIcon(imagenNueva));
         }
 	}
 }

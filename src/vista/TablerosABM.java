@@ -48,15 +48,16 @@ public class TablerosABM extends JFrame {
 
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
+				{null, null, null, null},
 			},
 			new String[] {
-				"ID", "Elemento", "URL"
+				"ID", "Elemento", "URL", "Fondo"
 			}
 		));
 		table.getColumnModel().getColumn(0).setPreferredWidth(25);
 		table.getColumnModel().getColumn(0).setMinWidth(7);
-		table.getColumnModel().getColumn(2).setPreferredWidth(200);
+		table.getColumnModel().getColumn(2).setPreferredWidth(20);
+		table.getColumnModel().getColumn(3).setMinWidth(7);
 		scrollPane.setViewportView(table);
 		
 		panel = new JPanel();

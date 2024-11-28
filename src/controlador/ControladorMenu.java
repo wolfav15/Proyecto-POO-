@@ -9,10 +9,9 @@ import vista.VistaInicioSesion;
 
 public class ControladorMenu {
 		private Menu vista;
-        private musica.ReproductorMusica song;
+       
 		public ControladorMenu () {
-			song = new musica.ReproductorMusica();
-			song.reproducir("src\\musica\\Rata Blanca - La Leyenda del Hada y el Mago (En Vivo).mp3");
+			
 			
 			
 			this.vista = new Menu();
@@ -20,7 +19,7 @@ public class ControladorMenu {
 		
 			this.vista.getBotonBatalla().addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					song.detener();
+					
 					VistaInicioSesion vista = new VistaInicioSesion();
 					JugadorDAO dao = new JugadorDAO();
 					new ControladorInicioSesion(vista, dao);

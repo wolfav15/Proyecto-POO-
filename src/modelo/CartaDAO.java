@@ -278,15 +278,5 @@ public class CartaDAO {
             return deck;
         }
 
-        public static void main(String[] args) throws SQLException {
+     }
 
-
-            CartaDAO dao = new CartaDAO();
-
-            ArrayList<Carta> deck = dao.obtenerCartas();
-
-            for (Carta carta : deck) {
-                System.out.println(carta.toString());
-            }
-        }
-}

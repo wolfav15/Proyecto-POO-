@@ -14,6 +14,7 @@ public class ControladorInicioSesion {
     private JugadorDAO JugadorDAO; 
 
 
+
     @SuppressWarnings("unused")
     public ControladorInicioSesion(VistaInicioSesion vista, JugadorDAO jugadorDAO) {
         this.vista = vista;
@@ -72,6 +73,7 @@ public class ControladorInicioSesion {
                 Thread.sleep(2000);
                 
                 this.vista.dispose();
+               
                 TableroModelo modelo = new TableroModelo(idUsuario);
                 VistaTabla vista = new VistaTabla(modelo);
                 

@@ -42,6 +42,7 @@ public class TableroControlador implements Observer {
     private boolean turnoRival = true;
     private boolean turnoJugador = false;
 
+
     public TableroControlador(TableroModelo modelo, VistaTabla vista) {
         this.modelo = modelo;
         this.vista = vista;
@@ -242,10 +243,7 @@ public class TableroControlador implements Observer {
 
         // Colocar todas las cartas de la mano del rival en el campo si hay espacio
         List<Carta> cartasEnMano = rival.getMano();
-        List<CartaMounstro> cartasMounstruosEnCampoBot = modelo.getCampoComputadora().getCampoMounstruos()
-                .getCartaMounstrosEnCampo();
-        JLabel[] lblMonstruosRival = vista.getLblMonstruosRival();
-        JLabel[] lblHechizosRival = vista.getLblHechizosRival();
+        List<CartaMounstro> cartasMounstruosEnCampoBot = modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo();
 
         for (int i = 0; i < cartasEnMano.size(); i++) {
             Carta carta = cartasEnMano.get(i);
@@ -547,9 +545,7 @@ public class TableroControlador implements Observer {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (cartaSeleccionada != null) {
-                    vista.agregarAccionTablero("pendejo");
-                }
+               
 
                 if ((modelo.getCampoComputadora().getCampoMounstruos().getCartaMounstrosEnCampo().size() == 0)
                         && cartaSeleccionada != null) {
@@ -720,13 +716,8 @@ public class TableroControlador implements Observer {
 
     public static void main(String[] args) {
         TableroModelo modelo = new TableroModelo(null);
-
       VistaTabla vista = new VistaTabla(modelo);
-
 		new TableroControlador(modelo, vista);
-
-		
-
 	}
 //
    }

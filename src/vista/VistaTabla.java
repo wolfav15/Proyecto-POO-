@@ -209,8 +209,7 @@ public class VistaTabla extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				Menu menu = new Menu();
-				menu.setVisible(true);
+			
 			}
 		});
 	
